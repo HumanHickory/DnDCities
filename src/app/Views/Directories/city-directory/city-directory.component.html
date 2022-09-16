@@ -1,0 +1,27 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Noto+Serif:ital@1&display=swap" rel="stylesheet">
+
+<div>
+    <div class="text-center pt-5 mt-5">
+        <h1 style="font-family: 'Aboreto', cursive;">Welcome to Avyngäard<span style="color: green">.</span></h1>
+    </div>    
+
+    <div class="container">
+
+        <div class="text-center row pb-5">
+
+            <a *ngFor="let city of Cities; let i = index" class="cityCard col-6 col-xl-3"
+                routerLink="{{city.size}}/{{city.id}}" routerLinkActive="true">
+                <div class="img-holder">
+                    <img src="../../../../assets/icons/{{city.name | lowercase}}.jpg" />
+
+                    <div class="text-center pt-xl-4 pb-xl-3 py-2">
+                        <h5> {{city.name}} </h5>
+                        <p>{{city.area}} </p>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="mb-3">
+    <h3 [ngStyle]="{'color': headerColor}">News.</h3>
+</div>
+
+<div class="row">
+    <p-accordion>
+        <p-accordionTab header="{{story.title}}" *ngFor="let story of news; let i = index">
+            <p><b>{{story.author}}, {{story.source}}</b></p>
+                   <div [innerHtml]="story.storyHtml"></div>
+        </p-accordionTab>
+    </p-accordion>
+</div>

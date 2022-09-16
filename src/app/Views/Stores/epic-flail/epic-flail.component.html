@@ -1,0 +1,335 @@
+<!--DO NOT REMOVE THIS THIS IS HOW THIS WHOLE THING IS WORKING!!!-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+
+<nav class="navbar navbar-expand-lg sticky-top" style="background-color: #ff4500;">
+    <div class="container-fluid">
+        <a class="navbar-brand me-5" routerLink="/City/{{CityId}}" routerLinkActive="true" style="color: white">{{CityName}}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/Shops/{{CityId}}" routerLinkActive="active" >Shops</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+                <a routerLink="" routerLinkActive="true"><i class="pi pi-home pe-3"  style="font-size: 1.5rem"></i></a>
+            </span>
+        </div>
+    </div>
+</nav>
+
+
+<div class="hero-header-container">
+    <div class="headerText">
+        <h1 class="header-title animate-pop-in "> Epic Flail</h1>
+    </div>
+</div>
+
+<div *ngIf="IsLoaded">
+    <div class="container-fluid">
+        <div class="row shadow my-5" style="border: 2px solid black;">
+
+            <div class="titleBox col-md-3 col-6 product">
+                <div class="m-auto text-center">
+                    <h1> Weaponry Exclusives </h1>
+                </div>
+            </div>
+
+
+            <div class="col-md-3 col-6 product creamBG pointer" *ngFor="let weapon of ExclusiveWeapons; let i = index"
+                [ngClass]="{'creamBG': CreateCheckerboard(i)}">
+                <div class="imgWrapper m-auto">
+                    <img src="../../../../assets/EpicFlail/{{CityName}}/{{weapon.name | lowercase}}.png" />
+                    <h5>{{weapon.name}}</h5>
+                </div>
+                <div class="overlay" id="text1">
+                    <div class="text">
+                        <h5>{{weapon.name}}</h5>
+                        <b>Damage:</b> {{weapon.numberOfDamageDice}}d{{weapon.damageDice}} {{weapon.damageType.name}}
+                        <br>
+                        <b>Features:</b> <span *ngFor="let prop of weapon.properties"> {{prop.name}} </span> <br>
+                        <b>Special:</b> {{weapon.special}} <br>
+                        <b><span class="gold"> {{weapon.price}} {{weapon.currencyType.abbreviation}}</span></b>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--SIMPLE MELEE-->
+        <div class="row shadow my-5" style="border: 2px solid black;">
+            <div class="titleBox col-md-3 col-6 product">
+                <div class="m-auto text-center">
+                    <h1> Simple Melee </h1>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-6 product creamBG pointer" *ngFor="let weapon of SimpleMelee; let i = index"
+                [ngClass]="{'creamBG': CreateCheckerboard(i)}">
+                <div class="imgWrapper m-auto">
+                    <img src="../../../../assets/EpicFlail/{{weapon.name | lowercase}}.png" />
+                    <h5>{{weapon.name}}</h5>
+                </div>
+                <div class="overlay" id="text1">
+                    <div class="text">
+                        <h5>{{weapon.name}}</h5>
+                        <b>Damage:</b> {{weapon.numberOfDamageDice}}d{{weapon.damageDice}} {{weapon.damageType.name}}
+                        <br>
+                        <b>Features:</b> <span *ngFor="let prop of weapon.properties"> {{prop.name}} </span> <br>
+                        <b><span class="gold"> {{weapon.price}} {{weapon.currencyType.abbreviation}}</span></b>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--SIMPLE RANGE-->
+        <div class="row shadow my-5" style="border: 2px solid black;">
+
+            <div class="titleBox col-md-3 col-6 product">
+                <div class="m-auto text-center">
+                    <h1> Simple Range </h1>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-6 product creamBG pointer" *ngFor="let weapon of SimpleRanged; let i = index"
+                [ngClass]="{'creamBG': CreateCheckerboard(i)}">
+                <div class="imgWrapper m-auto">
+                    <img src="../../../../assets/EpicFlail/{{weapon.name | lowercase}}.png" />
+                    <h5>{{weapon.name}}</h5>
+                </div>
+                <div class="overlay" id="text1">
+                    <div class="text">
+                        <h5>{{weapon.name}}</h5>
+                        <b>Damage:</b> {{weapon.numberOfDamageDice}}d{{weapon.damageDice}} {{weapon.damageType.name}}
+                        <br>
+                        <b>Features:</b> <span *ngFor="let prop of weapon.properties"> {{prop.name}} </span> <br>
+                        <b><span class="gold"> 2sp</span></b>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--MARTIAL MELEE-->
+        <div class="row shadow my-5" style="border: 2px solid black;">
+
+            <div class="titleBox col-md-3 col-6 product">
+                <div class="m-auto text-center">
+                    <h1> Martial Melee </h1>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-6 product creamBG pointer" *ngFor="let weapon of MartialMelee; let i = index"
+                [ngClass]="{'creamBG': CreateCheckerboard(i)}">
+                <div class="imgWrapper m-auto">
+                    <img src="../../../../assets/EpicFlail/{{weapon.name | lowercase}}.png" />
+                    <h5>{{weapon.name}}</h5>
+                </div>
+                <div class="overlay" id="text1">
+                    <div class="text">
+                        <h5>{{weapon.name}}</h5>
+                        <b>Damage:</b> {{weapon.numberOfDamageDice}}d{{weapon.damageDice}} {{weapon.damageType.name}}
+                        <br>
+                        <b>Features:</b> <span *ngFor="let prop of weapon.properties"> {{prop.name}} </span> <br>
+                        <b><span class="gold"> 2sp</span></b>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--MARTIAL RANGE-->
+
+        <div class="row shadow my-5" style="border: 2px solid black;">
+
+            <div class="titleBox col-md-3 col-6 product">
+                <div class="m-auto text-center">
+                    <h1> Martial Range </h1>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-6 product creamBG pointer" *ngFor="let weapon of MartialRanged; let i = index"
+                [ngClass]="{'creamBG': CreateCheckerboard(i)}">
+                <div class="imgWrapper m-auto">
+                    <img src="../../../../assets/EpicFlail/{{weapon.name | lowercase}}.png" />
+                    <h5>{{weapon.name}}</h5>
+                </div>
+                <div class="overlay" id="text1">
+                    <div class="text">
+                        <h5>{{weapon.name}}</h5>
+                        <b>Damage:</b> {{weapon.numberOfDamageDice}}d{{weapon.damageDice}} {{weapon.damageType.name}}
+                        <br>
+                        <b>Features:</b> <span *ngFor="let prop of weapon.properties"> {{prop.name}} </span> <br>
+                        <b><span class="gold"> 2sp</span></b>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--AMMUNITION-->
+
+        <div class="row shadow my-5" style="border: 2px solid black;">
+
+            <div class="titleBox col-md-3 col-6 product">
+                <div class="m-auto text-center">
+                    <h1> Ammo </h1>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-6 product pointer">
+                <div class="imgWrapper m-auto">
+                    <img src="../../../../assets/GnomeDepot/arrows.png" />
+                    <h5>Arrows</h5>
+                </div>
+                <div class="overlay" id="text1">
+                    <div class="text">
+                        <h5>Blow Gun</h5>
+                        <b>Features:</b> Pack of 20<br>
+                        <b><span class="gold"> 1gp</span></b>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3 col-6 product creamBG pointer">
+                <div class="imgWrapper m-auto">
+                    <img src="../../../../assets/GnomeDepot/blowgunNeedles.png" />
+                    <h5>Blowgun Needles</h5>
+
+                </div>
+                <div class="overlay" id="text1">
+                    <div class="text">
+                        <h5>Blowgun Needles</h5>
+                        <b>Features:</b> Pack of 50<br>
+                        <b><span class="gold"> 1gp</span></b>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3 col-6 product pointer">
+                <div class="imgWrapper m-auto">
+                    <img src="../../../../assets/GnomeDepot/crossbowBolt.png" />
+                    <h5>Crossbow Bolt</h5>
+                </div>
+                <div class="overlay" id="text1">
+                    <div class="text">
+                        <h5>Crossbow Bolt</h5>
+                        <b>Features:</b> Pack of 20 <br>
+                        <b><span class="gold"> 1gp</span></b>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3 col-6 product pointer">
+                <div class="imgWrapper m-auto">
+                    <img src="../../../../assets/GnomeDepot/slingBullets.png" />
+                    <h5>Sling Bullets</h5>
+                </div>
+                <div class="overlay" id="text1">
+                    <div class="text">
+                        <h5>Sling Bullets</h5>
+                        <b>Features:</b> Pack of 20 <br>
+                        <b><span class="gold"> 4cp</span></b>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-6 product creamBG">
+                <div class="imgWrapper m-auto">
+                    <img src="../../../../assets/GnomeDepot/arrows.png" />
+                    <h5>Quiver</h5>
+                </div>
+                <div class="overlay" id="text1">
+                    <div class="text">
+                        <h5>Quiver</h5>
+                        <b><span class="gold"> 1gp</span></b>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3 col-6 product">
+                <div class="imgWrapper m-auto">
+                    <img src="../../../../assets/GnomeDepot/crossbowBolt.png" />
+                    <h5>Crossbow Bolt Case</h5>
+                </div>
+                <div class="overlay" id="text1">
+                    <div class="text">
+                        <h5>Crossbow Bolt Case</h5>
+                        <b><span class="gold"> 1gp</span></b>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row my-5">
+            <div class="text-center">
+                <button type="button" class="btn btn-primary" (click)="showTerms = !showTerms">
+                    View Glossary of Terms
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- The Modal -->
+<p-dialog header="Glossary of Terms" [(visible)]="showTerms" [style]="{width: '70vw'}">
+
+    <h5>Terms</h5>
+    <ul>
+        <li><b>Ammunition</b> You must have and expend one piece of ammo per attack. You may recover 1/2 the
+            ammo at the end of the battle by taking 1 minute to search the battlefield.</li>
+        <li><b>Finesse</b> You may use either Strength or Dexterity as your modifier for the Attack and
+            Damage rolls. You must use the same modifier for both rolls. </li>
+        <li><b>Heavy</b> Small creatures have disadvantage on attack rolls with these weapons.</li>
+        <li><b>Light</b> A light weapon is small and easy to handle, making it ideal for use when fighting
+            with two Weapons.</li>
+        <li><b>Loading</b> Because of the time required to load this weapon, you can fire only one piece of
+            Ammunition from it when you use an action, Bonus Action, or Reaction to fire it, regardless of
+            the number of attacks you can normally make.</li>
+        <li><b>Range</b> A weapon that can be used to make a ranged Attack has a range in parentheses after
+            the Ammunition or thrown property. The range lists two numbers. The first is the weapon’s normal
+            range in feet, and the second indicates the weapon’s long range. When attacking a target beyond
+            normal range, you have disadvantage on the Attack roll. You can’t Attack a target beyond the
+            weapon’s long range.</li>
+        <li><b>Reach</b> This weapon adds 5 feet to your reach when you Attack with it, as well as when
+            determining your reach for Opportunity Attacks with it.</li>
+        <li><b>Special</b> A weapon with the special property has unusual rules governing its use, explained
+            in the weapon’s description</li>
+        <li><b>Thrown</b> If a weapon has the thrown property, you can throw the weapon to make a ranged
+            Attack. If the weapon is a melee weapon, you use the same ability modifier for that Attack roll
+            and damage roll that you would use for a melee Attack with the weapon. For example, if you throw
+            a Handaxe, you use your Strength, but if you throw a Dagger, you can use either your Strength or
+            your Dexterity, since the Dagger has the finesse property.</li>
+        <li><b>Two-Handed</b> This weapon requires two hands when you Attack with it.</li>
+        <li><b>Versatile</b> This weapon can be used with one or two hands. A damage value in parentheses
+            appears with the property—the damage when the weapon is used with two hands to make a melee
+            Attack.</li>
+        <li><b>Improvised Weapons</b> An object that bears no resemblance to a weapon deals 1d4 damage (the
+            GM assigns a damage type appropriate to the object). If a character uses a ranged weapon to make
+            a melee Attack, or throws a melee weapon that does not have the thrown property, it also deals
+            1d4 damage. An improvised thrown weapon has a normal range of 20 feet and a long range of 60
+            feet.</li>
+
+    </ul>
+
+    <h5>Special Weapons</h5>
+    <ul>
+        <li><b>Lance</b> You have disadvantage when you use a lance to Attack a target within 5 feet of you.
+            Also, a lance requires two hands to wield when you aren’t mounted.</li>
+        <li><b>Net</b> A Large or smaller creature hit by a net is Restrained until it is freed. A net has
+            no effect on creatures that are formless, or creatures that are Huge or larger. A creature can
+            use its action to make a DC 10 Strength check, freeing itself or another creature within its
+            reach on a success. Dealing 5 slashing damage to the net (AC 10) also frees the creature without
+            harming it, ending the effect and destroying the net. When you use an action, Bonus Action, or
+            Reaction to Attack with a net, you can make only one Attack regardless of the number of attacks
+            you can normally make.</li>
+    </ul>
+</p-dialog>

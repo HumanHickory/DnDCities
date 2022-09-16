@@ -1,0 +1,75 @@
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Special+Elite&display=swap" rel="stylesheet">
+
+
+<app-nav-bar backgroundColor="black" [navBarLightText]="true" 
+[cityId]="CityId" [cityName]="CityName"></app-nav-bar>
+
+
+
+<h1 class="heroText">{{Tavern?.name}}</h1>
+
+<div *ngIf="isLoaded" class="hero" style="background-image: url('../../../../assets/Tavern/{{City.pathName}}/hero.jpg')"></div>
+
+<div class="d-none d-md-flex justify-content-center mt-5" *ngIf="isLoaded">
+    <button *ngFor="let item of Tavern.menuItemTypes" (click)="ToggleMenu(item)" class="tabMenuBtn"
+        [ngClass]="{'active': SelectedTab == item}">{{item.name}}</button>
+</div>
+
+<div class="d-md-none text-center mt-5 px-3" *ngIf="isLoaded">
+    <p-dropdown [options]="Tavern.menuItemTypes" [(ngModel)]="SelectedTab" (onChange)="UpdateMenuItems()"
+        optionLabel="name"></p-dropdown>
+</div>
+
+
+<div class="container mt-5" *ngIf="isLoaded">
+    <div class="text-center py-3 my-5" style="background-color: rgba(54, 65, 111, 1); color: white">
+        <b>Sauce on the side not permitted.</b>
+    </div>
+
+
+    <div class="text-center menuHeader">
+        <h1>{{SelectedTab.name | uppercase}}</h1>
+    </div>
+
+    <div class="row" *ngIf="SelectedTab.name != 'Drinks'">
+        <div class="col-md-6 mt-3 row" *ngFor="let recipe of Recipes">
+            <div class="col-lg-3">
+                <div class="menuItemImgWrapper">
+                    <img src="../../../../assets/Tavern/{{City.pathName}}/{{recipe.name | lowercase}}.jpg">
+                </div>
+            </div>
+            <div class="col-lg-7 col-9">
+                <p class="secondaryFont"><b>{{recipe.name | uppercase}}</b></p>
+                <p><i>{{recipe.description}}</i></p>
+            </div>
+            <div class="col-lg-2 col-3">
+                <p><b>{{recipe.price}} {{recipe.currencyType.name}}</b></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="SelectedTab.name == 'Drinks'">
+        <div class="col-md-6 mt-3 row" *ngFor="let drink of Tavern.drinks">
+
+            <div class="col-lg-10 col-9">
+                <p class="secondaryFont"><b>{{drink.name | uppercase}} </b><i>({{drink.drinkType}})</i></p>
+                <p>{{drink.createdCity}}. <i>{{drink.description}}</i></p>
+            </div>
+            <div class="col-lg-2 col-3">
+                <p><b>{{drink.price}} {{drink.currencyType.name}}</b></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-5 pt-3" style="background-color: black">
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <b>Inn Pricing</b>
+                <p>{{Tavern?.name}} - {{CityName}}</p>
+                <p>Monday-Friday</p>
+            </div>
+        </div>
+    </div>
+</div>

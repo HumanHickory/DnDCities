@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark" [ngStyle]="{'background-color': backgroundColor}" [ngClass]="{'navbar-dark': navBarLightText,'navbar-light': !navBarLightText }">
+    <div class="container-fluid pb-3 pb-xl-0" [ngStyle]="{'background-color': backgroundColor}">
+        <a class="navbar-brand me-5" routerLink="/City/{{cityId}}" routerLinkActive="true">{{cityName}}</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/Shops/{{cityId}}" routerLinkActive="active" >Shops</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/Tavern/{{cityId}}/{{cityName}}" routerLinkActive="active">Inn and Tavern</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+                <a routerLink="" routerLinkActive="true"><i class="pi pi-home pe-3"  style="font-size: 1.5rem"></i></a>
+            </span>
+        </div>
+    </div>
+</nav>

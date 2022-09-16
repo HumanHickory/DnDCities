@@ -1,0 +1,175 @@
+<link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@200&family=Lavishly+Yours&display=swap"
+    rel="stylesheet">
+
+    <app-nav-bar backgroundColor="black" [navBarLightText]="true" 
+    [cityId]="CityId" [cityName]="CityName"></app-nav-bar>
+
+<div style="background: black">
+    <div class="container">
+        <div class="row pt-5 white">
+            <div class="col-lg-6 col-12 pt-lg-5">
+                <h1>Five Finger's</h1>
+                <h2>Discount Market</h2>
+            </div>
+            <div class="col-6 text-center d-none d-lg-block">
+                <div class="img-wrapper">
+                    <img src="../../../../assets/FiveFinger/Knott.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div style="background: white" *ngIf="IsLoaded">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 ">
+                <div class="img-wrapper py-lg-5 py-1">
+                    <img src="../../../../assets/FiveFinger/Sonridge/loaded dice.jpg">
+                </div>
+            </div>
+
+            <div class="col-lg-6 py-lg-5 py-1 text-center">
+                <h1><u>Special</u></h1>
+                <h5 class="mt-lg-5 mt-3"><b>{{Special.name}}</b> <span style="color:rgb(79, 21, 146)"> {{Special.price}}{{Special.currencyType.abbreviation}}</span></h5>
+                <div [innerHtml]="Special.descriptionHtml"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div style="background: black">
+    <div class="container white">
+        <div class="row py-5">
+            <div class="col-lg-6 my-2">
+                <h2>General Supplies</h2>
+                <div class="my-1">
+                    <b>Blowgun Needles . . . . . 1gp</b>
+                    <br>
+                    <small>Pack of 50</small>
+                </div>
+
+                <div class="my-1">
+                    <b>Ball Bearings . . . . . 1gp</b>
+                    <br>
+                    <small>Pack of 1,000</small>
+                </div>
+
+                <div class="my-1">
+                    <b>Crowbar . . . . . 2gp</b>
+                    <br>
+                </div>
+
+                <div class="my-1">
+                    <b>Loaded Dice . . . . . 1gp</b>
+                    <br>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 my-2">
+                <h2>Poisons and Anti Toxins</h2>
+                <div class="my-1">
+                    <b>Acid (vial) . . . . . 25gp</b>
+                    <br>
+                    <small>Vial Included</small>
+                </div>
+
+                <div class="my-1">
+                    <b>Antitoxin . . . . . 50gp</b>
+                    <br>
+                    <small>Advantage on poison saving throws</small>
+                </div>
+
+                <div class="my-1">
+                    <b>Poison, Basic . . . . . 100 gp</b>
+                    <br>
+                    <small>Vial Included</small>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="row text-center">
+                    <div class="col-lg-3 col-6">
+                        <div class="img-wrapper-square">
+                            <img src="../../../../assets/FiveFinger/ball bearings.jpg">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="img-wrapper-square">
+                            <img src="../../../../assets/FiveFinger/dice.jpg">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="img-wrapper-square">
+                            <img src="../../../../assets/FiveFinger/poison.jpg">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+                        <div class="img-wrapper-square">
+                            <img src="../../../../assets/FiveFinger/acid.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-7 white" style="background: rgb(26, 26, 32)">
+        <div class="row">
+            <div class="col-lg-6 col-10 m-auto">
+                <div class="text-center mt-3">
+                    <h3>Kits and Packs</h3>
+                </div>
+                <h4> Burglar's Pack <span style="color: gold">50 gp</span> </h4>
+                <p> Includes a backpack, a bag of 1,000 ball bearings, 10 feet of string, a bell, 5 candles, a
+                    crowbar, a hammer, 10 pitons, a hooded lantern, 2 flasks of oil, 5 days rations, a tinderbox,
+                    and a waterskin. The pack also has 50 feet of hempen rope strapped to the side of it. </p>
+
+                <h4> Forgery Kit <span style="color: gold">15 gp</span> </h4>
+                <p>This small box contains a variety of papers and parchments, pens and inks, seals and sealing wax,
+                    gold and silver leaf, and other supplies necessary to create convincing forgeries of physical
+                    documents. Proficiency with this kit lets you add your proficiency bonus to any ability checks
+                    you make to create a physical forgery of a document.</p>
+
+                <h4> Thieves' Tools <span style="color: gold">25 gp</span> </h4>
+                <p> This set of tools includes a small file, a set of lock picks, a small mirror mounted on a metal
+                    handle, a set of narrow-bladed scissors, and a pair of pliers. Proficiency with these tools lets
+                    you add your proficiency bonus to any ability checks you make to disarm traps or open locks.</p>
+
+                <h4> Poisoner's Kit <span style="color: gold">25 gp</span> </h4>
+                <p> A poisoner's kit includes the vials, chemicals, and other equipment necessary for the creation
+                    of poisons. Proficiency with this kit lets you add your proficiency bonus to any ability checks
+                    you make to craft or use poisons.</p>
+            </div>
+
+        </div>
+    </div>
+        <div class="col-lg-5 py-3 py-lg-5" style="background: white">
+            <div class="row">
+                <div class="col-10 py-lg-5 m-auto">
+                    <h2><b>Discounts you can count on.</b></h2>
+                    <p>We get the best deals and prices from our <s>victims</s> vendors and pass them onto you.</p>
+                    <p>At Five Finger's Discount Market, we are dedicated to making breaking and entering, burglarizing,
+                        forging, and even murder as easy as
+                        possible. Don't believe us? Have you seen our competition? Of course not. Because they don't
+                        exist...anymore. So no matter what
+                        fun you find yourself getting into, let us at Five Finger's get you the best prices on all your
+                        criminal
+                        needs.
+                    </p>
+
+                    <div class="text-center">
+                        <div class="img-wrapper">
+                            <img src="../../../../assets/FiveFinger/fiveFingers.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

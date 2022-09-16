@@ -1,0 +1,45 @@
+<link href="https://fonts.googleapis.com/css?family=Lancelot|Vollkorn+SC&display=swap" rel="stylesheet">
+
+<app-nav-bar backgroundColor="black" [navBarLightText]="true" 
+[cityId]="CityId" [cityName]="CityName"></app-nav-bar>
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                <img src="../../../../assets/OutsideTheBach/lutePlayer.jpg" style="width: 100%;">
+            </div>
+            <div class="col-lg-6 col-12 text-center">
+                <div class="my-5 col-lg-8 offset-lg-2 "
+                    style="border-top: 10px double black; border-bottom: 10px double black;">
+                    <div class="py-3">
+                        <h1>Outside the Bach</h1>
+                    </div>
+                </div>
+
+                <p-carousel [value]="Instruments" [numVisible]="3" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions"
+                [showIndicators]="false">
+                    <ng-template let-instrument pTemplate="item">
+                        <div class="imgWrapper text-center">
+                            <img src=".../../../../assets/OutsideTheBach/{{instrument.name | lowercase}}.png"
+                                style="width: 100%">
+                        </div>
+                        <h3>{{instrument.name}}</h3>
+                        <p>{{instrument.description}}</p>
+                        <h4 style="color: purple">{{instrument.price}} {{instrument.currencyType.name}}</h4>
+                    </ng-template>
+                </p-carousel>
+            </div>
+
+            <div class="container mt-5">
+                <div class="container mt-5">
+                    <div class="row text-center">
+                        <hr class="col-12">
+                        <h2 class="col-12">Art Gallery </h2>
+                        <h5 class="col-12 mb-5">Coming Soon! </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

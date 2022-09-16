@@ -1,0 +1,45 @@
+
+
+<link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Noto+Serif:ital@1&display=swap" rel="stylesheet">
+
+<app-nav-bar backgroundColor="black" [navBarLightText]="true" 
+[cityId]="CityId" [cityName]="CityName"></app-nav-bar>
+
+
+<div>
+    <div class="container" style="padding-top: 10vh;">
+        <div class="row pb-5">
+            <h1 class="col-12" style="font-family: 'Aboreto', cursive;">Discover </h1>
+            <h2 class="col-12" style="font-family: 'Noto Serif', serif;"><i>{{CityName}}<span style="color: green">.</span></i> </h2>
+            <hr class="col-12" style="border: 2px solid">
+        </div> 
+
+        <div class="row d-md-none">
+            <div class="col-6 col-xl-3" *ngFor="let shop of Shops">
+                <button routerLink="/Stores/{{shop.nameTrimmed}}/{{CityId}}/{{CityName}}">
+                    <div class="img-holder">
+                        <img src="../../../../assets/{{shop.imgLocation}}">
+                    </div>
+                    <div class="text-center pt-4 pb-3">
+                        <h5> {{shop.name}} </h5>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+
+        <div class="row pb-5 d-none d-md-block">
+            <button class="wrapper col-6 col-xl-3" data-aos="zoom-in" data-aos-delay="100" 
+                *ngFor="let shop of Shops"
+                routerLink="/Stores/{{shop.nameTrimmed}}/{{CityId}}/{{CityName}}">
+                <div class="img-holder">
+                    <img src="../../../../assets/{{shop.imgLocation}}" id="img1">
+                    <div class="hidden text-center pt-4 pb-3" id="hidden1">
+                        <h5 class="link"> {{shop.name}} </h5>
+                    </div>
+                </div>
+            </button>
+
+        </div>
+    </div>
+</div>

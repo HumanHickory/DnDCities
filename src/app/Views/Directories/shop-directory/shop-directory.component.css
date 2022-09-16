@@ -1,0 +1,49 @@
+
+@media only screen and (min-width: 600px) {
+    h1 { font-size: 4.5rem;    }
+    h2 { font-size: 3.5rem;    }
+  }
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.wrapper {
+    text-align: center;
+    margin-top: 2rem;
+    border: none;
+}
+
+.img-holder {
+    background: #ECE9E6;
+    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);
+    background: linear-gradient(to right, #FFFFFF, #ECE9E6);
+    padding: .5rem;
+    box-shadow: 5px 5px 10px #888888;
+}
+
+.img-holder>img {
+    width: 80%;
+    height: 80%;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: black;
+}
+
+button {
+    background-color: inherit;
+    border: none;
+}
+
+
+.img-holder:hover {
+    box-shadow: 10px 10px 10px #888888;
+    transition: box-shadow .3s;
+}
+

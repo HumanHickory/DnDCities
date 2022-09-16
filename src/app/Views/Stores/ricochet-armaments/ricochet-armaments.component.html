@@ -1,0 +1,175 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<app-nav-bar backgroundColor="#004c45" [navBarLightText]="true" 
+[cityId]="CityId" [cityName]="CityName"></app-nav-bar>
+
+
+
+<div class="RAbackground">
+    <div class="container">
+        <div class="text-center">
+            <div class="display-3 pt-5">
+             Ricochet Armaments
+            </div>
+        </div>
+
+        <div class="text-center row">
+            <!--LIGHT ARMOR -->
+            <h2 class="my-5 col-12"> <b>Light Armor</b></h2>
+
+            <div class="wrapper col-6 col-xl-3" id="5" data-aos="zoom-in" data-aos-delay="100">
+                <div class="img-holder">
+                    <img src="../../../../assets/Armor/padded.png" id="img5">
+                </div>
+                <h5> Padded Armor </h5>
+                <p> 
+                    <b>AC:</b> 11 + Dex <br>
+                    Stealth Disadvantage! <br>
+                    5gp <br>
+                </p>
+
+            </div>
+
+            <div class="wrapper col-6 col-xl-3" id="6" data-aos="zoom-in">
+                <div class="img-holder">
+                    <img src="../../../../assets/Armor/leather.png" id="img6">
+                </div>
+                <h5> Leather Armor </h5>
+                <p> 
+                    <b>AC:</b> 11 + Dex <br>
+                    10gp 
+                </p>
+            </div>
+
+            <div class="wrapper col-6 col-xl-3" id="7" data-aos="zoom-in">
+                <div class="img-holder">
+                    <img src="../../../../assets/Armor/studded.png" id="img7">
+
+                </div>
+                <h5> Studded Leather </h5>
+                <p> 
+                    <b>AC:</b> 12 + Dex <br>
+                    45gp 
+                </p>
+            </div>
+
+            <!--Medium ARMOR -->
+            <h2 class="my-5 col-12"><b> Medium Armor</b></h2>
+
+            <div class="wrapper col-6 col-xl-3" id="8" data-aos="zoom-in" data-aos-delay="100">
+                <div class="img-holder">
+                    <img src="../../../../assets/Armor/hide.png" id="img8">
+                </div>
+                <h5> Hide </h5>
+                <p> 
+                    <b>AC:</b> 12 + Dex <br>
+                    (max dex = 2) <br>
+                    10gp </p>
+            </div>
+
+            <div class="wrapper col-6 col-xl-3" id="9" data-aos="zoom-in">
+                <div class="img-holder">
+                    <img src="../../../../assets/Armor/chainShirt.png" id="img9">
+                </div>
+                <h5> Chain Shirt </h5>
+                <p> 
+                    <b>AC:</b> 13 + Dex <br>
+                    (max dex = 2) <br>
+                    50gp 
+                </p>
+            </div>
+
+            <div class="wrapper col-6 col-xl-3" id="10" data-aos="zoom-in">
+                <div class="img-holder">
+                    <img src="../../../../assets/Armor/scale.png" id="img10">
+                </div>
+                <h5> Scale Mail </h5>
+                <p> 
+                    <b>AC:</b> 14 + Dex <br>
+                    (max dex = 2) <br>
+                    <b>Stealth Disadvantage!</b> <br>
+                    50gp </p>
+            </div>
+
+            <div class="wrapper col-6 col-xl-3" id="11" data-aos="zoom-in" data-aos-delay="100">
+                <div class="img-holder">
+                    <img src="../../../../assets/Armor/breastplate.png" id="img11">
+                </div>
+                <h5> Breastplate </h5>
+                <p> 
+                    <b>AC:</b> 14 + Dex <br>
+                    (max dex = 2)      <br>              
+                    400gp </p>
+            </div>
+
+            <div class="wrapper col-6 col-xl-3" id="12" data-aos="zoom-in" data-aos-delay="100">
+                <div class="img-holder">
+                    <img src="../../../../assets/Armor/halfPlate.png" id="img12">
+                </div>
+                <h5> Half Plate </h5>
+                <p> 
+                    <b>AC:</b> 15 + Dex <br>
+                    (max dex = 2) <br>
+                    <b>Stealth Disadvantage!</b> <br>
+                    750gp </p>
+            </div>
+
+            <!--HEAVY ARMOR -->
+            <h2 class="my-5 col-12"><b> Heavy Armor</b></h2>
+
+            <div class="wrapper col-6 col-xl-3" id="13" data-aos="zoom-in" data-aos-delay="100">
+                <div class="img-holder">
+                    <img src="../../../../assets/Armor/ring.png" id="img13">
+                </div>
+                <h5> Ring Mail </h5>
+                <p> 
+                    <b>AC:</b> 14 <br>
+                    <b>Stealth Disadvantage!</b> <br>
+                    30gp </p>
+            </div>
+
+            <div class="wrapper col-6 col-xl-3" id="14" data-aos="zoom-in">
+                <div class="img-holder">
+                    <img src="../../../../assets/Armor/chain.png" id="img14">
+                </div>
+                <h5> Chain Mail </h5>
+                <p> 
+                    <b>AC:</b> 16 <br>
+                    <b>Stealth Disadvantage!</b> <br>
+                    Strength Requirement: 13 <br>
+                    75gp </p>
+            </div>
+
+            <div class="wrapper col-6 col-xl-3" id="15" data-aos="zoom-in">
+                <div class="img-holder">
+                    <img src="../../../../assets/Armor/splint.png" id="img15">
+                </div>
+                <h5> Splint </h5>
+                <p> 
+                    <b>AC:</b> 17 <br>
+                    <b>Stealth Disadvantage!</b> <br>
+                    Strength Requirement: 15 <br>         
+                    200gp </p>
+            </div>
+
+            <div class="wrapper col-6 col-xl-3" id="17" data-aos="zoom-in" data-aos-delay="100">
+                <div class="img-holder">
+                    <img src="../../../../assets/Armor/plate.png" id="img17">
+                </div>
+                <h5> Plate </h5>
+                <p>                     
+                    <b>AC:</b> 18 <br>
+                    <b>Stealth Disadvantage!</b> <br>
+                    Strength Requirement: 15 <br> 
+                    1,500gp </p>
+            </div>
+
+     
+        </div>
+        <!--ends text-center mt-5 row -->
+    </div>
+    <!--container -->
+</div>
+<!--background -->

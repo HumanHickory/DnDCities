@@ -1,0 +1,123 @@
+:root{
+    --eobPrimary: #0052d4;
+    --eobSecondary: #65c7f7;
+    --tertiary: #9cecfb;
+    --quadrenary: #620075;
+}
+
+
+.spellSubtext {
+    font-weight: normal;
+}
+
+.btn-link {
+    font-weight: bold;
+    color: black !important;
+}
+
+a.plain {
+    font-weight: bold;
+    color: var(--eobPrimary);
+}
+
+.header {
+    position: absolute;
+    z-index: 1000;
+    top: 210px;
+    left: 35%;
+    color: white;
+    font-size: 4.5rem;
+    font-family: var(--fontHeader) !important;
+
+}
+
+.parallax {
+    background-image: url("../../../../assets/EoB/hero.jpg");
+    height: 600px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallaxBubble {
+    background-image: url("../../../../assets/EoB/bubblesBig.png");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.blue {
+    color: #0052d4;
+}
+
+.black {
+    color: black;
+}
+
+
+li.noStyle {
+    list-style: none;
+}
+
+a {
+    color: var(--eobPrimary);
+}
+
+
+    a:hover {
+        color: black;
+    }
+
+.outline {
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, .4);
+    border-radius: 7px;
+}
+
+.navbar{
+    background-color: #65c7f7 !important;
+}
+
+.nav {
+    background-image: linear-gradient(to right, var(--eobTertiary), var(--eobSecondary), var(--eobPrimary));
+    color: white;
+    box-shadow: 6px 4px 15px rgba(0, 0, 0, .5);
+    text-shadow: 4px 4px 10px rgba(255, 255, 255, .4);
+}
+
+.nav-link.subNav{
+    font-size: 2rem;
+    font-family: var(--fontHeader) !important;
+}
+
+.PrimaryBg {
+    background-image: radial-gradient(var(--eobTertiary), var(--eobSecondary), var(--eobPrimary));
+}
+
+.nav-link.active {
+    border: none;
+    background-color: rgba(0, 0, 0, 0) !important;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    border: none;
+    color: white;
+}
+
+.img-wrapper > img {
+    width: 100%;
+    height: 100%;
+}
+
+
+@media only screen and (max-width: 1400px) and (min-width: 1025px) {
+
+}
+
+@media only screen and (max-device-width: 1366px) {
+    .parallax {
+        background-attachment: scroll;
+    }
+}

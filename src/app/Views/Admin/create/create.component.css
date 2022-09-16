@@ -1,0 +1,13 @@
+:root {
+    --primary: #139987;
+    --secondary: #640d9e;
+}
+
+.primary-text,
+h1, h2, h3 {
+    color: var(--primary);
+}
+
+h4, h5 {
+    color: var(--secondary);
+}

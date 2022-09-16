@@ -1,0 +1,118 @@
+<nav class="navbar navbar-expand-lg sticky-top" [ngStyle]="{'background-color': Village?.colorScheme.colorB}">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/Village/{{Village?.cityId}}" routerLinkActive="true"
+            (click)="View = 'Main'">{{Village?.name}}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            </ul>
+            <span class="navbar-text">
+                <a routerLink="" routerLinkActive="true">City Directory</a>
+            </span>
+        </div>
+    </div>
+</nav>
+
+<!------------------------------------------------- Hero IMG ---------------------------------------------->
+
+<div
+    [ngStyle]="{'background-color': Village?.colorScheme.backgroundColor, 'color': Village?.colorScheme.primaryTextColor}">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="text-center" style="margin-top: 50%;">
+                <h1 class="ml16" [ngStyle]="{'color': Village?.colorScheme.headerTextColor}">{{Village?.name}}</h1>
+                <p>{{Village?.motto}}</p>
+            </div>
+        </div>
+        <div class="col-lg-8 d-none d-lg-block">
+            <img src="/../../../../assets/CityImg/{{Village?.name}}.jpg" alt="Village Image" width="100%" height="600">
+        </div>
+    </div>
+</div>
+
+<!------------------------------------------------- Center Nav ---------------------------------------------->
+<div [ngStyle]="{'background-color': Village?.colorScheme.colorA}">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-3 col-6 text-center">
+                <a href="#history">
+                    <i class="pi pi-book" style="font-size: 30px; padding-bottom: 1rem"></i>
+                    <h5>History</h5>
+                    <p>Read more about {{Village?.name}}</p>
+                </a>
+            </div>
+
+
+            <div class="col-lg-3 col-6 text-center">
+                <a href="#government">
+                    <i class="pi pi-flag" style="font-size: 30px; padding-bottom: 1rem"></i>
+                    <h5>Government</h5>
+                    <p>{{Village?.name}} leadership</p>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-6 text-center">
+                <a href="#news">
+                    <i class="pi pi-info-circle" style="font-size: 30px; padding-bottom: 1rem"></i>
+                    <h5>News</h5>
+                    <p>Local News</p>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-6 text-center">
+                <a href="../../shops/EyeOfTheBeholder/EyeOfTheBeholder.html?Village=LastHarbor">
+                    <i class="pi pi-star" style="font-size: 30px; padding-bottom: 1rem"></i>
+                    <h5>Eye of The Beholder</h5>
+                    <p>For all magic needs</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!------------------------------------------------- History ---------------------------------------------->
+<div
+    [ngStyle]="{'background-color': Village?.colorScheme.backgroundColor, 'color': Village?.colorScheme.primaryTextColor}">
+    <div class="container py-5 text-center" id="history">
+        <h2>History of {{Village?.name}}</h2>
+        <p [innerHtml]="Village?.history"></p>
+    </div>
+
+
+
+    <div class="container py-5 curved text-center"
+        [ngStyle]="{'background-color': Village?.colorScheme.colorB, 'color': Village?.colorScheme.primaryTextColor}">
+        <h5>{{Village?.magicIdeology}}</h5>
+    </div>
+
+
+    <div class="container pt-5 " id="government">
+        <h2>{{Village?.government.title}}</h2>
+        <div class="row">
+            <div class="col-lg-7" [innerHtml]="Village?.government.descriptionHtml"></div>
+            <div class="col-lg-5">
+                <img src="/../../../../assets/CityImg/{{Village?.name}}2.jpg" width="100%">
+            </div>
+        </div>
+    </div>
+
+    <div id="news"
+        [ngStyle]="{'background-color': Village?.colorScheme.colorC, 'color': Village?.colorScheme.primaryTextColor}">
+        <div class="container pt-5">
+            <div class="text-center">
+                <h2>News</h2>
+            </div>
+
+            <p-carousel [value]="Village?.news" styleClass="custom-carousel" [numVisible]="1" [numScroll]="1"
+                [circular]="true" [autoplayInterval]="10000">
+                <ng-template let-news pTemplate="item">
+                    <h4 class="mb-1">{{news.title}}</h4>
+                    <p [innerHtml]="news.storyHtml"></p>
+                </ng-template>
+            </p-carousel>
+        </div>
+    </div>
+</div>

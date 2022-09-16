@@ -1,0 +1,132 @@
+
+.primary {
+    color: #F96302;
+}
+
+.img-wrapper > img {
+    width: 100%;
+    height: 100%;
+}
+
+.icon-wrapper > img {
+    width: 20px;
+    height: 20px;
+}
+
+
+.gnomeDepotBackground{
+    background-color: #f5f5f5;
+}
+
+.whiteBackground {
+    background-color: white;
+}
+
+.primaryBG {
+    background-color: #F96302;
+    color: white;
+}
+
+.carousel-image {
+    width: 100%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+}
+
+.p-carousel .p-carousel-content .p-carousel-next {
+    color: #F96302 !important;
+}
+
+.popularItems {
+    margin-top: 10vh;
+    padding: 20px 0;
+    border-top: 2px solid rgba(128, 128, 128, .4);
+    border-bottom: 2px solid rgba(128, 128, 128, .4);
+}
+
+.row-header {
+    margin: 25px 0 10px;
+    border-bottom: 1px solid #999;
+    padding: 0;
+    position: relative;
+    display: flex;
+}
+
+.row-header__title {
+    margin: 0;
+    float: left;
+    padding-bottom: 3px;
+    margin-bottom: -8px;
+}
+
+.row-header__text {
+    font-size: 1.5rem;
+    font-family: helvetica-neue-light,Helvetica Neue,Helvetica,Arial,sans-serif !important;
+    color: #333;
+    border-bottom: 4px solid #F96302;
+    padding: 0;
+}
+
+
+img.stretchy {
+    width: 100% !important;
+    height: auto;
+    top: 0;
+    left: 0;
+}
+
+.p-datatable .p-datatable-thead>tr>th,
+.p-datatable .p-datatable-header {
+    border: 1px solid black;
+    color: white;
+    background: #F96302 !important;
+
+}
+
+
+
+
+@media only screen and (min-width: 1025px) {
+    .row-header__text {
+        font-size: 3.6rem;
+    }
+
+    .carousel__next-button, .carousel__prev-button, .decarousel__wrapper .carousel__next-button, .decarousel__wrapper .carousel__prev-button {
+        height: 22px;
+        width: 12px;
+    }
+
+    .carousel__next, .carousel__prev, .decarousel__wrapper .carousel__next, .decarousel__wrapper .carousel__prev {
+        z-index: 100;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #fff;
+        background-position: 50%;
+        background-size: 20px 20px;
+        border: 1px solid #ccc;
+        padding: 30px 15px;
+    }
+
+    .row-header__text {
+        font-size: 3.6rem;
+    }
+
+    .row-header__title {
+        margin-bottom: -12px;
+    }
+
+    .navHeader-sticky {
+        position: sticky;
+    }
+
+        .navHeader-sticky a {
+            color: #808080;
+        }
+
+            .navHeader-sticky a:hover {
+                color: black;
+                font-weight: bold;
+                border-bottom: 2px solid #F96302;
+            }
+ 
+}

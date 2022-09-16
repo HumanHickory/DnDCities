@@ -1,0 +1,56 @@
+.heroImg:before {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, .2), rgba(0, 0, 0, .4));
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.imgText {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 4rem;
+}
+
+
+.directoryButton {
+  height: 100%;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.banner {
+  border-radius: 5px;
+  padding: 10px;
+}
+
+
+
+
+a.tile:hover {
+  color: inherit;
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, .4);
+  text-decoration: none;
+}
+
+.primary a {
+  color: white !important;
+  text-shadow: gray 2px 2px;
+}
+
+p.firstLetter::first-letter {
+  font-size: 200%;
+  font-family: var(--fontHead);
+}
+
+

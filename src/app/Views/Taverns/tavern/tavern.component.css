@@ -1,0 +1,66 @@
+.p-dropdown {
+    width: 100% !important;
+}
+
+.heroText {
+    text-align: center;
+    position:absolute;
+    top: 210px;
+    color: white;
+    text-shadow: 2px 3px 2px black;
+    width: 100vw;
+    font-family: 'Special Elite', cursive; 
+    font-size: 5rem;
+}
+
+.hero {
+    height: 600px; /*change back to 600*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.tabMenuBtn {
+    background-color: inherit;
+    border: none;
+    text-transform: uppercase;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.tabMenuBtn.active {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.tabMenuBtn:hover {
+    color: rgb(87, 86, 86);
+    border-top: 1px solid rgb(87, 86, 86);
+    border-bottom: 1px solid rgb(87, 86, 86);
+}
+
+.menuHeader {
+    font-family: 'Special Elite', cursive; 
+    border-bottom: 8px double rgb(87, 86, 86);
+}
+
+.menuItemImgWrapper > img {
+    width: 100%;
+    border-radius: 10%;
+}
+
+.secondaryFont {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.3rem;
+}
+
+
+@media only screen and (max-width: 1000px) {
+    .row{
+        margin-left: 0;
+    }
+}

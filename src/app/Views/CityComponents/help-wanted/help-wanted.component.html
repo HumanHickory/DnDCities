@@ -1,0 +1,13 @@
+<div class="mb-3">
+    <h3 [ngStyle]="{'color': headerColor}">Help Wanted.</h3>
+</div>
+
+<div class="row">
+    <div class="col-lg-4 my-1" *ngFor="let help of helpWanted">
+        <div class="curved p-2" style="height: 100%" [ngStyle]="{'border': '1px solid', 'border-color': borderColor, 'box-shadow': '5px 2px 10px gray'}">
+            <h5 [ngStyle]="{'color': headerColor}"> {{help.title}} </h5>
+            <hr>
+            <p [innerHtml]="help.detailsHtml"></p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+.RAbackground {
+    background-color: #fffbf5;
+    font-family: 'DM Serif Text', serif;
+    color: #004c45;
+}
+
+
+.img-holder {
+    background-color: #ededed;
+    padding: .5rem;
+}
+
+.img-holder>img {
+    width: 80%;
+    height: 80%;
+}
+
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+p:before {
+    content: "";
+    position: absolute;
+    width: 40%;
+    height: 1px;
+    bottom: 0;
+    left: 30%;
+    border-bottom: 1px solid #ff5100;
+    margin-bottom: 0.2rem;
+}
