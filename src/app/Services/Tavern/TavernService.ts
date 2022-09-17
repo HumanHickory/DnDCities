@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Tavern } from "src/app/Models/Tavern";
+import { environment } from "src/environments/environment";
 
 
 @Injectable()
@@ -9,7 +10,7 @@ export class TavernService {
     constructor(private http: HttpClient) { }
 
     GetTavern(cityId: number){
-        return this.http.get<Tavern>(this.urlBase + 'api/City/GetTavern?cityId='+ cityId);
+        return this.http.get<Tavern>(environment.apiUrl() + 'api/City/GetTavern?cityId='+ cityId);
     }
  
 }

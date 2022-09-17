@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {InputTextModule} from 'primeng/inputtext';
 import {RadioButtonModule} from 'primeng/radiobutton';
@@ -44,6 +45,7 @@ import { FiveFingersComponent } from './Views/Stores/five-fingers/five-fingers.c
 import { VictoriousSecretComponent } from './Views/Stores/victorious-secret/victorious-secret.component';
 import { OutsideTheBachComponent } from './Views/Stores/outside-the-bach/outside-the-bach.component';
 import { NavBarComponent } from './Views/Nav/nav-bar/nav-bar.component';
+import { BitsAndPiecesComponent } from './Views/Stores/bits-and-pieces/bits-and-pieces.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,8 @@ import { NavBarComponent } from './Views/Nav/nav-bar/nav-bar.component';
     FiveFingersComponent,
     VictoriousSecretComponent,
     OutsideTheBachComponent,
-    NavBarComponent
+    NavBarComponent,
+    BitsAndPiecesComponent
     
   ],
   imports: [
@@ -78,6 +81,7 @@ import { NavBarComponent } from './Views/Nav/nav-bar/nav-bar.component';
     NgxPageScrollModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FontAwesomeModule,
     InputTextModule,
     RadioButtonModule,
     CheckboxModule,

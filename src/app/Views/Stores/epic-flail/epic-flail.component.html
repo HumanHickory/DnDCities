@@ -2,26 +2,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 
 
-<nav class="navbar navbar-expand-lg sticky-top" style="background-color: #ff4500;">
-    <div class="container-fluid">
-        <a class="navbar-brand me-5" routerLink="/City/{{CityId}}" routerLinkActive="true" style="color: white">{{CityName}}</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/Shops/{{CityId}}" routerLinkActive="active" >Shops</a>
-                </li>
-            </ul>
-            <span class="navbar-text">
-                <a routerLink="" routerLinkActive="true"><i class="pi pi-home pe-3"  style="font-size: 1.5rem"></i></a>
-            </span>
-        </div>
-    </div>
-</nav>
-
+<app-nav-bar backgroundColor="#ff4500" [navBarLightText]="true" 
+[cityId]="CityId" [cityName]="CityName"></app-nav-bar>
 
 <div class="hero-header-container">
     <div class="headerText">

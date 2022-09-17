@@ -2,10 +2,11 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { GnomeDepotStock } from "src/app/Models/GnomeDepotStock";
 import { Instrument } from "src/app/Models/Instrument";
-import { Pack } from "src/app/Models/Pack";
+import { Mount } from "src/app/Models/Mount";
 import { Shop } from "src/app/Models/Shop";
 import { SpecialOfTheDay } from "src/app/Models/SpecialOfTheDay";
 import { ExclusiveWeapon, Weapon, WeaponsProperty } from "src/app/Models/Weapon";
+import { environment } from "src/environments/environment";
 
 @Injectable()
 export class ShopService {
@@ -13,33 +14,37 @@ export class ShopService {
     constructor(private http: HttpClient) { }
 
     ListShops(){
-        return this.http.get<Shop[]>(this.urlBase + 'api/City/ListShops');
+        return this.http.get<Shop[]>(environment.apiUrl() + 'api/City/ListShops');
     }
     GetShopsByCityId(cityId: number){
-        return this.http.get<Shop[]>(this.urlBase + 'api/City/GetShopsByCityId?CityId=' + cityId);
+        return this.http.get<Shop[]>(environment.apiUrl() + 'api/City/GetShopsByCityId?CityId=' + cityId);
     }
 
     GetWeapons(){
-        return this.http.get<Weapon[]>(this.urlBase + 'api/Item/GetWeapons')
+        return this.http.get<Weapon[]>(environment.apiUrl() + 'api/Item/GetWeapons')
     }
 
     GetWeaponProperties(){
-        return this.http.get<WeaponsProperty[]>(this.urlBase + 'api/Item/GetWeaponProperties')
+        return this.http.get<WeaponsProperty[]>(environment.apiUrl() + 'api/Item/GetWeaponProperties')
     }    
     
     GetExclusiveWeaponsByCityId(cityId: number){
-        return this.http.get<ExclusiveWeapon[]>(this.urlBase + 'api/City/GetExclusiveWeaponsByCityId?CityId=' + cityId);
+        return this.http.get<ExclusiveWeapon[]>(environment.apiUrl() + 'api/City/GetExclusiveWeaponsByCityId?CityId=' + cityId);
     }
 
     GetShopSpeicals(cityId: number, shopId: number){
-        return this.http.get<SpecialOfTheDay>(this.urlBase + 'api/City/GetShopSpeicals?CityId=' + cityId + "&ShopId=" + shopId);
+        return this.http.get<SpecialOfTheDay>(environment.apiUrl() + 'api/City/GetShopSpeicals?CityId=' + cityId + "&ShopId=" + shopId);
     }
 
     StockGnomeDepot(){
-        return this.http.get<GnomeDepotStock>(this.urlBase + 'api/City/StockGnomeDepot');
+        return this.http.get<GnomeDepotStock>(environment.apiUrl() + 'api/City/StockGnomeDepot');
     }
 
     GetInstruments(){
-        return this.http.get<Instrument[]>(this.urlBase + 'api/Item/GetInstruments');
+        return this.http.get<Instrument[]>(environment.apiUrl() + 'api/Item/GetInstruments');
+    }    
+    
+    GetMounts(cityId: number){
+        return this.http.get<Mount[]>(environment.apiUrl() + 'api/City/GetMountsByCityId?CityId=' + cityId);
     }
 }

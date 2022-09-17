@@ -1,0 +1,133 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+
+<app-nav-bar backgroundColor="#00205b" [navBarLightText]="true" [cityId]="CityId" [cityName]="CityName"></app-nav-bar>
+
+<div style="box-shadow: 2px 2px 8px gray" class="py-2">
+    <div class="container-fluid">
+        <div>
+            <span class="pe-5">
+                <fa-icon [icon]="faLocationDot" [styles]="{'color': '#fb4341'}"></fa-icon> Your store:
+                <b><u>{{CityName}}</u></b>
+            </span>
+
+            <fa-icon [icon]="faTruckMoving" [styles]="{'color': '#fb4341'}"></fa-icon> Delivering to:
+            <b><u>{{CityName}}</u></b>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container">
+    <p-carousel [value]="carouselImages" [numVisible]="1" [numScroll]="1" [circular]="true" [showIndicators]="false">
+        <ng-template let-img pTemplate="item">
+            <div class="img-item" style="max-height: 50vh">
+                <div class="img-item-content">
+                    <div class="mb-3">
+                        <img src="../../../../assets/bitsAndPieces/carousel/{{img}}" class="carousel-image"
+                            style="width: 100%" />
+                    </div>
+
+                </div>
+            </div>
+        </ng-template>
+    </p-carousel>
+
+
+    <div class="row">
+        <div class="col-12 mt-5"><h1 class="header">Mounts</h1></div>
+        <div class="col-lg-4 col-6" *ngFor="let mount of Mounts">
+            <div>
+                <img src="../../../../assets/bitsAndPieces/{{mount.name | lowercase}}.jpg" style="width: 100%;">
+            </div>
+            <div class="text-center">
+                <h5>{{mount.name}}</h5>
+                <p><b>Cost: </b> {{mount.price}} {{mount.currencyType.abbreviation}}<br/>
+                <b>Speed: </b> {{mount.speed}} ft <br/>
+                <b>Carrying Capacity: </b> {{mount.capacity}} lbs.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 mt-5"><h1 class="header">Supplies</h1></div>
+
+        <div class="col-lg-3 col-12">
+            <p>Bit and Bridle <span class="tertiary-text">2gp</span> </p>
+            <p>Carriage <span class="tertiary-text">100gp</span> </p>
+            <p>Cart <span class="tertiary-text">15gp</span> </p>
+            <p>Chariot <span class="tertiary-text">250gp</span> </p>
+        </div>
+
+        <div class="col-lg-3 col-12">
+            <p>Animal Feed (per day) <span class="tertiary-text">5 cp</span> </p>
+            <p>Saddle, Exotic <span class="tertiary-text">60gp</span> </p>
+            <p>Saddle, Military <span class="tertiary-text">20gp</span> </p>
+            <p>Saddle, Pack <span class="tertiary-text">5gp</span> </p>
+        </div>
+
+        <div class="col-lg-3 col-12">
+            <p>Saddle, Riding <span class="tertiary-text">10gp</span> </p>
+            <p>Sled <span class="tertiary-text">20gp</span> </p>
+            <p>Wagon <span class="tertiary-text">35gp</span> </p>
+            <p>Stabling (per day) <span class="tertiary-text">5sp</span> </p>
+        </div>
+    </div>
+
+</div>
+
+<div class="mt-5">
+    <div class="primaryBg p-3 mt-5">
+        <div class="container">
+            <div class="col-12 mt-5"><h1 class="header">Barding</h1></div>
+            <p class="secondary-text"><i>(same stats as humanoid armor)</i></p>
+
+            <div class="row">
+                <div class="col-lg-3 col-12">
+                    <p>Padded <span class="secondary-text">20gp</span> </p>
+                    <p>Leather <span class="secondary-text">40gp</span> </p>
+                    <p>Studded Leather <span class="secondary-text"> 180gp</span> </p>
+                    <p>Hide <span class="secondary-text"> 40gp</span> </p>
+                </div>
+
+                <div class="col-lg-3 col-12">
+                    <p>Chain Shirt <span class="secondary-text"> 200gp</span> </p>
+                    <p>Scale Mail<span class="secondary-text"> 200gp</span> </p>
+                    <p>Breastplate <span class="secondary-text">1600gp</span> </p>
+                    <p>Half Plate <span class="secondary-text">3000gp</span> </p>
+                </div>
+
+                <div class="col-lg-3 col-12">
+                    <p>Ring Mail <span class="secondary-text">120gp</span> </p>
+                    <p>Chain Mail <span class="secondary-text">300gp</span> </p>
+                    <p>Splint <span class="secondary-text">800gp</span> </p>
+                    <p>Plate <span class="secondary-text">6000gp</span> </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-5">
+    <div class="curved p-3 mt-3">
+        <div class="container">
+            <h2 class="tertiary-text"><b>Our Story</b></h2>
+            <p>Our history begins about 800 years ago. Our goblin ancestors were known for <s>stealing</s> obtaining
+                high quality animals and turning them
+                into meat fit for a king. As years went by, we noticed that keeping that high quality meat fresh was
+                a hassle and began selling the animals
+                alive. This proved more profitable and customers were able to choose when they wanted to eat our
+                products.
+            </p>
+            <p>
+                We still keep traditions alive. All animals who are unruly, unpurchased for an extended amount of
+                time, or returned will promptly be converted to food.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
