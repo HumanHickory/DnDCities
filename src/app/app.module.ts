@@ -21,6 +21,7 @@ import {AccordionModule} from 'primeng/accordion';
 import {TableModule} from 'primeng/table';
 import {RatingModule} from 'primeng/rating';
 import {DropdownModule} from 'primeng/dropdown';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -95,7 +96,8 @@ import { BitsAndPiecesComponent } from './Views/Stores/bits-and-pieces/bits-and-
     AccordionModule,
     TableModule,
     RatingModule,
-    DropdownModule
+    DropdownModule,
+    ProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

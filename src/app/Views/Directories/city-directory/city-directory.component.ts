@@ -11,15 +11,14 @@ import { CityService } from 'src/app/Services/Cities/CityService';
 export class CityDirectoryComponent implements OnInit {
 
   Cities: City[] = [];
+  isLoaded = false;
   constructor(private cityServices: CityService, private appComp: AppComponent) { }
 
   ngOnInit(): void {
     this.cityServices.GetLocations().subscribe(cities => {
-      console.log(cities);
       this.Cities = cities;
+      this.isLoaded = true;
     });
   }
-
-
 }
 

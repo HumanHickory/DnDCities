@@ -1,4 +1,3 @@
-
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 
 <app-nav-bar backgroundColor="#00205b" [navBarLightText]="true" [cityId]="CityId" [cityName]="CityName"></app-nav-bar>
@@ -36,22 +35,32 @@
 
 
     <div class="row">
-        <div class="col-12 mt-5"><h1 class="header">Mounts</h1></div>
+        <div class="col-12 mt-5">
+            <h1 class="header">Mounts</h1>
+        </div>
         <div class="col-lg-4 col-6" *ngFor="let mount of Mounts">
             <div>
                 <img src="../../../../assets/bitsAndPieces/{{mount.name | lowercase}}.jpg" style="width: 100%;">
             </div>
             <div class="text-center">
                 <h5>{{mount.name}}</h5>
-                <p><b>Cost: </b> {{mount.price}} {{mount.currencyType.abbreviation}}<br/>
-                <b>Speed: </b> {{mount.speed}} ft <br/>
-                <b>Carrying Capacity: </b> {{mount.capacity}} lbs.</p>
+                <p><b>Cost: </b> {{mount.price}} {{mount.currencyType.abbreviation}}<br />
+                    <b>Speed: </b> {{mount.speed}} ft <br />
+                    <b>Carrying Capacity: </b> {{mount.capacity}} lbs.
+                </p>
             </div>
         </div>
     </div>
 
+    <div class="my-3">
+        <img src="../../../../assets/bitsAndPieces/banner1.jpg" style="width: 100%;">
+    </div>
+
+
     <div class="row">
-        <div class="col-12 mt-5"><h1 class="header">Supplies</h1></div>
+        <div class="col-12 mt-5">
+            <h1 class="header">Supplies</h1>
+        </div>
 
         <div class="col-lg-3 col-12">
             <p>Bit and Bridle <span class="tertiary-text">2gp</span> </p>
@@ -77,57 +86,53 @@
 
 </div>
 
-<div class="mt-5">
-    <div class="primaryBg p-3 mt-5">
-        <div class="container">
-            <div class="col-12 mt-5"><h1 class="header">Barding</h1></div>
-            <p class="secondary-text"><i>(same stats as humanoid armor)</i></p>
+<div class="primaryBg p-1">
+    <div class="container">
+        <div class="col-12 mt-5">
+            <h1 class="header">Barding</h1>
+        </div>
+        <p class="secondary-text"><i>(same stats as humanoid armor)</i></p>
 
-            <div class="row">
-                <div class="col-lg-3 col-12">
-                    <p>Padded <span class="secondary-text">20gp</span> </p>
-                    <p>Leather <span class="secondary-text">40gp</span> </p>
-                    <p>Studded Leather <span class="secondary-text"> 180gp</span> </p>
-                    <p>Hide <span class="secondary-text"> 40gp</span> </p>
-                </div>
+        <div class="row">
+            <div class="col-lg-3 col-12">
+                <p>Padded <span class="secondary-text">20gp</span> </p>
+                <p>Leather <span class="secondary-text">40gp</span> </p>
+                <p>Studded Leather <span class="secondary-text"> 180gp</span> </p>
+                <p>Hide <span class="secondary-text"> 40gp</span> </p>
+            </div>
 
-                <div class="col-lg-3 col-12">
-                    <p>Chain Shirt <span class="secondary-text"> 200gp</span> </p>
-                    <p>Scale Mail<span class="secondary-text"> 200gp</span> </p>
-                    <p>Breastplate <span class="secondary-text">1600gp</span> </p>
-                    <p>Half Plate <span class="secondary-text">3000gp</span> </p>
-                </div>
+            <div class="col-lg-3 col-12">
+                <p>Chain Shirt <span class="secondary-text"> 200gp</span> </p>
+                <p>Scale Mail<span class="secondary-text"> 200gp</span> </p>
+                <p>Breastplate <span class="secondary-text">1600gp</span> </p>
+                <p>Half Plate <span class="secondary-text">3000gp</span> </p>
+            </div>
 
-                <div class="col-lg-3 col-12">
-                    <p>Ring Mail <span class="secondary-text">120gp</span> </p>
-                    <p>Chain Mail <span class="secondary-text">300gp</span> </p>
-                    <p>Splint <span class="secondary-text">800gp</span> </p>
-                    <p>Plate <span class="secondary-text">6000gp</span> </p>
-                </div>
+            <div class="col-lg-3 col-12">
+                <p>Ring Mail <span class="secondary-text">120gp</span> </p>
+                <p>Chain Mail <span class="secondary-text">300gp</span> </p>
+                <p>Splint <span class="secondary-text">800gp</span> </p>
+                <p>Plate <span class="secondary-text">6000gp</span> </p>
             </div>
         </div>
     </div>
 </div>
 
-<div class="mt-5">
-    <div class="curved p-3 mt-3">
-        <div class="container">
-            <h2 class="tertiary-text"><b>Our Story</b></h2>
-            <p>Our history begins about 800 years ago. Our goblin ancestors were known for <s>stealing</s> obtaining
-                high quality animals and turning them
-                into meat fit for a king. As years went by, we noticed that keeping that high quality meat fresh was
-                a hassle and began selling the animals
-                alive. This proved more profitable and customers were able to choose when they wanted to eat our
-                products.
-            </p>
-            <p>
-                We still keep traditions alive. All animals who are unruly, unpurchased for an extended amount of
-                time, or returned will promptly be converted to food.
-            </p>
+<div class="curved p-1">
+    <div class="container">
+        <div class="col-12 mt-5">
+            <h1 class="header">Our Story</h1>
         </div>
+        <p>Our history begins about 800 years ago. Our goblin ancestors were known for <s>stealing</s> obtaining
+            high quality animals and turning them
+            into meat fit for a king. As years went by, we noticed that keeping that high quality meat fresh was
+            a hassle and began selling the animals
+            alive. This proved more profitable and customers were able to choose when they wanted to eat our
+            products.
+        </p>
+        <p>
+            We still keep traditions alive. All animals who are unruly, unpurchased for an extended amount of
+            time, or returned will promptly be converted to food.
+        </p>
     </div>
 </div>
-
-
-
-
