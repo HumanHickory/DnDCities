@@ -1,14 +1,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Special+Elite&display=swap" rel="stylesheet">
 
 
-<app-nav-bar backgroundColor="black" [navBarLightText]="true" 
-[cityId]="CityId" [cityName]="CityName"></app-nav-bar>
+<app-nav-bar backgroundColor="black" [navBarLightText]="true" [cityId]="CityId" [cityName]="CityName"></app-nav-bar>
 
 
 
 <h1 class="heroText">{{Tavern?.name}}</h1>
 
-<div *ngIf="isLoaded" class="hero" style="background-image: url('../../../../assets/Tavern/{{City.pathName}}/hero.jpg')"></div>
+<div *ngIf="isLoaded" class="hero"
+    style="background-image: url('../../../../assets/Tavern/{{City.pathName}}/hero.jpg')"></div>
 
 <div class="d-none d-md-flex justify-content-center mt-5" *ngIf="isLoaded">
     <button *ngFor="let item of Tavern.menuItemTypes" (click)="ToggleMenu(item)" class="tabMenuBtn"
@@ -62,13 +62,27 @@
     </div>
 </div>
 
-<div class="mt-5 pt-3" style="background-color: black">
+<div class="mt-5 py-3" style="background-color: black">
     <div class="container">
         <div class="row">
-            <div class="col-4">
-                <b>Inn Pricing</b>
+            <div class="col-lg-4" style="color: white">
+                <h5>Inn Pricing</h5>
                 <p>{{Tavern?.name}} - {{CityName}}</p>
-                <p>Monday-Friday</p>
+                <p><b>Standard Room:</b> 2 gold per night<br />
+                    <b>Petite Room:</b> 1 gold per night<br />
+                    <b> Deluxe Room:</b> 4 gold per night<br />
+                    <b>Suite:</b> 10 gold per night
+                </p>
+            </div>
+
+            <div class="col-lg-4" style="color: white">
+                <h5>Tavern Hours</h5>
+                <p><b>Sunday - Thursday: </b><br/>
+                    Sunrise to Sunset
+                </p>
+                <p><b>Friday - Saturday: </b><br/>
+                    Sunrise to Midnight
+                </p>           
             </div>
         </div>
     </div>
