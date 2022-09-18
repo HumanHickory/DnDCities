@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SpecialOfTheDay } from 'src/app/Models/SpecialOfTheDay';
 import { CurrencyType } from 'src/app/Models/Weapon';
 import { ShopService } from 'src/app/Services/Shops/ShopService';
 
@@ -13,7 +12,7 @@ import { ShopService } from 'src/app/Services/Shops/ShopService';
 })
 export class VictoriousSecretComponent implements OnInit {
 
-  Special: SpecialOfTheDay;
+  Special: Special;
   SpecialImg: string[] = [];
   CityName: string;
   IsLoaded: boolean = false;
@@ -161,14 +160,18 @@ export class VictoriousSecretComponent implements OnInit {
     var currencyType: CurrencyType = {id: 0, name: "Gold", abbreviation: "gp", copperConversion: "1000"};
 
     if(this.CityId == 12){ //Sonridge
-      this.Special ={name: "Masquerade Wear", id: 0, cityId: 12, descriptionHtml: "", weight: 0, price: 20, currencyTypeId: 4, isActive: true, currencyType: currencyType}
+      this.Special ={name: "Masquerade Wear", price: 20}
       this.SpecialImg = ["masquerade mens", "masquerade womens"];
     } else {
-      this.Special ={name: "Peasant's Outfit", id: 0, cityId: 0, descriptionHtml: "", weight: 0, price: 100000, currencyTypeId: 4, isActive: true, currencyType: currencyType}
+      this.Special ={name: "Peasant's Outfit", price: 100000}
       
     }
   }
+}
 
+export interface Special {
+  name: string;
+  price: number;
 }
 
 export interface Clothes {

@@ -4,7 +4,8 @@ import { GnomeDepotStock } from "src/app/Models/GnomeDepotStock";
 import { Instrument } from "src/app/Models/Instrument";
 import { Mount } from "src/app/Models/Mount";
 import { Shop } from "src/app/Models/Shop";
-import { SpecialOfTheDay } from "src/app/Models/SpecialOfTheDay";
+import { ShopSpecial } from "src/app/Models/ShopSpecial";
+import { SpellScroll } from "src/app/Models/SpellScroll";
 import { ExclusiveWeapon, Weapon, WeaponsProperty } from "src/app/Models/Weapon";
 import { environment } from "src/environments/environment";
 
@@ -32,8 +33,8 @@ export class ShopService {
         return this.http.get<ExclusiveWeapon[]>(environment.apiUrl() + 'api/City/GetExclusiveWeaponsByCityId?CityId=' + cityId);
     }
 
-    GetShopSpeicals(cityId: number, shopId: number){
-        return this.http.get<SpecialOfTheDay>(environment.apiUrl() + 'api/City/GetShopSpeicals?CityId=' + cityId + "&ShopId=" + shopId);
+    GetShopSpecials(cityId: number, shopId: number){
+        return this.http.get<ShopSpecial[]>(environment.apiUrl() + 'api/City/GetShopSpecials?CityId=' + cityId + "&ShopId=" + shopId);
     }
 
     StockGnomeDepot(){
@@ -46,5 +47,9 @@ export class ShopService {
     
     GetMounts(cityId: number){
         return this.http.get<Mount[]>(environment.apiUrl() + 'api/City/GetMountsByCityId?CityId=' + cityId);
+    }
+
+    GetSpellsByCityId(cityId: number){
+        return this.http.get<SpellScroll[]>(environment.apiUrl() + 'api/City/GetSpellsByCityId?CityId=' + cityId);
     }
 }

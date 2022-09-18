@@ -12,4 +12,10 @@ export interface Item{
     rarityId: number;
 
     currencyType: CurrencyType;
+    rarity: Rarity;
+}
+
+export interface Rarity{
+    id: number;
+    name: string;
 }

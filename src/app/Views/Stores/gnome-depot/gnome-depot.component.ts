@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Rating } from 'primeng/rating';
 import { GnomeDepotStock } from 'src/app/Models/GnomeDepotStock';
 import { Pack } from 'src/app/Models/Pack';
-import { SpecialOfTheDay } from 'src/app/Models/SpecialOfTheDay';
+import { ShopSpecial } from 'src/app/Models/ShopSpecial';
 import { ShopService } from 'src/app/Services/Shops/ShopService';
 
 @Component({
@@ -15,7 +15,7 @@ import { ShopService } from 'src/app/Services/Shops/ShopService';
 export class GnomeDepotComponent implements OnInit {
 
   carouselImages: string[];
-  SpecialOfTheDay: SpecialOfTheDay;
+  SpecialOfTheDay: ShopSpecial;
   CityName: string;
   IsLoaded: boolean = false;
   CityId: number;
@@ -52,8 +52,8 @@ export class GnomeDepotComponent implements OnInit {
         pack.ratingCount = this.GeneratePackRatingCount();
       });
 
-      this.shopService.GetShopSpeicals(this.CityId, 3).subscribe(special => {
-        this.SpecialOfTheDay = special;
+      this.shopService.GetShopSpecials(this.CityId, 3).subscribe(specials => {
+        this.SpecialOfTheDay = specials[0];
         this.IsLoaded = true;
 
       });

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SpecialOfTheDay } from 'src/app/Models/SpecialOfTheDay';
+import { ShopSpecial } from 'src/app/Models/ShopSpecial';
 import { ShopService } from 'src/app/Services/Shops/ShopService';
 
 @Component({
@@ -11,7 +11,7 @@ import { ShopService } from 'src/app/Services/Shops/ShopService';
 
 })
 export class FiveFingersComponent implements OnInit {
-  Special: SpecialOfTheDay = null;
+  Special: ShopSpecial = null;
   CityName: string;
   IsLoaded: boolean = false;
   CityId: number;
@@ -22,8 +22,8 @@ export class FiveFingersComponent implements OnInit {
     this.CityId = parseInt(this.activatedRoute.snapshot.paramMap.get("cityId"));
     this.CityName = this.activatedRoute.snapshot.paramMap.get("cityName");
 
-    this.shopService.GetShopSpeicals(this.CityId, 5).subscribe(special => {
-        this.Special = special;
+    this.shopService.GetShopSpecials(this.CityId, 5).subscribe(specials => {
+        this.Special = specials[0];
         this.IsLoaded = true;
     });
   }

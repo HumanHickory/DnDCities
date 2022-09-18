@@ -1,0 +1,223 @@
+<link href="https://fonts.googleapis.com/css2?family=Charmonman:wght@400;700&display=swap" rel="stylesheet">
+
+<app-nav-bar backgroundColor="black" [navBarLightText]="true" [cityId]="CityId" [cityName]="CityName"></app-nav-bar>
+
+<div style="height: 60vh;" class="d-none d-lg-block">
+    <img src="../../../../assets/EoB/EoBHero.jpg" style="width: 100%; height: 100%">
+</div>
+
+<div class="d-lg-none">
+    <img src="../../../../assets/EoB/EoBHeroMobile.jpg" style="width: 100%; height: 100%">
+</div>
+
+<div class="d-none d-md-flex justify-content-center my-5" *ngIf="isLoaded">
+    <button *ngFor="let item of menuItems" class="tabMenuBtn" (click)="selectedTab = item"
+        [ngClass]="{'active': selectedTab == item}">{{item}}</button>
+</div>
+
+<div class="d-md-none text-center my-5 px-3" *ngIf="isLoaded">
+    <p-dropdown [options]="menuItems" [(ngModel)]="selectedTab"></p-dropdown>
+</div>
+
+
+<div class="container" *ngIf="selectedTab == 'Specials'">
+    <div class="row">
+        <div class="py-3 text-center" style="border-bottom: 2px solid black">
+            <h1 class="primary-text">{{CityName}} Specials.</h1>
+        </div>
+
+        <div class="col-lg-4 col-12" *ngFor="let special of Specials">
+            <div>
+                <img src="../../../../assets/EoB/specials/{{special.item.name | lowercase}}.png" style="width: 100%;">
+            </div>
+            <div class="text-center">
+                <h3>{{special.item.name}} <span class="primary-text"><small>
+                            {{special.item.price}} {{special.item.currencyType.abbreviation}}</small></span></h3>
+            </div>
+            <div class="text-justify">
+                <p>{{special.item.description}}</p>
+                <p><b>{{special.item.rarity.name}} Item. {{special.available}} Available.</b></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="selectedTab == 'Items of the Craft'">
+    <div class="py-3 text-center" style="border-bottom: 2px solid black">
+        <h1 class="primary-text">Items of the Craft.</h1>
+    </div>
+    <div class="row py-3">
+        <div class="col-lg-6 text-center">
+            <h3 class="primary-text">Available Items</h3>
+            <p><b>Alchemist's Fire </b> <span class="secondary-text"> 50 gp</span> <br></p>
+            <p><b>Candle (various colors)</b> <span class="secondary-text"> 1 cp</span> </p>
+            <p><b>Component Pouch</b> <span class="secondary-text"> 25 gp</span> </p>
+            <p><b>Black Ink</b> <span class="secondary-text"> 10 gp</span> </p>
+            <p><b>Quill </b> <span class="secondary-text"> 25 gp</span> </p>
+            <p><b>Blank Spellbook (100 pages)</b> <span class="secondary-text"> 25 gp</span>
+            </p>
+        </div>
+        <div class="col-lg-6">
+            <img src="../../../../assets/EoB/alchemist.jpg" style="width: 100%">
+        </div>
+
+    </div>
+</div>
+
+<div class="container" *ngIf="selectedTab == 'Potions'">
+    <div class="row">
+        <div class="py-3 text-center" style="border-bottom: 2px solid black">
+            <h1 class="primary-text">Potions.</h1>
+        </div>
+
+        <div class="col-lg-3 col-6 my-2" *ngFor="let potion of Potions">
+            <div>
+                <img src="../../../../assets/EoB/potions/{{potion.name | lowercase}}.png" style="width: 100%">
+            </div>
+            <div class="text-center">
+                <b>{{potion.name}}</b> <br>
+                {{potion.description}} <br>
+                <s>{{potion.price}} gp</s> <span class="secondary-text"> {{potion.lowerPrice}} gp</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container" *ngIf="selectedTab == 'Focuses'">
+    <div class="py-3 text-center" style="border-bottom: 2px solid black">
+        <h1 class="primary-text">Focuses.</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 row px-2">
+            <div class="col-6 py-1 px-1">
+                <img src="../../../../assets/EoB/focuses/orb.jpg" style="width: 100%; height: 100%;">
+            </div>
+            <div class="col-6 py-1 px-1">
+                <img src="../../../../assets/EoB/focuses/crystal.jpg" style="width: 100%; height: 100%;">
+            </div>
+
+            <div class="col-6 py-1 px-1">
+                <img src="../../../../assets/EoB/focuses/staff.jpg" style="width: 100%; height: 100%;">
+            </div>
+            <div class="col-6 py-1 px-1">
+                <img src="../../../../assets/EoB/focuses/wand.jpg" style="width: 100%; height: 100%;">
+            </div>
+        </div>
+
+        <div class="col-lg-8 row">
+            <h2 class="pt-4 col-12">Arcane Focus</h2>
+            <p>
+                An arcane focus is a special item designed to channel the power of arcane spells. A
+                sorcerer, warlock, or wizard can use such an item as a spellcasting Focus.
+            </p>
+
+            <p><b class="primary-text">Crystal</b> <span class="secondary-text"> 6 gp</span> <br>
+                Large variety of crystals available including Agate, Amethyst,
+                Aquamarine, Citrine, Diamond, Garnet, Hematite, Jade, Lapiz Lazuli, Malachite, Opal and
+                Rose Quartz.
+            </p>
+
+            <p><b class="primary-text">Orb</b> <span class="secondary-text"> 15 gp</span> <br>
+                Currently, only standard quartz orbs are available and is limited to Amethyst, Citrine, rose quartz
+                and smoky quartz.
+            </p>
+
+            <p><b class="primary-text">Staff</b> <span class="secondary-text"> 3 gp</span> <br>
+                Large wooden staff specifically created to channel arcane magic with runes carved on the sides. It
+                is unclear if the runes are for decoration, or have magical properties.
+            </p>
+
+
+            <p><b class="primary-text">Wand</b> <span class="secondary-text"> 7 gp</span> <br>
+                Sanded down wand specifically created to channel arcane magic carved out of wood with a magical
+                component
+                at its core.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="container py-3" *ngIf="selectedTab == 'Focuses'">
+    <div class="row">
+        <div class="col-lg-8 row">
+            <h2 class="pt-4 col-12">Druidic Focus</h2>
+            <p>
+                In tune with nature, a druid can use nature-based items as a spellcasting focus where a spell might
+                require non-consumable materials or components.
+            </p>
+
+            <p><b class="primary-text">Sprig of Mistletoe or Holly</b> <span class="secondary-text"> 1 gp</span>
+                <br>
+                Just a sprig of mistletoe or holly that can be used by druids.
+            </p>
+
+            <p><b class="primary-text">Totem</b> <span class="secondary-text"> 1 gp</span> <br>
+                Object incorporates feathers, fur, bones, and/or teeth from sacred animals.
+            </p>
+
+            <p><b class="primary-text">Wooden Staff</b> <span class="secondary-text"> 3 gp</span> <br>
+                Simple wooden staff drawn whole from an ancient tree. Can be used to channel druidic or arcane
+                magic.
+            </p>
+
+
+            <p><b class="primary-text">Yew Wand</b> <span class="secondary-text"> 3 gp</span> <br>
+                Wand made out of yew wood. Can be used to channel druidic or arcane magic.
+            </p>
+        </div>
+
+        <div class="col-lg-4 row px-2">
+            <div class="col-6 py-1 px-1">
+                <img src="../../../../assets/EoB/focuses/mistletoe.jpg" style="width: 100%; height: 100%;">
+            </div>
+            <div class="col-6 py-1 px-1">
+                <img src="../../../../assets/EoB/focuses/totem.jpg" style="width: 100%; height: 100%;">
+            </div>
+
+            <div class="col-6 py-1 px-1">
+                <img src="../../../../assets/EoB/focuses/woodenStaff.jpg" style="width: 100%; height: 100%;">
+            </div>
+            <div class="col-6 py-1 px-1">
+                <img src="../../../../assets/EoB/focuses/yewWand.jpg" style="width: 100%; height: 100%;">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container" *ngIf="selectedTab == 'Spell Scrolls'">
+    <div class="py-3 text-center" style="border-bottom: 2px solid black">
+        <h1 class="primary-text">Spell Scrolls.</h1>
+    </div>
+
+    <div class="my-2" *ngFor="let scroll of SpellScrolls">
+        <h5><span  class="primary-text">{{scroll.spell.name}}</span> - <small class="secondary-text">  {{scroll.price}} {{scroll.currencyType.abbreviation}}</small></h5>
+        <p>
+            <i>{{scroll.spell.levelName}} level {{scroll.spell.schoolName}} <span *ngIf="scroll.spell.isRitual"> (ritual)</span></i> <br>
+            <b>Casting Time: </b> {{scroll.spell.castingTime}}<br>
+            <b>Range: </b> {{scroll.spell.range}}<br>
+            <span *ngIf="scroll.spell.target != null"><b>Target: </b> {{scroll.spell.target}} <br></span>
+            <b>Components: </b> <span *ngIf="scroll.spell.isVerbal">V</span>  <span *ngIf="scroll.spell.isSomatic"> S</span>  <span *ngIf="scroll.spell.isMaterial"> M ({{scroll.spell.materialComponent}})</span><br>
+            <b>Duration: </b> <span *ngIf="scroll.spell.isConcentration">Concentration, </span> {{scroll.spell.duration}}<br>
+        </p>
+        <p>
+            {{scroll.spell.description}}
+        </p>
+    </div>
+</div>   
+
+<div style="background-color:black; color: white;" class="mb-0 text-center py-5">
+
+    <h5>Deathaura</h5>
+    <p>
+        Remember when I told you how my kin in different In some ways? <br/>
+        And how you should not fall in love With someone like me, anyway...<br/>
+        Between the lines, people see signs. When they feel the sear, every day is fear...<br/>
+        And one night their torch will find the girl without a name, <br/>
+        And the one who has her love is no more safe...<br/>
+        And until I get my peace I'm but a shade.
+    </p>
+   
+</div>

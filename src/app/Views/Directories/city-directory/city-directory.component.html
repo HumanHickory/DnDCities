@@ -7,10 +7,10 @@
 
     <div class="container">
         <div class="text-center row pb-5" *ngIf="isLoaded">
-            <a *ngFor="let city of Cities; let i = index" class="cityCard col-6 col-xl-3"
+            <a *ngFor="let city of Cities; let i = index" class="cityCard col-6 col-md-3"
                 routerLink="{{city.size}}/{{city.id}}" routerLinkActive="true">
                 <div class="img-holder">
-                    <img src="../../../../assets/icons/{{city.name | lowercase}}.jpg" />
+                    <img src="../../../../assets/Icons/{{city.name | lowercase}}.jpg" />
 
                     <div class="text-center pt-xl-4 pb-xl-3 py-2">
                         <h5> {{city.name}} </h5>
@@ -26,6 +26,6 @@
 
 <p-dialog header="Loading..." [(visible)]="!isLoaded" [modal]="true" [draggable]="false" [resizable]="false">
     <div class="px-5">
-        <p-progressSpinner [style]="{width: '150px', height: '150px'}" styleClass="custom-spinner" strokeWidth="8" fill="#a7a8a7" animationDuration="1.5s"></p-progressSpinner>
+        <p-progressSpinner [style]="{width: '150px', height: '150px'}" styleClass="custom-spinner" strokeWidth="5" fill="#a7a8a7" animationDuration="1.5s"></p-progressSpinner>
     </div>
 </p-dialog>

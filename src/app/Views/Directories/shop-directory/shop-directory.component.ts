@@ -45,25 +45,25 @@ export class ShopDirectoryComponent implements OnInit {
         return "Armor/halfPlate.png";
         break;
       case 3:
-        return "icons/gnome.png";
+        return "Icons/gnome.png";
         break;
       case 4:
-        return "icons/victorious secret.jpg";
+        return "Icons/victorious secret.jpg";
         break;
       case 5:
-        return "icons/Nott.png";
+        return "Icons/Nott.png";
         break;
       case 6:
         return "OutsideTheBach/viol.png";
         break;
       case 7:
-        return "EoB/beholder.png";
+        return "Icons/beholder.png";
         break;
       case 8:
-        return "icons/zimzam.jpg";
+        return "Icons/zimzam.jpg";
         break;
       case 9:
-        return "icons/bitsAndPieces.png";
+        return "Icons/bitsAndPieces.png";
         break;
       default:
         return "";

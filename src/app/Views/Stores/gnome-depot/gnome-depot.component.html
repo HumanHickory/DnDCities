@@ -42,15 +42,15 @@
                     </div>
 
                     <div class="col-xl-4 col-12">
-                        <img src="../../../../assets/GnomeDepot/{{CityName}}/{{SpecialOfTheDay.name | lowercase}}.png"
+                        <img src="../../../../assets/GnomeDepot/{{CityName}}/{{SpecialOfTheDay.item.name | lowercase}}.png"
                             class="w-100" />
-                        <h5 class="text-center mt-1 d-lg-none my-3"><b>{{SpecialOfTheDay.name}}</b></h5>
-                        <h3 class="text-center mt-1 d-none d-lg-block"><b>{{SpecialOfTheDay.name}}</b></h3>
+                        <h5 class="text-center mt-1 d-lg-none my-3"><b>{{SpecialOfTheDay.item.name}}</b></h5>
+                        <h3 class="text-center mt-1 d-none d-lg-block"><b>{{SpecialOfTheDay.item.name}}</b></h3>
                     </div>
                     <div class="col-xl-4 col-12 mx-3 text-justify">
-                        <div [innerHtml]="SpecialOfTheDay.descriptionHtml"></div>
-                        <p><b>{{SpecialOfTheDay.weight}}lb, {{SpecialOfTheDay.price}}
-                                {{SpecialOfTheDay.currencyType.abbreviation}}</b></p>
+                        <div>{{SpecialOfTheDay.item.description}}</div>
+                        <p><b>{{SpecialOfTheDay.item.weight}}lb, {{SpecialOfTheDay.item.price}}
+                                {{SpecialOfTheDay.item.currencyType.abbreviation}}</b></p>
                     </div>
 
 
