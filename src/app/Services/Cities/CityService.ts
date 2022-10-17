@@ -29,7 +29,7 @@ export class CityService {
     }
 
     GetLocations(){
-        return this.http.get<City[]>(environment.apiUrl() + 'api/City/GetLocations')
+            return this.http.get<City[]>(environment.apiUrl() + 'api/City/GetLocations/?IsProd=' + environment.production)
     }
 
     GetLocationBasic(cityId: number){

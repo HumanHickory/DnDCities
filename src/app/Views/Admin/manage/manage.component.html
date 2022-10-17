@@ -1,0 +1,330 @@
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="" routerLinkActive="true">Avyngaard</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/Admin/Manage/0" (click)="SetModel()">Create New</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Cities
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" routerLink="/Admin/Manage/{{city.id}}" *ngFor="let city of Cities"
+                                (click)="SetCity(city.id)">{{city.name}}</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div style="background-color: rgb(230, 229, 227)" class="py-3" *ngIf="AllDataFetched">
+    <div class="container">
+
+        <!--LOCATION DETAILS-->
+        <div class="box row py-3 my-3">
+            <h5>Location Details</h5>
+
+            <div class="col-6 my-2">
+                <b>Location Name</b>
+                <input type="text" pInputText [(ngModel)]="City.name" placeholder="Baldur's Gate" />
+            </div>
+
+            <div class="col-6 my-2">
+                <b>Location Area</b>
+                <input type="text" pInputText [(ngModel)]="City.area" placeholder="Sword Coast" />
+            </div>
+
+            <div class="col-6 my-2">
+                <b>Location Size</b>
+                <div *ngFor="let size of Sizes" class="field-checkbox">
+                    <p-radioButton [inputId]="size.id.toString()" name="size" [value]="size.id"
+                        [(ngModel)]="City.sizeId">
+                    </p-radioButton>
+                    <label [for]="size.id">{{size.description}}</label>
+                </div>
+            </div>
+
+            <div class="col-6 my-2">
+                <b>Show Location In Prod?</b>
+                <div class="field-checkbox">
+                    <p-checkbox [(ngModel)]="City.show" [binary]="true" inputId="binary"></p-checkbox>
+                    <label for="binary">{{City.show}}</label>
+                </div>
+            </div>
+        </div>
+
+        <!--Government-->
+        <div class="box row py-3 my-3">
+            <h5>Government</h5>
+            <div class="col-6 my-2">
+                <b>Title</b>
+                <input type="text" pInputText [(ngModel)]="CityDetails.government.title" placeholder="King Henry" />
+            </div>
+            <div class="col-12 my-2">
+                <b>Description</b>
+                <angular-editor [placeholder]="'Enter text here...'"
+                    [(ngModel)]="CityDetails.government.descriptionHtml">
+                </angular-editor>
+            </div>
+        </div>
+
+        <!--History-->
+        <div class="box row py-3 my-3">
+            <h5>History</h5>
+
+            <div class="col-12 my-2">
+                <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="CityDetails.history"></angular-editor>
+            </div>
+        </div>
+
+        <!--News and Help Wanted-->
+        <div class="box row py-3 my-3">
+            <h5>News and Help Wanted</h5>
+
+            <div class="col-6 my-2">
+                <b>News</b>
+
+                <div *ngFor="let n of CityDetails.news">
+                    <p>{{n.title}}</p>
+                </div>
+            </div>
+            <div class="col-6 my-2">
+                <button pButton type="button" label="Add News" (click)="OpenNewsDialog()"></button>
+            </div>
+
+            <div class="col-6 my-2">
+                <b>Help</b>
+
+                <div *ngFor="let h of CityDetails.help">
+                    <p>{{h.title}}</p>
+                </div>
+            </div>
+            <div class="col-6 my-2">
+                <button pButton type="button" label="Add Help" (click)="OpenHelpDialog()"></button>
+            </div>
+        </div>
+
+        <!--Shops-->
+        <div class="box row py-3 my-3">
+            <h5>Shops</h5>
+
+            <div class="col-3" *ngFor="let shop of Shops">
+                <div class="field-checkbox">
+                    <p-checkbox name="group2" value="shop" [value]="shop" [(ngModel)]="CityDetails.shops"
+                        (onChange)="UpdateShop()"></p-checkbox>
+                    <label [for]="shop.id">{{shop.name}}</label>
+                </div>
+            </div>
+        </div>
+
+        <!--Bits And Pieces-->
+        <div class="box row py-3 my-3" *ngIf="ShowBitsAndPieces">
+            <h5>Bits And Pieces Mounts</h5>
+
+            <div class="col-3" *ngFor="let mount of Mounts">
+                <div class="field-checkbox">
+                    <p-checkbox name="group2" value="mount" [value]="mount" [(ngModel)]="SelectedMounts"></p-checkbox>
+                    <label [for]="mount.id">{{mount.name}}</label>
+                </div>
+            </div>
+        </div>
+
+        <!--Epic Flail Exclusive Weapons-->
+        <div class="box row py-3 my-3" *ngIf="ShowExclusiveWeapons">
+            <h5>Epic Flail Exclusive Weapons</h5>
+
+            <div class="row my-3" *ngFor="let weapon of ExclusiveWeapons">
+                <div class="col-3 my-2">
+                    <b>Weapon Name</b>
+                    <input type="text" pInputText [(ngModel)]="weapon.name" placeholder="Weapon Name" />
+                </div>
+                <div class="col-3 my-2">
+                    <b>Weapon Type</b>
+                    <p-dropdown [options]="WeaponTypes" [(ngModel)]="weapon.weaponTypeId" optionValue="id"
+                        optionLabel="name">
+                    </p-dropdown>
+                </div>
+                <div class="col-2 my-2">
+                    <b>Price</b>
+                    <p-inputNumber [(ngModel)]="weapon.price"></p-inputNumber>
+                </div>
+                <div class="col-3 my-2">
+                    <b>Currency Type</b>
+                    <p-dropdown [options]="CurrencyTypes" [(ngModel)]="weapon.currencyTypeId" optionValue="id"
+                        optionLabel="name">
+                    </p-dropdown>
+                </div>
+
+                <div class="col-2 my-2">
+                    <b>Damage Amount</b>
+                    <input type="text" pInputText [(ngModel)]="weapon.damageDiceConcat" placeholder="1d4" />
+                </div>
+                <div class="col-3 my-2">
+                    <b>Damage Type</b>
+                    <p-dropdown [options]="DamageTypes" [(ngModel)]="weapon.damageTypeId" optionValue="id"
+                        optionLabel="name">
+                    </p-dropdown>
+                </div>
+                <div class="col-2 my-2">
+                    <b>Weight (lbs)</b>
+                    <p-inputNumber [(ngModel)]="weapon.weight"></p-inputNumber>
+                </div>
+                <div class="col-12 my-2">
+                    <b>Special Ability</b>
+                    <input type="text" pInputText [(ngModel)]="weapon.special"
+                        placeholder="On crit, this weapon does 1d8 lighting damage" />
+                </div>
+            </div>
+
+            <div class="col-3">
+                <button pButton type="button" label="Add" (click)="AddNewExclusiveWeapon()"></button>
+            </div>
+        </div>
+
+        <!--Gnome Depot, EoB, and Five Fingers-->
+        <div class="box row py-3 my-3" *ngIf="ShowExclusiveItems">
+            <h5>Specialty Items</h5>
+            <div *ngFor="let special of ExclusiveItems" class="row mt-3">
+                <div class="col-3 my-2">
+                    <b>Store</b>
+                    <p-dropdown [options]="SpecialtyItemStores" [(ngModel)]="special.shopId" optionValue="id"
+                        optionLabel="name">
+                    </p-dropdown>
+                </div>
+                <div class="col-3 my-2">
+                    <b>Item Name</b>
+                    <input type="text" pInputText [(ngModel)]="special.item.name" placeholder="Item Name" />
+                </div>
+                <div class="col-3 my-2">
+                    <b>Magical</b>
+                    <div class="field-checkbox">
+                        <p-checkbox [(ngModel)]="special.item.isMagical" [binary]="true" inputId="binary"></p-checkbox>
+                        <label for="binary">Check if item is magical.</label>
+                    </div>
+                </div>
+                <div class="col-3 my-2">
+                    <b>Attunement Requirement</b>
+                    <div class="field-checkbox">
+                        <p-checkbox [(ngModel)]="special.item.requiresAttunement" [binary]="true" inputId="binary">
+                        </p-checkbox>
+                        <label for="binary">Check if item requiresAttunement</label>
+                    </div>
+                </div>
+                <div class="col-2 my-2">
+                    <b>Weight(lbs)</b>
+                    <p-inputNumber [(ngModel)]="special.item.weight"></p-inputNumber>
+                </div>
+
+                <div class="col-2 my-2">
+                    <b>Price</b>
+                    <p-inputNumber [(ngModel)]="special.item.price"></p-inputNumber>
+
+                </div>
+                <div class="col-3 my-2">
+                    <b>Currency Type</b>
+                    <p-dropdown [options]="CurrencyTypes" [(ngModel)]="special.item.currencyTypeId" optionValue="id"
+                        optionLabel="name">
+                    </p-dropdown>
+                </div>
+                <div class="col-3 my-2">
+                    <b>Rarity</b>
+                    <p-dropdown [options]="RarityTypes" [(ngModel)]="special.item.rarityId" optionValue="id"
+                        optionLabel="name">
+                    </p-dropdown>
+                </div>
+                <div class="col-2 my-2">
+                    <b># Available</b>
+                    <p-inputNumber [(ngModel)]="special.available"></p-inputNumber>
+                </div>
+                <div class="col-12 my-2">
+                    <b>Description</b>
+
+                    <textarea pInputTextarea [(ngModel)]="special.item.description"></textarea>
+                </div>
+
+            </div>
+
+            <div class="col-3">
+                <button pButton type="button" label="Add" (click)="AddNewSpecialityItem()"></button>
+            </div>
+
+        </div>
+
+        <!--Colors-->
+        <div class="box row py-3 my-3">
+            <h5>Color Scheme</h5>
+
+            <div class="col-lg-2 my-2">
+                <b>Background Color</b>
+                <p-colorPicker [(ngModel)]="CityDetails.colorScheme.backgroundColor"></p-colorPicker>
+                <p>{{CityDetails.colorScheme.backgroundColor}}</p>
+            </div>
+
+            <div class="col-lg-2 my-2">
+                <b>Color #1</b>
+                <p-colorPicker [(ngModel)]="CityDetails.colorScheme.primaryColor"></p-colorPicker>
+                <p>{{CityDetails.colorScheme.primaryColor}}</p>
+            </div>
+
+            <div class="col-lg-2 my-2">
+                <b>Color #2</b>
+                <p-colorPicker [(ngModel)]="CityDetails.colorScheme.navColor"></p-colorPicker>
+                <p>{{CityDetails.colorScheme.navColor}}</p>
+
+            </div>
+
+            <div class="col-lg-2 my-2">
+                <b>Primary Text</b>
+                <p-colorPicker [(ngModel)]="CityDetails.colorScheme.primaryTextColor"></p-colorPicker>
+                <p>{{CityDetails.colorScheme.primaryTextColor}}</p>
+            </div>
+
+            <div class="col-lg-2 my-2">
+                <b>Header Text</b>
+                <p-colorPicker [(ngModel)]="CityDetails.colorScheme.headerTextColor"></p-colorPicker>
+                <p>{{CityDetails.colorScheme.headerTextColor}}</p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-2 my-2">
+                <button pButton type="button" label="Save" (click)="Save()"></button>
+            </div>
+        </div>
+
+        <p-dialog header="Add News" [(visible)]="ShowNewsDialog" [style]="{width: '50vw'}">
+            <b>Title</b>
+            <input type="text" pInputText [(ngModel)]="NewNews.title" placeholder="Terror In Town" />
+            <b>Source</b>
+            <input type="text" pInputText [(ngModel)]="NewNews.source" placeholder="Abyssal News" />
+            <b>Author</b>
+            <input type="text" pInputText [(ngModel)]="NewNews.author" placeholder="Something about the article" />
+            <b>Article (HTML)</b>
+            <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="NewNews.storyHtml"></angular-editor>
+            <button pButton type="button" label="Add" (click)="AddNews()"></button>
+        </p-dialog>
+
+        <p-dialog header="Add News" [(visible)]="ShowHelpDialog" [style]="{width: '50vw'}">
+            <b>Title</b>
+            <input type="text" pInputText [(ngModel)]="NewHelp.title" placeholder="Terror In Town" />
+
+            <b>Details (HTML)</b>
+            <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="NewHelp.detailsHtml"></angular-editor>
+            <button pButton type="button" label="Add" (click)="AddHelp()" class="my-3"></button>
+
+        </p-dialog>
+
+
+        <p-toast></p-toast>
+    </div>
+</div>

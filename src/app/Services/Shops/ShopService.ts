@@ -1,12 +1,13 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from '@angular/core';
+import { CityMount } from "src/app/Models/CityMount";
 import { GnomeDepotStock } from "src/app/Models/GnomeDepotStock";
 import { Instrument } from "src/app/Models/Instrument";
 import { Mount } from "src/app/Models/Mount";
 import { Shop } from "src/app/Models/Shop";
 import { ShopSpecial } from "src/app/Models/ShopSpecial";
 import { SpellScroll } from "src/app/Models/SpellScroll";
-import { ExclusiveWeapon, Weapon, WeaponsProperty } from "src/app/Models/Weapon";
+import { DamageType, ExclusiveWeapon, Weapon, WeaponsProperty, WeaponType } from "src/app/Models/Weapon";
 import { environment } from "src/environments/environment";
 
 @Injectable()
@@ -24,13 +25,13 @@ export class ShopService {
     GetWeapons(){
         return this.http.get<Weapon[]>(environment.apiUrl() + 'api/Item/GetWeapons')
     }
-
-    GetWeaponProperties(){
-        return this.http.get<WeaponsProperty[]>(environment.apiUrl() + 'api/Item/GetWeaponProperties')
-    }    
     
     GetExclusiveWeaponsByCityId(cityId: number){
         return this.http.get<ExclusiveWeapon[]>(environment.apiUrl() + 'api/City/GetExclusiveWeaponsByCityId?CityId=' + cityId);
+    }
+
+    AddExclusiveWeapons(weapons: ExclusiveWeapon[]){
+        return this.http.post(environment.apiUrl() + 'api/City/AddExclusiveWeapons', weapons)
     }
 
     GetShopSpecials(cityId: number, shopId: number){
@@ -45,8 +46,20 @@ export class ShopService {
         return this.http.get<Instrument[]>(environment.apiUrl() + 'api/Item/GetInstruments');
     }    
     
-    GetMounts(cityId: number){
+    GetMountsByCityId(cityId: number){
         return this.http.get<Mount[]>(environment.apiUrl() + 'api/City/GetMountsByCityId?CityId=' + cityId);
+    }
+
+    ListMounts(){
+        return this.http.get<Mount[]>(environment.apiUrl() + 'api/City/ListMounts');
+    }
+
+    AddMountsToCity(cityMounts: CityMount[]){
+        return this.http.post(environment.apiUrl() + 'api/City/AddMountsToCity', cityMounts)
+    }    
+    
+    AddShopSpecials(specials: ShopSpecial[]){
+        return this.http.post(environment.apiUrl() + 'api/City/AddShopSpecials', specials)
     }
 
     GetSpellsByCityId(cityId: number){

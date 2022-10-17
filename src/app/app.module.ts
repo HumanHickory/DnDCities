@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 import {InputTextModule} from 'primeng/inputtext';
 import {RadioButtonModule} from 'primeng/radiobutton';
@@ -22,6 +23,7 @@ import {TableModule} from 'primeng/table';
 import {RatingModule} from 'primeng/rating';
 import {DropdownModule} from 'primeng/dropdown';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {InputNumberModule} from 'primeng/inputnumber';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -31,10 +33,8 @@ import { TownComponent } from './Views/Cities/town/town.component';
 import { VillageComponent } from './Views/Cities/village/village.component';
 import { CityDirectoryComponent } from './Views/Directories/city-directory/city-directory.component';
 import { ShopDirectoryComponent } from './Views/Directories/shop-directory/shop-directory.component';
-import { CreateComponent } from './Views/Admin/create/create.component';
 import { TavernComponent } from './Views/Taverns/tavern/tavern.component';
 import { EpicFlailComponent } from './Views/Stores/epic-flail/epic-flail.component';
-import { WeaponsComponent } from './Views/Admin/weapons/weapons.component';
 import { EyeOfTheBeholderComponent } from './Views/Stores/eye-of-the-beholder/eye-of-the-beholder.component';
 import { RicochetArmamentsComponent } from './Views/Stores/ricochet-armaments/ricochet-armaments.component';
 import { GnomeDepotComponent } from './Views/Stores/gnome-depot/gnome-depot.component';
@@ -47,6 +47,8 @@ import { VictoriousSecretComponent } from './Views/Stores/victorious-secret/vict
 import { OutsideTheBachComponent } from './Views/Stores/outside-the-bach/outside-the-bach.component';
 import { NavBarComponent } from './Views/Nav/nav-bar/nav-bar.component';
 import { BitsAndPiecesComponent } from './Views/Stores/bits-and-pieces/bits-and-pieces.component';
+import { UnderdarkComponent } from './Views/Cities/underdark/underdark.component';
+import { ManageComponent } from './Views/Admin/manage/manage.component';
 
 @NgModule({
   declarations: [
@@ -56,10 +58,8 @@ import { BitsAndPiecesComponent } from './Views/Stores/bits-and-pieces/bits-and-
     VillageComponent,
     CityDirectoryComponent,
     ShopDirectoryComponent,
-    CreateComponent,
     TavernComponent,
     EpicFlailComponent,
-    WeaponsComponent,
     EyeOfTheBeholderComponent,
     RicochetArmamentsComponent,
     GnomeDepotComponent,
@@ -71,7 +71,9 @@ import { BitsAndPiecesComponent } from './Views/Stores/bits-and-pieces/bits-and-
     VictoriousSecretComponent,
     OutsideTheBachComponent,
     NavBarComponent,
-    BitsAndPiecesComponent
+    BitsAndPiecesComponent,
+    UnderdarkComponent,
+    ManageComponent
     
   ],
   imports: [
@@ -83,6 +85,7 @@ import { BitsAndPiecesComponent } from './Views/Stores/bits-and-pieces/bits-and-
     HttpClientModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
+    AngularEditorModule,
     InputTextModule,
     RadioButtonModule,
     CheckboxModule,
@@ -97,7 +100,8 @@ import { BitsAndPiecesComponent } from './Views/Stores/bits-and-pieces/bits-and-
     TableModule,
     RatingModule,
     DropdownModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    InputNumberModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -31,7 +31,7 @@ export class BitsAndPiecesComponent implements OnInit {
 
     this.carouselImages = ["carousel1.jpg", "carousel2.jpg"];
 
-     this.shopService.GetMounts(this.CityId).subscribe(mounts => {
+     this.shopService.GetMountsByCityId(this.CityId).subscribe(mounts => {
         this.Mounts = mounts;
          this.IsLoaded = true;
      });

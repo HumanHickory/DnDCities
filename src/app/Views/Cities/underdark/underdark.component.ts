@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CityDetails } from 'src/app/Models/CityDetails';
 import { CityService } from 'src/app/Services/Cities/CityService';
-import {faCircleQuestion, IconDefinition} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-underdark',
@@ -17,41 +16,60 @@ export class UnderdarkComponent implements OnInit {
   IsLoaded: boolean = false;
   ShowView: any;
 
-  faCircleQuestion = faCircleQuestion;
+  SelectedTabId: number;
 
-  MenuItems: IconMenu[] = [];
-  SelectedTab: IconMenu;
+  Story: helpOrNewsDetails;
 
-  constructor(private cityService: CityService,  private activatedRoute: ActivatedRoute) { }
+  constructor(private cityService: CityService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     var cityId = parseInt(this.activatedRoute.snapshot.paramMap.get("cityId"));
 
     this.cityService.GetLocation(cityId).subscribe(details => {
-      this.City = details;  
-      this.heroImg = 'url("../../../../assets/CityImg/' + this.City.name +'.jpg") no-repeat center'; 
-      this.CreateMenu();
+      this.City = details;
+      this.heroImg = 'url("../../../../assets/CityImg/' + this.City.name + '.jpg") no-repeat center';
+      this.ToggleNewsAndHelp(this.City.help[0].id, true);
       this.IsLoaded = true;
     });
 
   }
 
-  heroImgStyling(){
-    return {'background': this.heroImg, 'background-size': 'cover', 'height': '20vh', 'position': 'relative'  }
+  heroImgStyling() {
+    return { 'background': this.heroImg, 'background-size': 'cover', 'height': '20vh', 'position': 'relative' }
   }
 
-  CreateMenu(){
-    var helpWanted: IconMenu = {name: 'Help Wanted', icon: faCircleQuestion};
-    var news: IconMenu = {name: 'News', icon: faCircleQuestion};
-    var gov: IconMenu = {name: 'Government', icon: faCircleQuestion};
-    var history: IconMenu = {name: 'History', icon: faCircleQuestion};
+  ToggleNewsAndHelp(id: number, isTabHelp: boolean) {
+    this.SelectedTabId = id;
 
-    this.MenuItems.push(helpWanted, news, gov, history);
+    if (isTabHelp) {
+      this.City.help.forEach(x => {
+        if (x.id == this.SelectedTabId) {
+          this.Story = {
+            title: x.title,
+            author: "",
+            storyHtml: x.detailsHtml,
+            type: "Help Wanted"
+          }
+        }
+      });
+    } else {
+      this.City.news.forEach(x => {
+        if (x.id == this.SelectedTabId) {
+          this.Story = {
+            title: x.title,
+            author: x.author + ", " + x.source,
+            storyHtml: x.storyHtml,
+            type: "News"
+          };
+        }
+      });
+    }
   }
-
 }
 
-interface IconMenu {
-  name: string;
-  icon: IconDefinition;
+interface helpOrNewsDetails {
+  title: string;
+  author: string;
+  storyHtml: string;
+  type: string;
 }

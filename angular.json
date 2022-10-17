@@ -28,7 +28,12 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/CNAME"
+              "src/CNAME",
+              {
+                  "glob": "**/*",
+                  "input": "./node_modules/@kolkov/angular-editor/assets/",
+                  "output": "./assets/fonts/"
+              }
             ],
             "styles": [
               "node_modules/primeicons/primeicons.css",

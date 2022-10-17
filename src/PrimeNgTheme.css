@@ -3,7 +3,7 @@
     --primary-color: #2e1a47;
     --secondary-color: #b0e0e2;
     --secondary-color-alt: #9bf0f338;
-    --border-color: #dbdbdb;
+    --border-color: #9e9e9e;
 
     --gnome-depot: #F96302;
 
@@ -48,10 +48,9 @@
     box-sizing: border-box;
 }
 
-input, textarea {
+input, textarea, p-inputnumber{
     width: 100%;
 }
-
 
 .p-component {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

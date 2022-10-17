@@ -18,7 +18,7 @@ export interface Weapon {
 export interface ExclusiveWeapon {
     id: number;
     name: string;
-    damageDTypeId: number;
+    damageTypeId: number;
     price: number;
     currencyTypeId: number;
     weight: number;
@@ -28,6 +28,8 @@ export interface ExclusiveWeapon {
 
     cityId: number;
     special: string;
+
+    damageDiceConcat: string;
 
     damageType: DamageType;
     currencyType:CurrencyType;

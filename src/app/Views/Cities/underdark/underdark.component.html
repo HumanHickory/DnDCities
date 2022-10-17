@@ -1,11 +1,14 @@
-<app-nav-bar [backgroundColor]="City?.colorScheme.colorA" [navBarLightText]="true" 
-[cityId]="City.cityId" [cityName]="City.name"></app-nav-bar>
+<div *ngIf="IsLoaded">
 
-<div [ngStyle]="{'background-color': City?.colorScheme.backgroundColor}" style="height: 100vh"> 
+    <app-nav-bar [backgroundColor]="City?.colorScheme.navColor" [navBarLightText]="true" [cityId]="City.cityId"
+        [cityName]="City.name"></app-nav-bar>
+</div>
+
+<div [ngStyle]="{'background-color': City?.colorScheme.backgroundColor}">
 
     <div *ngIf="IsLoaded">
         <div class="container pb-3" style="padding-top: 1vh">
-    
+
             <!------------------------------------------------- Hero IMG ---------------------------------------------->
 
             <div class="container" style="margin-top: 5vh; margin-bottom: 5vh;">
@@ -17,32 +20,68 @@
             </div>
 
             <div class="row">
-                <div class="col-3" [ngStyle]="{'background-color': City?.colorScheme.colorA}" style="color: white; border-radius: 6px; height: 100%">
-                    <button *ngFor="let item of MenuItems" class="tabMenuBtn"
-                     [ngClass]="{'active': SelectedTab == item}"><fa-icon [icon]="item.icon"></fa-icon> {{item.name}}</button>
+                <div class="col-3 py-3" [ngStyle]="{'background-color': City?.colorScheme.primaryColor}"
+                    style="color: white; border-radius: 6px; height: 100%">
+
+                    <h5>Help Wanted</h5>
+                    <div class="ps-3 mb-3">
+                        <div *ngFor="let help of City?.help" class="my-2">
+                            <button class="tabMenuBtn" (click)="ToggleNewsAndHelp(help.id, true)"
+                                [ngClass]="{'active': SelectedTabId == help.id}">
+                                {{help.title}}
+                            </button>
+                        </div>
+                    </div>
+
+                    <h5>News</h5>
+                    <div class="ps-3">
+                        <div *ngFor="let news of City?.news" class="my-2">
+                            <button class="tabMenuBtn" (click)="ToggleNewsAndHelp(news.id, false)"
+                                [ngClass]="{'active': SelectedTabId == news.id}">
+                                {{news.title}}
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-9">
-                    <div class="my-2" *ngIf="SelectedTab.name == 'Help Wanted'">
-                        <app-help-wanted [helpWanted]="City?.help" [borderColor]="City?.colorScheme.colorA"
-                            [headerColor]="City?.colorScheme.headerTextColor"></app-help-wanted>
+                    <div class="my-2">
+                        <div class="mb-3">
+                            <h3 style="color: white">{{Story.type}}.</h3>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 mx-3 my-2 pt-2 blurb">
+                                <h5>{{Story.title}}</h5>
+                                <p><i>{{Story.author}}</i></p>
+                                <div [innerHtml]="Story.storyHtml"></div>
+                            </div>
+                        </div>
+                    </div>               
+                </div>
+
+                <div class="my-2">
+                    <div class="mb-3">
+                        <h3 style="color: white">History.</h3>
                     </div>
-            
-                    <div class="my-2" *ngIf="SelectedTab.name == 'News'">
-                        <app-news [news]="City?.news" [headerColor]="City?.colorScheme.headerTextColor"></app-news>
+
+                    <div class="blurb p-2">
+                        <div [innerHtml]="City?.history"></div>
                     </div>
-            
-                    <div class="my-2" *ngIf="SelectedTab.name == 'History'">
-                        <app-history [history]="City?.history" [headerColor]="City?.colorScheme.headerTextColor"></app-history>
+
+                </div>
+
+                <div class="my-2">
+                    <div class="mb-3">
+                        <h3 style="color: white">Government.</h3>
                     </div>
-            
-                    <div class="my-2" *ngIf="SelectedTab.name == 'Government'">
-                        <app-government [government]="City?.government" [headerColor]="City?.colorScheme.headerTextColor"></app-government>
+
+                    <div class="blurb p-2">
+                        <h5>{{City?.government.title}}</h5>
+                        <div [innerHtml]="City?.government.descriptionHtml"></div>
                     </div>
                 </div>
             </div>
-    
-              
         </div>
     </div>
 </div>

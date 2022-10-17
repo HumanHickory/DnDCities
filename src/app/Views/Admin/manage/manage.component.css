@@ -1,3 +1,4 @@
+
 :root {
     --primary: #139987;
     --secondary: #640d9e;
@@ -10,4 +11,17 @@ h1, h2, h3 {
 
 h4, h5 {
     color: var(--secondary);
+}
+
+.box {
+    background-color: white;
+    border-radius: 6px;
+}
+
+.box > h5 {
+    color: #640d9e;
+}
+
+p-radiobutton {
+    padding-right: 5px;
 }

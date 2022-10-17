@@ -14,8 +14,9 @@
             <hr class="col-12" style="border: 2px solid">
         </div> 
 
+        <!--Small Screen-->
         <div class="row d-md-none">
-            <div class="col-6 col-md-3" *ngFor="let shop of Shops">
+            <div class="col-6" *ngFor="let shop of Shops">
                 <button routerLink="/Stores/{{shop.nameTrimmed}}/{{CityId}}/{{CityName}}">
                     <div class="img-holder">
                         <img src="../../../../assets/{{shop.imgLocation}}">
@@ -27,9 +28,9 @@
             </div>
         </div>
 
-
+        <!--Larger Screen-->
         <div class="row pb-5 d-none d-md-block">
-            <button class="wrapper col-6 col-xl-3" data-aos="zoom-in" data-aos-delay="100" 
+            <button class="wrapper col-3" data-aos="zoom-in" data-aos-delay="100" 
                 *ngFor="let shop of Shops"
                 routerLink="/Stores/{{shop.nameTrimmed}}/{{CityId}}/{{CityName}}">
                 <div class="img-holder">
@@ -39,7 +40,6 @@
                     </div>
                 </div>
             </button>
-
         </div>
     </div>
 </div>

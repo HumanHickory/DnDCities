@@ -23,7 +23,7 @@ export class EyeOfTheBeholderComponent implements OnInit {
   SpellScrolls: SpellScroll[] = [];
 
   menuItems: string[] = ['Specials', 'Items of the Craft', 'Potions', 'Focuses', 'Spell Scrolls'];
-  selectedTab: string = this.menuItems[4];
+  selectedTab: string = this.menuItems[0];
 
   constructor(private shopService: ShopService, private activatedRoute: ActivatedRoute) { }
 
@@ -113,15 +113,10 @@ export class EyeOfTheBeholderComponent implements OnInit {
     this.Potions.push(advantage);
   }
 
-  CreateScrolls(){
-
-  }
-
   ToggleMenu(tab: string){
     this.selectedTab = tab;
   }
 
-  
 }
 
 export interface Potion {
