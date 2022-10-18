@@ -11,21 +11,13 @@ import { CityService } from './Services/Cities/CityService';
   providers: [CityService]
 })
 export class AppComponent {
-  title = 'DnDCities';
-  City: CityDetails;
-  NavBarColor: string = "";
 
-  constructor(private cityService: CityService ) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-    //for the shops pages
-    getCityDetails(cityId: number){
-      this.cityService.GetLocation(cityId).subscribe(details => {
-        this.City = details;
-      });
-    }
+
 
 }
 

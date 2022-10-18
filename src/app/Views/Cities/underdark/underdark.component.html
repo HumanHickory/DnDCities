@@ -1,12 +1,10 @@
-<div *ngIf="IsLoaded">
-
-    <app-nav-bar [backgroundColor]="City?.colorScheme.navColor" [navBarLightText]="true" [cityId]="City.cityId"
-        [cityName]="City.name"></app-nav-bar>
-</div>
-
-<div [ngStyle]="{'background-color': City?.colorScheme.backgroundColor}">
-
+<!------------------------------------------------- TILES ---------------------------------------------->
+<div [ngStyle]="{backgroundColor: City?.colorScheme.backgroundColor}">
     <div *ngIf="IsLoaded">
+
+        <app-nav-bar [backgroundColor]="City?.colorScheme.navColor" [navBarLightText]="true" [cityId]="City.cityId"
+            [cityName]="City.name"></app-nav-bar>
+
         <div class="container pb-3" style="padding-top: 1vh">
 
             <!------------------------------------------------- Hero IMG ---------------------------------------------->
@@ -19,68 +17,26 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-3 py-3" [ngStyle]="{'background-color': City?.colorScheme.primaryColor}"
-                    style="color: white; border-radius: 6px; height: 100%">
 
-                    <h5>Help Wanted</h5>
-                    <div class="ps-3 mb-3">
-                        <div *ngFor="let help of City?.help" class="my-2">
-                            <button class="tabMenuBtn" (click)="ToggleNewsAndHelp(help.id, true)"
-                                [ngClass]="{'active': SelectedTabId == help.id}">
-                                {{help.title}}
-                            </button>
-                        </div>
-                    </div>
+            <div class="my-2">
+                <app-help-wanted [helpWanted]="City?.help" [borderColor]="City?.colorScheme.primaryColor"
+                    [headerColor]="City?.colorScheme.headerTextColor" [isUnderdark]="true"
+                    [textColor]="City?.colorScheme.primaryTextColor"></app-help-wanted>
+            </div>
 
-                    <h5>News</h5>
-                    <div class="ps-3">
-                        <div *ngFor="let news of City?.news" class="my-2">
-                            <button class="tabMenuBtn" (click)="ToggleNewsAndHelp(news.id, false)"
-                                [ngClass]="{'active': SelectedTabId == news.id}">
-                                {{news.title}}
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <div class="mb-2 mt-5">
+                <app-news [news]="City?.news" [headerColor]="City?.colorScheme.headerTextColor"></app-news>
+            </div>
 
-                <div class="col-9">
-                    <div class="my-2">
-                        <div class="mb-3">
-                            <h3 style="color: white">{{Story.type}}.</h3>
-                        </div>
+            <div class="mb-2 mt-5">
+                <app-history [history]="City?.history" [headerColor]="City?.colorScheme.headerTextColor"
+                [textColor]="City?.colorScheme.primaryTextColor"></app-history>
+            </div>
 
-                        <div class="row">
-                            <div class="col-12 mx-3 my-2 pt-2 blurb">
-                                <h5>{{Story.title}}</h5>
-                                <p><i>{{Story.author}}</i></p>
-                                <div [innerHtml]="Story.storyHtml"></div>
-                            </div>
-                        </div>
-                    </div>               
-                </div>
-
-                <div class="my-2">
-                    <div class="mb-3">
-                        <h3 style="color: white">History.</h3>
-                    </div>
-
-                    <div class="blurb p-2">
-                        <div [innerHtml]="City?.history"></div>
-                    </div>
-
-                </div>
-
-                <div class="my-2">
-                    <div class="mb-3">
-                        <h3 style="color: white">Government.</h3>
-                    </div>
-
-                    <div class="blurb p-2">
-                        <h5>{{City?.government.title}}</h5>
-                        <div [innerHtml]="City?.government.descriptionHtml"></div>
-                    </div>
-                </div>
+            <div class="mb-2 mt-5">
+                <app-government [government]="City?.government" [headerColor]="City?.colorScheme.headerTextColor"
+                [textColor]="City?.colorScheme.primaryTextColor">
+                </app-government>
             </div>
         </div>
     </div>

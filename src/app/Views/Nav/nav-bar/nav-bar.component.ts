@@ -23,7 +23,7 @@ export class NavBarComponent implements OnInit {
       this.City = details;
     });
 
-    this.cityService.GetLocation(this.cityId).subscribe(details => {
+    this.cityService.GetLocation(this.cityId, 0).subscribe(details => {
       this.TavernName = details.tavernName;  
       this.isLoaded = true;
     });

@@ -31,7 +31,7 @@ export class ShopDirectoryComponent implements OnInit {
       this.Shops = shops;
     });
 
-    this.cityService.GetLocation(this.CityId).subscribe(details => {
+    this.cityService.GetLocation(this.CityId, 0).subscribe(details => {
       this.CityName = details.name; 
     });
   }

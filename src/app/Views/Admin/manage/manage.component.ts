@@ -370,7 +370,10 @@ export class ManageComponent implements OnInit {
   }
 
   SetCity(cityId: number) {
-    this.cityService.GetLocation(cityId).subscribe(details => {
+
+    
+
+    this.cityService.GetLocation(cityId, 0).subscribe(details => {
       this.CityDetails = details;
       if(this.CityDetails.shops.length > 0){
         this.UpdateShop();

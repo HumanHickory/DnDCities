@@ -35,3 +35,12 @@
         <p-progressSpinner [style]="{width: '150px', height: '150px'}" styleClass="custom-spinner" strokeWidth="4" fill="#ededed" animationDuration="1.5s"></p-progressSpinner>
     </div>
 </p-dialog>
+
+<p-dialog header="Choose Campaign" [(visible)]="askForCampaign" [style]="{width: '50vw', height: '50vh'}" [closable]="false">
+    <b>Choose your Campaign:</b>
+  
+    <p-dropdown class="my-2" [options]="Campaigns" [(ngModel)]="SelectedCampaign" optionLabel="name"></p-dropdown>
+    <div class="my-2 text-end">
+        <button pButton type="button" label="Save" (click)="SaveCampaign()"></button>
+    </div>
+</p-dialog>

@@ -24,6 +24,7 @@ import {RatingModule} from 'primeng/rating';
 import {DropdownModule} from 'primeng/dropdown';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {InputNumberModule} from 'primeng/inputnumber';
+import {ListboxModule} from 'primeng/listbox';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -101,7 +102,8 @@ import { ManageComponent } from './Views/Admin/manage/manage.component';
     RatingModule,
     DropdownModule,
     ProgressSpinnerModule,
-    InputNumberModule
+    InputNumberModule,
+    ListboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

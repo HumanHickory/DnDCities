@@ -28,6 +28,10 @@ export class CityService {
         return this.http.post(environment.apiUrl() + 'api/City/CreateOrUpdateLocationDetails', details)
     }
 
+    ListCampaigns(){
+        return this.http.get<City[]>(environment.apiUrl() + 'api/City/ListCampaigns')
+}
+
     GetLocations(){
             return this.http.get<City[]>(environment.apiUrl() + 'api/City/GetLocations/?IsProd=' + environment.production)
     }
@@ -38,9 +42,10 @@ export class CityService {
         return this.http.get<City>(environment.apiUrl() + 'api/City/GetLocationBasic', {params})
     }
 
-    GetLocation(cityId: number){
+    GetLocation(cityId: number, campaignId: number){
             const params = new HttpParams()
-                .set('Id', cityId);
+                .set('Id', cityId)
+                .set('campaignId', campaignId);
 
         return this.http.get<CityDetails>(environment.apiUrl() + 'api/City/GetLocation', {params} );
     }

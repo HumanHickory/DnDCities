@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HIstoryComponent implements OnInit {
   @Input() history: string;
   @Input() headerColor: string;
+  @Input() textColor: string;
 
   constructor() { }
 

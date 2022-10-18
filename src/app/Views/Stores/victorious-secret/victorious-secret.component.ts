@@ -164,8 +164,11 @@ export class VictoriousSecretComponent implements OnInit {
       this.SpecialImg = ["masquerade mens", "masquerade womens"];
     } else if(this.CityId == 23) //Blackstone
     {
-      this.Special ={name: "Wood Elf Wear", price: 20}
+      this.Special ={name: "Wood Elf Wear", price: 10}
       this.SpecialImg = ["forest mens", "forest womens"];
+    } else if (this.CityId == 9) {//Arynsport 
+      this.Special ={name: "Sailors Clothing", price: 10}
+      this.SpecialImg = ["pirates mens", "pirates womens"];
     }
     else {
       this.Special ={name: "Peasant's Outfit", price: 100000}

@@ -4,10 +4,11 @@
 
 <div class="row">
     <div class="col-lg-4 my-1" *ngFor="let help of helpWanted">
-        <div class="curved p-2" style="height: 100%" [ngStyle]="{'border': '1px solid', 'border-color': borderColor, 'box-shadow': '5px 2px 10px gray'}">
+        <div class="curved p-2" style="height: 100%" 
+        [ngStyle]="{'border': '1px solid', 'border-color': borderColor, 'box-shadow': '5px 2px 10px ' + BoxShadowColor, 'backgroundColor': Background}">
             <h5 [ngStyle]="{'color': headerColor}"> {{help.title}} </h5>
             <hr>
-            <p [innerHtml]="help.detailsHtml"></p>
+            <p [innerHtml]="help.detailsHtml" [ngStyle]="{'color': textColor}"></p>
         </div>
     </div>
 </div>

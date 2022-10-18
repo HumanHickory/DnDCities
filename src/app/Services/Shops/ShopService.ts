@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { CityMount } from "src/app/Models/CityMount";
+import { Diety } from "src/app/Models/Diety";
 import { GnomeDepotStock } from "src/app/Models/GnomeDepotStock";
 import { Instrument } from "src/app/Models/Instrument";
 import { Mount } from "src/app/Models/Mount";
@@ -64,5 +65,9 @@ export class ShopService {
 
     GetSpellsByCityId(cityId: number){
         return this.http.get<SpellScroll[]>(environment.apiUrl() + 'api/City/GetSpellsByCityId?CityId=' + cityId);
+    }
+
+    GetCityDietiesByCityId(cityId: number){
+        return this.http.get<Diety[]>(environment.apiUrl() + 'api/City/GetCityDietiesByCityId?CityId=' + cityId);
     }
 }

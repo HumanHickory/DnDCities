@@ -12,10 +12,18 @@ export class HelpWantedComponent implements OnInit {
   @Input() helpWanted: Help[];
   @Input() borderColor: string;
   @Input() headerColor: string;
-  constructor(private appComp: AppComponent) { }
+  @Input() isUnderdark: boolean;
+  @Input() textColor: string;
+
+  BoxShadowColor: string = "gray";
+  Background: string = "white";
+  constructor() { }
 
   ngOnInit(): void {
-    
+    if(this.isUnderdark){
+      this.BoxShadowColor = "black";
+      this.Background = "black";
+    }
   }
 
 }

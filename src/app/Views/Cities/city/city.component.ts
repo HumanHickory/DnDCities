@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
+import { Campaign } from 'src/app/Models/Campaign';
 import { CityDetails } from 'src/app/Models/CityDetails';
 import { CityService } from 'src/app/Services/Cities/CityService';
 
@@ -16,12 +17,20 @@ export class CityComponent implements OnInit {
   heroImg: string;
   IsLoaded: boolean = false;
   ShowView: any;
-  constructor(private cityService: CityService,  private activatedRoute: ActivatedRoute, public appComp: AppComponent) { }
+  Campaign: Campaign;
+  constructor(private cityService: CityService,  private activatedRoute: ActivatedRoute, private route: Router) { }
 
   ngOnInit(): void {
     var cityId = parseInt(this.activatedRoute.snapshot.paramMap.get("cityId"));
+    let campaign: any = localStorage.getItem("campaign") == null ? "" : localStorage.getItem("campaign");
 
-    this.cityService.GetLocation(cityId).subscribe(details => {
+    if(campaign == ""){
+      this.route.navigateByUrl('/');
+    } else {
+      this.Campaign =JSON.parse(campaign);
+    }
+
+    this.cityService.GetLocation(cityId, this.Campaign.id).subscribe(details => {
       this.City = details;  
       this.heroImg = 'url("../../../../assets/CityImg/' + this.City.name +'.jpg") no-repeat center'; 
       this.IsLoaded = true;

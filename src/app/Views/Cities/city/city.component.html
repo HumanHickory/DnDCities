@@ -1,9 +1,12 @@
-<app-nav-bar [backgroundColor]="City?.colorScheme.navColor" [navBarLightText]="true" 
-[cityId]="City.cityId" [cityName]="City.name"></app-nav-bar>
+
 
 
 <!------------------------------------------------- TILES ---------------------------------------------->
 <div *ngIf="IsLoaded">
+
+    <app-nav-bar [backgroundColor]="City?.colorScheme.navColor" [navBarLightText]="true" 
+    [cityId]="City.cityId" [cityName]="City.name"></app-nav-bar>
+
     <div class="container pb-3" style="padding-top: 1vh">
 
         <!------------------------------------------------- Hero IMG ---------------------------------------------->
@@ -19,7 +22,8 @@
 
         <div class="my-2">
             <app-help-wanted [helpWanted]="City?.help" [borderColor]="City?.colorScheme.primaryColor"
-                [headerColor]="City?.colorScheme.headerTextColor"></app-help-wanted>
+                [headerColor]="City?.colorScheme.headerTextColor" [isUnderdark]="false"
+                [textColor]="City?.colorScheme.primaryTextColor"></app-help-wanted>
         </div>
 
         <div class="mb-2 mt-5">
@@ -27,11 +31,13 @@
         </div>
 
         <div class="mb-2 mt-5">
-            <app-history [history]="City?.history" [headerColor]="City?.colorScheme.headerTextColor"></app-history>
+            <app-history [history]="City?.history" [headerColor]="City?.colorScheme.headerTextColor"
+            [textColor]="City?.colorScheme.primaryTextColor"></app-history>
         </div>
 
         <div class="mb-2 mt-5">
-            <app-government [government]="City?.government" [headerColor]="City?.colorScheme.headerTextColor"></app-government>
+            <app-government [government]="City?.government" [headerColor]="City?.colorScheme.headerTextColor"
+            [textColor]="City?.colorScheme.primaryTextColor"></app-government>
         </div>
     </div>
 </div>

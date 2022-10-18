@@ -44,6 +44,19 @@
             </div>
 
             <div class="col-6 my-2">
+                <b>Tavern Name</b>
+                <input type="text" pInputText [(ngModel)]="CityDetails.tavernName" placeholder="The Boiling Frog" />
+            </div>
+            
+            <div class="col-6 my-2">
+                <b>Show Location In Prod?</b>
+                <div class="field-checkbox">
+                    <p-checkbox [(ngModel)]="City.show" [binary]="true" inputId="binary"></p-checkbox>
+                    <label for="binary">{{City.show}}</label>
+                </div>
+            </div>
+
+            <div class="col-6 my-2">
                 <b>Location Size</b>
                 <div *ngFor="let size of Sizes" class="field-checkbox">
                     <p-radioButton [inputId]="size.id.toString()" name="size" [value]="size.id"
@@ -53,13 +66,7 @@
                 </div>
             </div>
 
-            <div class="col-6 my-2">
-                <b>Show Location In Prod?</b>
-                <div class="field-checkbox">
-                    <p-checkbox [(ngModel)]="City.show" [binary]="true" inputId="binary"></p-checkbox>
-                    <label for="binary">{{City.show}}</label>
-                </div>
-            </div>
+
         </div>
 
         <!--Government-->
@@ -183,6 +190,17 @@
                     <input type="text" pInputText [(ngModel)]="weapon.special"
                         placeholder="On crit, this weapon does 1d8 lighting damage" />
                 </div>
+                <div class="col-3 my-2">
+                    <b>Weapons Properties</b>
+                    <p-listbox [options]="WeaponsProperties" [(ngModel)]="weapon.properties" [metaKeySelection]="false" [checkbox]="true" [filter]="true" [multiple]="true" optionLabel="name" [listStyle]="{'max-height':'250px'}" [style]="{'width':'15rem'}">
+                        <ng-template let-prop pTemplate="item">
+                            <div class="prop-item">
+                                <div>{{prop.name}}</div>
+                            </div>
+                        </ng-template>
+                    </p-listbox>
+                </div>
+
             </div>
 
             <div class="col-3">

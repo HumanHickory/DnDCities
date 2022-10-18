@@ -9,6 +9,7 @@ import { Government } from 'src/app/Models/Government';
 export class GovernmentComponent implements OnInit {
   @Input() government: Government;
   @Input() headerColor: string;
+  @Input() textColor: string;
 
   constructor() { }
 

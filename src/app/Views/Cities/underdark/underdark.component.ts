@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Campaign } from 'src/app/Models/Campaign';
 import { CityDetails } from 'src/app/Models/CityDetails';
 import { CityService } from 'src/app/Services/Cities/CityService';
 
@@ -15,61 +16,33 @@ export class UnderdarkComponent implements OnInit {
   heroImg: string;
   IsLoaded: boolean = false;
   ShowView: any;
+  Campaign: Campaign;
 
-  SelectedTabId: number;
-
-  Story: helpOrNewsDetails;
-
-  constructor(private cityService: CityService, private activatedRoute: ActivatedRoute) { }
+  constructor(private cityService: CityService,  private activatedRoute: ActivatedRoute, private route: Router) { }
 
   ngOnInit(): void {
     var cityId = parseInt(this.activatedRoute.snapshot.paramMap.get("cityId"));
+    let campaign: any = localStorage.getItem("campaign") == null ? "" : localStorage.getItem("campaign");
 
-    this.cityService.GetLocation(cityId).subscribe(details => {
-      this.City = details;
-      this.heroImg = 'url("../../../../assets/CityImg/' + this.City.name + '.jpg") no-repeat center';
-      this.ToggleNewsAndHelp(this.City.help[0].id, true);
+    if(campaign == ""){
+      this.route.navigateByUrl('/');
+    } else {
+      this.Campaign =JSON.parse(campaign);
+    }
+
+    this.cityService.GetLocation(cityId, this.Campaign.id).subscribe(details => {
+      this.City = details;  
+      this.heroImg = 'url("../../../../assets/CityImg/' + this.City.name +'.jpg") no-repeat center'; 
       this.IsLoaded = true;
     });
 
+
+
   }
 
-  heroImgStyling() {
-    return { 'background': this.heroImg, 'background-size': 'cover', 'height': '20vh', 'position': 'relative' }
+  heroImgStyling(){
+    return {'background': this.heroImg, 'background-size': 'cover', 'height': '20vh', 'position': 'relative'  }
   }
 
-  ToggleNewsAndHelp(id: number, isTabHelp: boolean) {
-    this.SelectedTabId = id;
-
-    if (isTabHelp) {
-      this.City.help.forEach(x => {
-        if (x.id == this.SelectedTabId) {
-          this.Story = {
-            title: x.title,
-            author: "",
-            storyHtml: x.detailsHtml,
-            type: "Help Wanted"
-          }
-        }
-      });
-    } else {
-      this.City.news.forEach(x => {
-        if (x.id == this.SelectedTabId) {
-          this.Story = {
-            title: x.title,
-            author: x.author + ", " + x.source,
-            storyHtml: x.storyHtml,
-            type: "News"
-          };
-        }
-      });
-    }
-  }
 }
 
-interface helpOrNewsDetails {
-  title: string;
-  author: string;
-  storyHtml: string;
-  type: string;
-}
