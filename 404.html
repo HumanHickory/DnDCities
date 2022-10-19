@@ -8,23 +8,26 @@
 
   <script>
     // Store the URL the user was trying to access when receiving the 404.
-    sessionStorage.redirect = location.href;
-       console.log('redirect to ' + location.href + ' from 404');
+    var correctURL = location.href;
+    location.replace(correctURL);
+
+    console.log('redirect to ' + location.href + ' from 404');
   </script>
 
-  <!-- Immediately redirect to the base URL so we can use the SPA routing. -->
-  <!-- <meta http-equiv="refresh" content="0;URL='/'"></meta> -->
 </head>
 
 <body>
 
-  <p>This was a web page for an organization that used to exist. This organization no longer exists as it has been replaced with a new organization to teach surf kids the values and love of the ocean. The new site is: https://www.pleasurepointsurfclub.com/
-    <br><br> 
-    If you came upon this page by mistake, try checking the URL in your web browser.</p>
-    
-</body>    
-            
-             
+  <p>
+    This is a stupid 404 page that I had to make because Github apparently has issues with angular routing
+    But I'm using github for free, so I will do the work to make a work around.
+  </p>
+  <p>
+    I will try to redirect you to the correct url from this page, but it's a crapshoot if it'll work.
+  </p>
+</body>
+
+
 </body>
 
 </html>
