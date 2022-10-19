@@ -28,6 +28,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/404.html",
               "src/CNAME",
               {
                   "glob": "**/*",
