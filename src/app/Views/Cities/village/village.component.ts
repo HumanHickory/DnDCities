@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Campaign } from 'src/app/Models/Campaign';
 import { CityDetails } from 'src/app/Models/CityDetails';
-import { ColorScheme } from 'src/app/Models/ColorScheme';
 import { CityService } from 'src/app/Services/Cities/CityService';
 @Component({
   selector: 'app-village',
@@ -18,7 +17,7 @@ export class VillageComponent implements OnInit {
   View: string = "Main";
   responsiveOptions: any;
   Campaign: Campaign;
-
+  isLoaded = false;
 
   constructor(private cityService: CityService,  private activatedRoute: ActivatedRoute, private router: Router) { }
 
@@ -35,7 +34,7 @@ export class VillageComponent implements OnInit {
     this.cityService.GetLocation(cityId, this.Campaign.id).subscribe(details => {
       this.Village = details;  
       this.heroImg = 'url("../../../../assets/CityImg/' + this.Village.name +'.jpg") no-repeat center'; 
-      console.log(this.Village);
+      this.isLoaded = true;
     });
 
   }

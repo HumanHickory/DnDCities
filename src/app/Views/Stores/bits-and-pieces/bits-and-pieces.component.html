@@ -45,8 +45,8 @@
             <div class="text-center">
                 <h5>{{mount.name}}</h5>
                 <p><b>Cost: </b> {{mount.price}} {{mount.currencyType.abbreviation}}<br />
-                    <b>Speed: </b> {{mount.speed}} ft <br />
-                    <b>Carrying Capacity: </b> {{mount.capacity}} lbs.
+                    <b>Speed: </b> {{mount.speed}} <span *ngIf="mount.isWaterborne; else feetBlock">mph</span><ng-template #feetBlock>ft</ng-template> <br />
+                    <b>Carrying Capacity: </b> {{mount.capacity}} <span *ngIf="mount.isWaterborne; else poundsBlock">tons</span><ng-template #poundsBlock>lbs.</ng-template>
                 </p>
             </div>
         </div>
