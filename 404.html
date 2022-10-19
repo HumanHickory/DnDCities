@@ -8,11 +8,12 @@
 
   <script>
     // Store the URL the user was trying to access when receiving the 404.
-    var correctURL = location.href;
+    sessionStorage.redirect = location.href;
     location.replace(correctURL);
 
-    console.log('redirect to ' + location.href + ' from 404');
+    console.log('logged redirect to ' + location.href + ' from 404');
   </script>
+  <meta http-equiv="refresh" content="0;URL='/'"></meta>
 
 </head>
 
