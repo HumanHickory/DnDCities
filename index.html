@@ -8,18 +8,18 @@
 <body>
   <script>
     (function () {
-      // Retrieve the URL the user was trying to access when receiving the 404.
+      //Github doesn't like angular routing, so if a page is reloaded, rather than failing, 
+      //it will go to our 404.html, which saves the url in session storage, then redirects back to the
+      //home page. Then the code below will pick up that url and route to it in a way github likes.
+      //If I'm copying this later, to recreate this, make a 404.html page in src and ADD IT TO angular.json!!!
       var redirect = sessionStorage.redirect;
-      // Remove the URL from sessionStorage.
       delete sessionStorage.redirect;
-      // Check if we actually need to redirect.
       if (redirect && redirect != location.href) {
-        // We need to redirect to the URL the user was trying to access.
         history.replaceState(null, null, redirect);
       }
     })();
   </script>
   <app-root></app-root>
-<script src="runtime.4d0e36aca0aae372.js" type="module"></script><script src="polyfills.9924a6def425cbd8.js" type="module"></script><script src="scripts.69cc2cf4832f00d4.js" defer></script><script src="main.09e86dd0fb1e5845.js" type="module"></script>
+<script src="runtime.4d0e36aca0aae372.js" type="module"></script><script src="polyfills.9924a6def425cbd8.js" type="module"></script><script src="scripts.69cc2cf4832f00d4.js" defer></script><script src="main.8e30a02861372b2e.js" type="module"></script>
 
 </body></html>
