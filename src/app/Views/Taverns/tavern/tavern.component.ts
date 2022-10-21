@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { City } from 'src/app/Models/City';
-import { MenuItemType, Tavern, TavernRecipes } from 'src/app/Models/Tavern';
+import { MenuItemType, Tavern, TavernRecipe } from 'src/app/Models/Tavern';
 import { CityService } from 'src/app/Services/Cities/CityService';
 import { TavernService } from 'src/app/Services/Tavern/TavernService';
 
@@ -19,7 +19,7 @@ export class TavernComponent implements OnInit {
   City: City;
   Tavern: Tavern;
   isLoaded: boolean = false;
-  Recipes: TavernRecipes[] = [];
+  Recipes: TavernRecipe[] = [];
   SelectedTab: MenuItemType;
 
   constructor(private activatedRoute: ActivatedRoute,

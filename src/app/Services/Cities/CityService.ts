@@ -7,6 +7,7 @@ import { Help } from "src/app/Models/Help";
 import { News } from "src/app/Models/News";
 import { Injectable } from '@angular/core';
 import { environment } from "src/environments/environment";
+import { CampaignLocation } from "src/app/Models/Campaign";
 
 @Injectable()
 export class CityService {
@@ -26,14 +27,22 @@ export class CityService {
 
     CreateOrUpdateLocationDetails(details: CityDetails){
         return this.http.post(environment.apiUrl() + 'api/City/CreateOrUpdateLocationDetails', details)
+    }    
+    
+    SetCampaignLocation(locations: CampaignLocation[]){
+        return this.http.post(environment.apiUrl() + 'api/City/SetCampaignLocation', locations)
+    }
+
+    GetCampaignLocation(cityId: number){
+        return this.http.get<CampaignLocation[]>(environment.apiUrl() + 'api/City/GetCampaignLocation?CityId='+ cityId)
     }
 
     ListCampaigns(){
         return this.http.get<City[]>(environment.apiUrl() + 'api/City/ListCampaigns')
 }
 
-    GetLocations(){
-            return this.http.get<City[]>(environment.apiUrl() + 'api/City/GetLocations/?IsProd=' + environment.production)
+    GetLocations(campaignId: number){
+            return this.http.get<City[]>(environment.apiUrl() + 'api/City/GetLocations/?CampaignId='+ campaignId +'&IsProd=' + environment.production)
     }
 
     GetLocationBasic(cityId: number){

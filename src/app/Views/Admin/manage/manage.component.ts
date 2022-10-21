@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faLeaf, fas } from '@fortawesome/free-solid-svg-icons';
 import { MessageService } from 'primeng/api';
@@ -17,12 +17,15 @@ import { CurrencyType, DamageType, ExclusiveWeapon, WeaponsProperty, WeaponType 
 import { TypeService } from 'src/app/Services/Common/TypeService';
 import { Mount } from 'src/app/Models/Mount';
 import { CityMount } from 'src/app/Models/CityMount';
+import { Drink, MenuItemType, TavernRecipe } from 'src/app/Models/Tavern';
+import { TavernService } from 'src/app/Services/Tavern/TavernService';
+import { Campaign, CampaignLocation } from 'src/app/Models/Campaign';
 
 @Component({
   selector: 'app-manage',
   templateUrl: './manage.component.html',
   styleUrls: ['./manage.component.css'],
-  providers: [CityService, MessageService, ShopService, TypeService]
+  providers: [CityService, MessageService, ShopService, TypeService, TavernService]
 
 })
 export class ManageComponent implements OnInit {
@@ -43,12 +46,20 @@ export class ManageComponent implements OnInit {
   DamageTypes: DamageType[] = [];
   WeaponTypes: WeaponType[] = [];
   SpecialtyItemStores: Shop[] = [];
+  Recipes: TavernRecipe[] = [];
+  MenuItemTypes: MenuItemType[] = [];
+  Drinks: Drink[] = [];
+  SelectedDrinks: Drink[] = [];
+  Campaigns: Campaign[] = [];
+  SelectedCampaigns: Campaign[] = [];
 
   NewNews: News;
   NewHelp: Help;
+  NewDrink: Drink;
 
   ShowNewsDialog: boolean = false;
   ShowHelpDialog: boolean = false;
+  ShowDrinkDialog: boolean = false;
   ShowBitsAndPieces: boolean = false;
   ShowExclusiveWeapons: boolean = false;
   ShowExclusiveItems: boolean = false;
@@ -57,29 +68,63 @@ export class ManageComponent implements OnInit {
   constructor(private cityService: CityService,
     private messageService: MessageService,
     private shopService: ShopService,
+    private tavernService: TavernService,
     private activatedRoute: ActivatedRoute,
     private library: FaIconLibrary,
     private typeService: TypeService,
+    private router: Router
   ) {
     library.addIconPacks(fas);
 
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<any> {
     var cityId = parseInt(this.activatedRoute.snapshot.paramMap.get("cityId"));
 
-    this.cityService.GetLocations().subscribe( cities => {
-      this.Cities = cities;
-      if (cityId > 0) { this.SetCity(cityId); } 
-      this.cityService.GetCitySizes().subscribe(citySizes => { 
-        this.Sizes = citySizes;
-        this.shopService.ListShops().subscribe(shops => {
-          this.Shops = shops.sort((a, b) => a.name.localeCompare(b.name));
-          this.SetModel();
-        });
-      });
+    await this.ListDrinks();
+    await this.ListCurrencyTypes();
+    await this.GetCitySizes();
+    await this.ListShops();
+    await this.GetCampaigns();
+    await this.GetMenuItemTypes();
+    await this.GetLocations(cityId);
+    this.SetModel();
 
+  }
+
+  async GetCampaigns(){
+    this.cityService.ListCampaigns().subscribe(campaigns => {
+      this.Campaigns = campaigns;
     });
+  }
+
+  async GetLocations(cityId: number) {
+    this.cityService.GetLocations(0).subscribe(cities => {
+      this.Cities = cities;
+      if (cityId > 0) {
+        this.SetCity(cityId);
+      }
+    });
+  }
+
+  async GetCitySizes() {
+    this.cityService.GetCitySizes().subscribe(citySizes => {
+      this.Sizes = citySizes;
+    });
+  }
+
+  async ListShops() {
+    this.shopService.ListShops().subscribe(shops => {
+      this.Shops = shops.sort((a, b) => a.name.localeCompare(b.name));
+    });
+  }
+
+  async GetMenuItemTypes() {
+    if (this.MenuItemTypes.length == 0) {
+      this.typeService.ListMenuItemTypes().subscribe(menuTypes => {
+        this.MenuItemTypes = menuTypes;
+      });
+    }
   }
 
   UpdateShop() {
@@ -96,18 +141,43 @@ export class ManageComponent implements OnInit {
         this.ShowBitsAndPieces = true;
       } else if ((shop.name.toLowerCase() == "gnome depot" || shop.name.toLowerCase() == "five fingers" || shop.name.toLowerCase() == "eye of the beholder")) {
         if (this.ExclusiveItems.length == 0)
-        this.SpecialtyItemStores.push(shop);
+          this.SpecialtyItemStores.push(shop);
         this.ShowExclusiveItems = true;
       }
     });
   }
 
-  AddNewSpecialityItem() {
+
+  async ListCurrencyTypes() {
     if (this.CurrencyTypes.length == 0) {
       this.typeService.ListCurrencyTypes().subscribe(currencyTypes => {
         this.CurrencyTypes = currencyTypes
       });
     }
+  }
+
+  AddNewRecipe() {
+
+
+    var recipe: TavernRecipe = {
+      id: 0,
+      name: "",
+      description: "",
+      tavernId: 0,
+      price: 0,
+      currencyTypeId: 0,
+      menuItemTypeId: 0,
+
+      currencyType: null,
+      menuItemType: null,
+    }
+
+    this.Recipes.push(recipe);
+
+  }
+
+  AddNewSpecialityItem() {
+
 
     if (this.RarityTypes.length == 0) {
       this.typeService.ListRarity().subscribe(rarityTypes => {
@@ -142,12 +212,6 @@ export class ManageComponent implements OnInit {
   }
 
   AddNewExclusiveWeapon() {
-    if (this.CurrencyTypes.length == 0) {
-      this.typeService.ListCurrencyTypes().subscribe(currencyTypes => {
-        this.CurrencyTypes = currencyTypes
-      });
-    }
-
     if (this.WeaponTypes.length == 0) {
       this.typeService.ListWeaponTypes().subscribe(types => {
         this.WeaponTypes = types
@@ -256,7 +320,47 @@ export class ManageComponent implements OnInit {
             });
         }
 
+        this.tavernService.GetTavern(this.CityDetails.cityId).subscribe(tavern => {
+
+          if (this.Recipes.length > 0) {
+            this.Recipes.forEach(x => {
+              x.tavernId = tavern.id
+            });
+            tavern.recipes = this.Recipes;
+          }
+
+          if (this.SelectedDrinks.length > 0) {
+            tavern.drinks = this.SelectedDrinks;
+          }
+
+          this.tavernService.AddTavernDetails(tavern).subscribe(result => {
+            this.messageService.add({ severity: 'success', summary: 'Saved Tavern Details', detail: 'Tavern Details were successfully saved' });
+
+          },
+            error => {
+              this.messageService.add({ severity: 'error', summary: 'Failed to Save Tavern Details', detail: 'Unable to save Tavern Details' });
+            });
+        });
+
+        var campLocations: CampaignLocation[] = [];
+
+        this.Campaigns.forEach(x => {
+          var show = false;
+          if(this.SelectedCampaigns.includes(x))
+            show = true;
+          var newCampLoc: CampaignLocation = {
+            id: 0,
+            campaignId: x.id,
+            cityId: this.CityDetails.cityId,
+            show: show
+          }
+          campLocations.push(newCampLoc);
+        });
+
+        this.cityService.SetCampaignLocation(campLocations).subscribe(result =>{});
+
         this.messageService.add({ severity: 'success', summary: 'Saved City', detail: 'City and Details were successfully saved' });
+        this.router.navigate(['/Admin/Manage/' + this.CityDetails.cityId]);
       },
         error => {
           this.messageService.add({ severity: 'error', summary: 'Failed to Save Details', detail: 'Unable to save details' });
@@ -289,6 +393,23 @@ export class ManageComponent implements OnInit {
     }
 
     this.ShowHelpDialog = true;
+  }
+
+  OpenDrinkDialog() {
+    this.NewDrink = {
+      id: 0,
+      name: "",
+      createdCity: "",
+      description: "",
+      price: 0,
+      currencyTypeId: 0,
+      drinkType: "",
+
+      currencyType: null
+    }
+
+    this.ShowDrinkDialog = true;
+
   }
 
   AddNews() {
@@ -347,11 +468,11 @@ export class ManageComponent implements OnInit {
       tavernName: ""
     }
 
-    this.ResetNewsAndHelp();
-    this.AllDataFetched = true; 
+    this.ResetNewsHelpDrinks();
+    this.AllDataFetched = true;
   }
 
-  ResetNewsAndHelp() {
+  ResetNewsHelpDrinks() {
     this.NewHelp = {
       id: 0,
       cityId: this.City.id,
@@ -367,21 +488,45 @@ export class ManageComponent implements OnInit {
       author: "",
       storyHtml: "",
     }
+
+    this.NewDrink = {
+      id: 0,
+      name: "",
+      createdCity: "",
+      description: "",
+      price: 0,
+      currencyTypeId: 0,
+      drinkType: "",
+
+      currencyType: null
+    }
+  }
+
+  GetTavern(cityId: number) {
+    this.tavernService.GetTavern(cityId).subscribe(tavern => {
+      this.SelectedDrinks = tavern.drinks;
+      this.SelectedDrinks.forEach(x => {
+        x.currencyType = null,
+          x.currencyTypeId = 0,
+          x.price = 0
+      });
+      this.Recipes = tavern.recipes;
+    });
   }
 
   SetCity(cityId: number) {
-
-    
-
     this.cityService.GetLocation(cityId, 0).subscribe(details => {
       this.CityDetails = details;
-      if(this.CityDetails.shops.length > 0){
+      if (this.CityDetails.shops.length > 0) {
         this.UpdateShop();
       }
 
+      this.GetTavern(cityId);
+
       this.cityService.GetLocationBasic(cityId).subscribe(details => {
         this.City = details;
-        this.ResetNewsAndHelp();
+        this.ResetNewsHelpDrinks();
+        this.GetCampaignLocations();
         this.CityDetails.shops.some(shop => {
           if (shop.name.toLowerCase() == "bits and pieces") {
             this.GetMountsByCityId();
@@ -391,13 +536,56 @@ export class ManageComponent implements OnInit {
       });
 
     });
-
-
   }
 
-  GetMountsByCityId(){
+  GetCampaignLocations(){
+    this.cityService.GetCampaignLocation(this.City.id).subscribe(campLocs => {
+      var camps: Campaign[] = [];
+      this.SelectedCampaigns = [];
+      campLocs.forEach(x => {
+        if(x.show){
+          camps.push(this.Campaigns.find(c => c.id === x.campaignId)); //no, it won't work if you put selectedCampaigns here. Bullshit.
+        }
+      });
+
+      this.SelectedCampaigns = camps;
+    });
+  }
+
+
+  GetMountsByCityId() {
     this.shopService.GetMountsByCityId(this.City.id).subscribe(mounts => {
       this.SelectedMounts = mounts;
+    });
+  }
+
+  async ListDrinks() {
+    this.tavernService.ListDrinks().subscribe(drinks => {
+      this.Drinks = drinks.sort((a, b) => {
+        const nameA = a.createdCity.toUpperCase(); // ignore upper and lowercase
+        const nameB = b.createdCity.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+
+        // names must be equal
+        return 0;
+      });
+    });
+  }
+
+  AddDrink() {
+    this.tavernService.AddDrink(this.NewDrink).subscribe(drink => {
+      if (drink.id != 0) {
+        this.ListDrinks();
+        this.ShowDrinkDialog = false;
+      } else {
+        this.messageService.add({ severity: 'error', summary: 'This drink alredy exists!', detail: 'Did not save.' });
+
+      }
     });
   }
 

@@ -1,3 +1,6 @@
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500&family=Noto+Serif+Gujarati&display=swap"
+    rel="stylesheet">
+
 <!------------------------------------------------- TILES ---------------------------------------------->
 <div *ngIf="isLoaded">
 
@@ -8,7 +11,10 @@
     <div class="row">
         <div class="col-lg-4" [ngStyle]="{backgroundColor: Village.colorScheme.backgroundColor}">
             <div class="text-center" style="margin-top: 45%;">
-                <h1 [ngStyle]="{color: Village.colorScheme.primaryTextColor}" style="letter-spacing: .5rem">{{Village.name | uppercase}}</h1>
+                <h1 [ngStyle]="{color: Village.colorScheme.primaryTextColor}"
+                    style="letter-spacing: .5rem; font-family: 'Noto Serif Gujarati', serif;">
+                    {{Village.name | uppercase}}
+                </h1>
             </div>
         </div>
         <div class="col-lg-8 d-none d-lg-block px-0">
@@ -16,18 +22,34 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 my-3 text-center">
+                <h3 [ngStyle]="{'color': Village.colorScheme.headerTextColor}">History.</h3>
+                <p [innerHtml]="History"></p>
 
-    <div class="container row">
-        <div class="col-md-12 offset-md-2 my-3 text-center">
-            <h3 [ngStyle]="{'color': Village.colorScheme.headerTextColor}">History.</h3>
-            <p [innerHtml]="Village.history"></p>
-        </div>
+                <button pButton type="button" label="{{HistoryLabel}}" (click)="ToggleHistory()"
+                    [ngStyle]="{backgroundColor: Village.colorScheme.headerTextColor, borderColor: Village.colorScheme.headerTextColor}"></button>
+            </div>
 
-        <div class="col-md-12 offset-md-2 my-3 text-center">
-            <h3 [ngStyle]="{'color': Village.colorScheme.headerTextColor}">Government.</h3>
-            <p [innerHtml]="Village.government.descriptionHtml"></p>
+            <div class="col-12 py-5 my-3 text-center" style="border-radius: 2px;"
+            [ngStyle]="{backgroundColor: Village.colorScheme.backgroundColor}">
+                <h4 [ngStyle]="{color: Village.colorScheme.primaryTextColor}">{{Village.motto}}</h4>
+            </div>
+
+            <div class="col-md-7 my-3">
+                <h3 [ngStyle]="{'color': Village.colorScheme.headerTextColor}">{{Village.government.title}}.</h3>
+                <p [innerHtml]="Village.government.descriptionHtml"></p>
+            </div>
+
+            <div class="col-md-5 my-3">
+                <div>
+                    <img src="../../../../assets/CityImg/Secondary/{{Village.name}}.jpg" width="100%" height="500">
+                </div>
+            </div>
         </div>
     </div>
+
     <div [ngStyle]="{backgroundColor: Village.colorScheme.backgroundColor}">
         <div class="container row">
             <div class="col-md-12 offset-md-2 my-3">

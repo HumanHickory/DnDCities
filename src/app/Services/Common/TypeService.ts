@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Rarity } from "src/app/Models/Item";
+import { MenuItemType } from "src/app/Models/Tavern";
 import { CurrencyType, DamageType, WeaponsProperty, WeaponType } from "src/app/Models/Weapon";
 import { environment } from "src/environments/environment";
 
@@ -27,7 +28,11 @@ export class TypeService {
 
     ListWeaponTypes(){
         return this.http.get<WeaponType[]>(environment.apiUrl() + 'api/Common/ListWeaponTypes')
-    }    
+    }  
+    
+    ListMenuItemTypes(){
+        return this.http.get<MenuItemType[]>(environment.apiUrl() + 'api/Common/ListMenuItemTypes');
+    }
 
 }
 

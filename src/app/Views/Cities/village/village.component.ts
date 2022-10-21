@@ -18,6 +18,8 @@ export class VillageComponent implements OnInit {
   responsiveOptions: any;
   Campaign: Campaign;
   isLoaded = false;
+  History: string = "";
+  HistoryLabel: string = "Read More";
 
   constructor(private cityService: CityService,  private activatedRoute: ActivatedRoute, private router: Router) { }
 
@@ -35,12 +37,23 @@ export class VillageComponent implements OnInit {
       this.Village = details;  
       this.heroImg = 'url("../../../../assets/CityImg/' + this.Village.name +'.jpg") no-repeat center'; 
       this.isLoaded = true;
+      this.History = (this.Village.history.split("</p>", 1))[0];
     });
 
   }
 
   heroImgStyling(){
     return {'background': this.heroImg, 'background-size': 'cover', 'height': '50vh', 'position': 'relative'  }
+  }
+
+  ToggleHistory(){
+    if(this.HistoryLabel == "Read More"){
+      this.HistoryLabel = "Read Less";
+      this.History = this.Village.history;
+    } else {
+      this.HistoryLabel = "Read More";
+      this.History = (this.Village.history.split("</p>", 1))[0];
+    }
   }
 
 }

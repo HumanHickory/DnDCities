@@ -6,12 +6,12 @@ export interface Tavern{
     name: string;
     cityId: number;
 
-    drinks: Drinks[]
-    recipes: TavernRecipes[];
+    drinks: Drink[]
+    recipes: TavernRecipe[];
     menuItemTypes: MenuItemType[];
 }
 
-export interface TavernRecipes{
+export interface TavernRecipe{
     id: number;
     name: string;
     tavernId: number;
@@ -29,7 +29,7 @@ export interface MenuItemType{
     name: string;
 }
 
-export interface Drinks{
+export interface Drink{
     id: number;
     name: string;
     description: string;

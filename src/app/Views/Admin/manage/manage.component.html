@@ -47,12 +47,24 @@
                 <b>Tavern Name</b>
                 <input type="text" pInputText [(ngModel)]="CityDetails.tavernName" placeholder="The Boiling Frog" />
             </div>
-            
+
             <div class="col-6 my-2">
-                <b>Show Location In Prod?</b>
-                <div class="field-checkbox">
-                    <p-checkbox [(ngModel)]="City.show" [binary]="true" inputId="binary"></p-checkbox>
-                    <label for="binary">{{City.show}}</label>
+                <b>Path Name</b>
+                <input type="text" pInputText [(ngModel)]="City.pathName" placeholder="Baldurs Gate" />
+            </div>
+
+            <div class="col-6 my-2">
+                <b>Motto (req for village)</b>
+                <input type="text" pInputText [(ngModel)]="CityDetails.motto" placeholder="Blurb about village" />
+            </div>
+
+            <div class="col-12 row">
+                <b>Campaigns this city will be shown in</b>
+                <div class="col-3" *ngFor="let camp of Campaigns">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group2" value="camp" [value]="camp" [(ngModel)]="SelectedCampaigns"></p-checkbox>
+                        <label [for]="camp.id">{{camp.name}}</label>
+                    </div>
                 </div>
             </div>
 
@@ -118,6 +130,61 @@
             <div class="col-6 my-2">
                 <button pButton type="button" label="Add Help" (click)="OpenHelpDialog()"></button>
             </div>
+        </div>
+
+
+        <!--Recipes-->
+        <div class="box row py-3 my-3">
+            <h5>Recipes</h5>
+
+            <div class="row my-3" *ngFor="let recipe of Recipes">
+                <div class="col-3 my-2">
+                    <b>Recipe Name</b>
+                    <input type="text" pInputText [(ngModel)]="recipe.name" placeholder="Pumpkin Pie" />
+                </div>
+
+                <div class="col-12 my-2">
+                    <b>Recipe Description</b>
+                    <input type="text" pInputText [(ngModel)]="recipe.description" placeholder="Tell me about it..." />
+                </div>
+
+                <div class="col-2 my-2">
+                    <b>Price</b>
+                    <p-inputNumber [(ngModel)]="recipe.price"></p-inputNumber>
+                </div>
+                <div class="col-3 my-2">
+                    <b>Currency Type</b>
+                    <p-dropdown [options]="CurrencyTypes" [(ngModel)]="recipe.currencyTypeId" optionValue="id"
+                        optionLabel="name">
+                    </p-dropdown>
+                </div>
+
+                <div class="col-3 my-2">
+                    <b>Recipe Type</b>
+                    <p-dropdown [options]="MenuItemTypes" [(ngModel)]="recipe.menuItemTypeId" optionValue="id"
+                        optionLabel="name">
+                    </p-dropdown>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <button pButton type="button" label="Add" (click)="AddNewRecipe()"></button>
+            </div>
+        </div>
+
+        <div class="box row py-3 my-3">
+            <h5>Tavern Drinks</h5>
+
+            <div class="col-4" *ngFor="let drink of Drinks">
+                <div class="field-checkbox">
+                    <p-checkbox name="group2" value="drink" [value]="drink" [(ngModel)]="SelectedDrinks"></p-checkbox>
+                    <label [for]="drink.id">{{drink.name}} - <span style="color: rgb(85, 0, 119)">{{drink.createdCity}}</span></label>
+                </div>
+            </div>
+            <div class="col-12 mt-3">
+                <button pButton type="button" label="Add New Drink" (click)="OpenDrinkDialog()"></button>
+            </div>
+
         </div>
 
         <!--Shops-->
@@ -192,7 +259,9 @@
                 </div>
                 <div class="col-3 my-2">
                     <b>Weapons Properties</b>
-                    <p-listbox [options]="WeaponsProperties" [(ngModel)]="weapon.properties" [metaKeySelection]="false" [checkbox]="true" [filter]="true" [multiple]="true" optionLabel="name" [listStyle]="{'max-height':'250px'}" [style]="{'width':'15rem'}">
+                    <p-listbox [options]="WeaponsProperties" [(ngModel)]="weapon.properties" [metaKeySelection]="false"
+                        [checkbox]="true" [filter]="true" [multiple]="true" optionLabel="name"
+                        [listStyle]="{'max-height':'250px'}" [style]="{'width':'15rem'}">
                         <ng-template let-prop pTemplate="item">
                             <div class="prop-item">
                                 <div>{{prop.name}}</div>
@@ -340,6 +409,20 @@
             <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="NewHelp.detailsHtml"></angular-editor>
             <button pButton type="button" label="Add" (click)="AddHelp()" class="my-3"></button>
 
+        </p-dialog>
+
+        <p-dialog header="Add Drink" [(visible)]="ShowDrinkDialog" [style]="{width: '50vw'}">
+            <b>Name</b>
+            <input type="text" pInputText [(ngModel)]="NewDrink.name" placeholder="Luiren's Best" />
+            <b>Created City</b>
+            <input type="text" pInputText [(ngModel)]="NewDrink.createdCity" placeholder="Boulderglen" />
+            <b>Description</b>
+            <input type="text" pInputText [(ngModel)]="NewDrink.description" placeholder="Tell me more..." />
+            <b>Drink Type</b>
+            <input type="text" pInputText [(ngModel)]="NewDrink.drinkType" placeholder="Ale, White Wine, Mixed, Spirit..." />
+
+        
+            <button pButton type="button" label="Add" (click)="AddDrink()"></button>
         </p-dialog>
 
 

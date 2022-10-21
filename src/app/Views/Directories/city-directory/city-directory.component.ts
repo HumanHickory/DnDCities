@@ -24,24 +24,33 @@ export class CityDirectoryComponent implements OnInit {
   ngOnInit(): void {
     let Campaign: any = localStorage.getItem("campaign") == null ? "" : localStorage.getItem("campaign");
     if(Campaign == "" || this.Dev){
-      this.cityServices.ListCampaigns().subscribe(campaigns => {
-        this.Campaigns = campaigns;
-        this.askForCampaign = true;
-      });
+      this.ChooseCampaign();
     } else {
-      this.SelectedCampaign = Campaign;
+      this.SelectedCampaign = JSON.parse(Campaign);
+      this.getLocations();
     }
+  }
 
-    this.cityServices.GetLocations().subscribe(cities => {
-      this.Cities = cities;
-      this.isLoaded = true;
-      this.isProd = environment.production;
+  ChooseCampaign(){
+    this.cityServices.ListCampaigns().subscribe(campaigns => {
+      this.Campaigns = campaigns;
+      this.askForCampaign = true;     
     });
   }
 
   SaveCampaign(){
     localStorage.setItem("campaign", JSON.stringify(this.SelectedCampaign));
     this.askForCampaign = false;
+    this.getLocations();
+  }
+
+  getLocations(){
+    var campaignId = this.SelectedCampaign.id;
+    this.cityServices.GetLocations(this.SelectedCampaign.id).subscribe(cities => {
+      this.Cities = cities;
+      this.isLoaded = true;
+      this.isProd = environment.production;
+    });
   }
 }
 
