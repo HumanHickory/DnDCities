@@ -202,8 +202,7 @@
             <b>Components: </b> <span *ngIf="scroll.spell.isVerbal">V</span>  <span *ngIf="scroll.spell.isSomatic"> S</span>  <span *ngIf="scroll.spell.isMaterial"> M ({{scroll.spell.materialComponent}})</span><br>
             <b>Duration: </b> <span *ngIf="scroll.spell.isConcentration">Concentration, </span> {{scroll.spell.duration}}<br>
         </p>
-        <p>
-            {{scroll.spell.description}}
+        <p [innerHtml]="scroll.spell.description">
         </p>
         <hr/>
     </div>

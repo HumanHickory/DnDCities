@@ -14,6 +14,7 @@ export class HelpWantedComponent implements OnInit {
   @Input() headerColor: string;
   @Input() isUnderdark: boolean;
   @Input() textColor: string;
+  @Input() boxShadowIsLight: boolean;
 
   BoxShadowColor: string = "gray";
   Background: string = "white";
@@ -21,8 +22,12 @@ export class HelpWantedComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.isUnderdark){
-      this.BoxShadowColor = "black";
       this.Background = "black";
+      this.BoxShadowColor = "black";
+    }    
+    
+    if(!this.boxShadowIsLight){
+      this.BoxShadowColor = "black";
     }
   }
 

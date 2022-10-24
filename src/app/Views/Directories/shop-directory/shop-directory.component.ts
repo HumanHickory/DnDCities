@@ -48,7 +48,7 @@ export class ShopDirectoryComponent implements OnInit {
         return "Icons/gnome.png";
         break;
       case 4:
-        return "Icons/victorious secret.jpg";
+        return "Icons/victorious secret.png";
         break;
       case 5:
         return "Icons/Nott.png";
