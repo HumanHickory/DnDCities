@@ -34,5 +34,8 @@ export class TypeService {
         return this.http.get<MenuItemType[]>(environment.apiUrl() + 'api/Common/ListMenuItemTypes');
     }
 
+    ListSchoolsOfMagic(){
+        return this.http.get<MenuItemType[]>(environment.apiUrl() + 'api/Common/ListSchoolsOfMagic');
+    }
 }
 

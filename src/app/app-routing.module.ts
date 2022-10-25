@@ -15,6 +15,7 @@ import { GnomeDepotComponent } from './Views/Stores/gnome-depot/gnome-depot.comp
 import { OutsideTheBachComponent } from './Views/Stores/outside-the-bach/outside-the-bach.component';
 import { RicochetArmamentsComponent } from './Views/Stores/ricochet-armaments/ricochet-armaments.component';
 import { VictoriousSecretComponent } from './Views/Stores/victorious-secret/victorious-secret.component';
+import { ZimzamkatanComponent } from './Views/Stores/zimzamkatan/zimzamkatan.component';
 import { TavernComponent } from './Views/Taverns/tavern/tavern.component';
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path: 'Stores/VictoriousSecret/:cityId/:cityName', component: VictoriousSecretComponent},
   {path: 'Stores/OutsideTheBach/:cityId/:cityName', component: OutsideTheBachComponent},
   {path: 'Stores/BitsandPieces/:cityId/:cityName', component: BitsAndPiecesComponent},
+  {path: 'Stores/Zimzamkatan/:cityId/:cityName', component: ZimzamkatanComponent},
 
   {path: 'Tavern/:cityId/:cityName', component: TavernComponent}
 ];

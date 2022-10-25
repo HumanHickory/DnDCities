@@ -1,0 +1,43 @@
+
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Nova+Mono&display=swap" rel="stylesheet">
+
+
+
+    <app-nav-bar backgroundColor="black" [navBarLightText]="true" [cityId]="CityId" [cityName]="CityName"></app-nav-bar>
+
+    <div class="container" style="margin-top: 10vh">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="../../../../assets/zimzam/clockworkDefender.jpeg" width="100%">
+            </div>
+            <div class="col-lg-6 my-auto">
+                <h1>Zimzamkatan's <br>Wonderous <br> Clockwork <br> Workshop</h1>
+            </div>
+            <div class="col-3">
+                <img src="../../../../assets/zimzam/clockwork1.jpg" width="100%" height="100%">
+            </div>
+            <div class="col-3">
+                <img src="../../../../assets/zimzam/clockwork2.jpg" width="100%" height="100%">
+            </div>
+            <div class="col-3">
+                <img src="../../../../assets/zimzam/clockwork3.jpg" width="100%" height="100%">
+            </div>
+            <div class="col-3">
+                <img src="../../../../assets/zimzam/clockwork4.jpg" width="100%" height="100%">
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-3">
+        <h2>For Sale</h2>
+        
+        <div class="mt-3 ml-lg-5"  *ngFor="let inv of Inventory; let i = index">
+            <div [ngStyle]="{backgroundColor: getBackgroundColor(i), color: getColor(i)}" class="p-3">
+                <h3>{{inv.item.name}} <span style="color: #daa520">{{inv.item.price}} {{inv.item.currencyType.name}} ({{inv.item.weight}}lbs)</span></h3>
+                <p>{{inv.item.description}}</p>
+            </div>
+
+        </div>
+    </div>

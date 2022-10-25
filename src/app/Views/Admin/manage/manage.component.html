@@ -346,6 +346,132 @@
 
         </div>
 
+        <!--EoB-->
+        <div class="box row py-3 my-3" *ngIf="ShowAddSpells">
+            <h5>Spells</h5>
+            <div *ngFor="let spell of ShopSpells" class="row mt-3">
+                <div class="col-3 my-2">
+                    <b>Spell Name</b>
+                    <input type="text" pInputText [(ngModel)]="spell.spell.name" placeholder="Spell Name" />
+                </div>
+                <div class="col-2 my-2">
+                    <b>Spell Level</b>
+                    <p-inputNumber [(ngModel)]="spell.spell.spellLevel"></p-inputNumber>
+                </div>
+                <div class="col-2 my-2">
+                    <b>Price</b>
+                    <p-inputNumber [(ngModel)]="spell.price"></p-inputNumber>
+                </div>
+                <div class="col-3 my-2">
+                    <b>Currency Type</b>
+                    <p-dropdown [options]="CurrencyTypes" [(ngModel)]="spell.currencyTypeId" optionValue="id"
+                        optionLabel="name">
+                    </p-dropdown>
+                </div>
+
+                <div class="col-3 my-2">
+                    <b>School of Magic</b>
+                    <p-dropdown [options]="SchoolsOfMagic" [(ngModel)]="spell.spell.schoolId" optionValue="id"
+                        optionLabel="name">
+                    </p-dropdown>
+                </div>                    
+                
+                <div class="col-3 my-2">
+                    <b>Is Verbal</b>
+                    <div class="field-checkbox">
+                        <p-checkbox [(ngModel)]="spell.spell.isVerbal" [binary]="true" inputId="binary"></p-checkbox>
+                        <label for="binary">Is Verbal</label>
+                    </div>
+                </div>       
+                
+                <div class="col-3 my-2">
+                    <b>Is Somatic</b>
+                    <div class="field-checkbox">
+                        <p-checkbox [(ngModel)]="spell.spell.isSomatic" [binary]="true" inputId="binary"></p-checkbox>
+                        <label for="binary">Is Somatic</label>
+                    </div>
+                </div>   
+
+                <div class="col-3 my-2">
+                    <b>Is Material</b>
+                    <div class="field-checkbox">
+                        <p-checkbox [(ngModel)]="spell.spell.isMaterial" [binary]="true" inputId="binary"></p-checkbox>
+                        <label for="binary">Is Material</label>
+                    </div>
+                </div>   
+
+                <div class="col-3 my-2">
+                    <b>Material Component</b>
+                    <input type="text" pInputText [(ngModel)]="spell.spell.materialComponent" placeholder="Material Component" />
+                </div>
+
+                <div class="col-3 my-2">
+                    <b>Casting Time</b>
+                    <input type="text" pInputText [(ngModel)]="spell.spell.castingTime" placeholder="1 Action" />
+                </div>
+
+                
+                <div class="col-3 my-2">
+                    <b>Duration</b>
+                    <input type="text" pInputText [(ngModel)]="spell.spell.duration" placeholder="1 Minute" />
+                </div>
+
+                <div class="col-3 my-2">
+                    <b>Range</b>
+                    <input type="text" pInputText [(ngModel)]="spell.spell.range" placeholder="60 feet" />
+                </div>
+
+                <div class="col-3 my-2">
+                    <b>Attack Save</b>
+                    <input type="text" pInputText [(ngModel)]="spell.spell.attackSave" placeholder="Wis Save" />
+                </div>
+
+                <div class="col-3 my-2">
+                    <b>Damage Type</b>
+                    <p-dropdown [options]="DamageTypes" [(ngModel)]="spell.spell.damageTypeId" optionValue="id"
+                        optionLabel="name">
+                    </p-dropdown>
+                </div>
+
+                <div class="col-3 my-2">
+                    <b>Is Ritual</b>
+                    <div class="field-checkbox">
+                        <p-checkbox [(ngModel)]="spell.spell.isRitual" [binary]="true" inputId="binary"></p-checkbox>
+                        <label for="binary">Is Ritual</label>
+                    </div>
+                </div> 
+
+                <div class="col-3 my-2">
+                    <b>Is Concentration</b>
+                    <div class="field-checkbox">
+                        <p-checkbox [(ngModel)]="spell.spell.isConcentration" [binary]="true" inputId="binary"></p-checkbox>
+                        <label for="binary">Is Concentration</label>
+                    </div>
+                </div> 
+
+                
+                <div class="col-3 my-2">
+                    <b>Target</b>
+                    <input type="text" pInputText [(ngModel)]="spell.spell.target" placeholder="Self, a point you choose" />
+                </div>
+
+                <div class="col-3 my-2">
+                    <b>D&D Beyond Link URL</b>
+                    <input type="text" pInputText [(ngModel)]="spell.spell.dnDBeyondLink" placeholder="https://...." />
+                </div>
+          
+                <div class="col-12 my-2">
+                    <angular-editor [placeholder]="'Description in HTML'" [(ngModel)]="spell.spell.description"></angular-editor>
+                </div>
+
+            </div>
+
+            <div class="col-3">
+                <button pButton type="button" label="Add" (click)="AddNewSpell()"></button>
+            </div>
+
+        </div>
+
         <!--Colors-->
         <div class="box row py-3 my-3">
             <h5>Color Scheme</h5>

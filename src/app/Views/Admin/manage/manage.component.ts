@@ -20,6 +20,9 @@ import { CityMount } from 'src/app/Models/CityMount';
 import { Drink, MenuItemType, TavernRecipe } from 'src/app/Models/Tavern';
 import { TavernService } from 'src/app/Services/Tavern/TavernService';
 import { Campaign, CampaignLocation } from 'src/app/Models/Campaign';
+import { Spell } from 'src/app/Models/Spell';
+import { SpellScroll } from 'src/app/Models/SpellScroll';
+import { School } from 'src/app/Models/School';
 
 @Component({
   selector: 'app-manage',
@@ -38,6 +41,7 @@ export class ManageComponent implements OnInit {
   Shops: Shop[] = [];
   ExclusiveItems: ShopSpecial[] = [];
   ExclusiveWeapons: ExclusiveWeapon[] = [];
+  ShopSpells: SpellScroll[] = [];
   CurrencyTypes: CurrencyType[] = [];
   RarityTypes: Rarity[] = [];
   Mounts: Mount[] = [];
@@ -52,6 +56,7 @@ export class ManageComponent implements OnInit {
   SelectedDrinks: Drink[] = [];
   Campaigns: Campaign[] = [];
   SelectedCampaigns: Campaign[] = [];
+  SchoolsOfMagic: School[] = [];
 
   NewNews: News;
   NewHelp: Help;
@@ -63,6 +68,7 @@ export class ManageComponent implements OnInit {
   ShowBitsAndPieces: boolean = false;
   ShowExclusiveWeapons: boolean = false;
   ShowExclusiveItems: boolean = false;
+  ShowAddSpells: boolean = false;
 
 
   constructor(private cityService: CityService,
@@ -139,10 +145,23 @@ export class ManageComponent implements OnInit {
           this.Mounts = mounts.sort((a, b) => a.name.localeCompare(b.name));
         });
         this.ShowBitsAndPieces = true;
-      } else if ((shop.name.toLowerCase() == "gnome depot" || shop.name.toLowerCase() == "five fingers" || shop.name.toLowerCase() == "eye of the beholder")) {
+      } else if ((shop.name.toLowerCase() == "gnome depot" || shop.name.toLowerCase() == "five fingers" 
+      || shop.name.toLowerCase() == "eye of the beholder" || shop.name.toLowerCase() == "zimzamkatan")) {
         if (this.ExclusiveItems.length == 0)
           this.SpecialtyItemStores.push(shop);
         this.ShowExclusiveItems = true;
+
+        if(shop.name.toLowerCase() == "eye of the beholder"){
+          if(this.SchoolsOfMagic.length == 0){
+            this.typeService.ListSchoolsOfMagic().subscribe(schools =>{
+              this.SchoolsOfMagic = schools;
+            });
+          }
+          if(this.ShopSpells.length == 0){
+            this.AddNewSpell();
+          }
+          this.ShowAddSpells = true;          
+        }
       }
     });
   }
@@ -587,6 +606,44 @@ export class ManageComponent implements OnInit {
 
       }
     });
+  }
+
+  AddNewSpell(){
+    var newSpell:Spell = {
+        id: 0,
+        name: "",
+        spellLevel: 0,
+        schoolId: 0,
+        schoolName: "",
+        isVerbal: false,
+        isMaterial: false,
+        isSomatic: false,
+        materialComponent: "",
+        levelName: "",
+        castingTime: "",
+        duration: "",
+        range: "",
+        attackSave:"",
+        damgeType: "",
+        damageTypeId: 0,
+        description: "",
+        isRitual: false,
+        isConcentration: false,
+        target: "",
+        dnDBeyondLink: ""
+    }
+
+    var newSpellScroll: SpellScroll = {
+      id:0,
+      cityId: 0,
+      spellId: 0,
+      price: 0,
+      currencyType: null,
+      currencyTypeId: 0,
+      spell: newSpell
+    }
+
+    this.ShopSpells.push(newSpellScroll);
   }
 
 }

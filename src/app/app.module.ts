@@ -50,6 +50,7 @@ import { NavBarComponent } from './Views/Nav/nav-bar/nav-bar.component';
 import { BitsAndPiecesComponent } from './Views/Stores/bits-and-pieces/bits-and-pieces.component';
 import { UnderdarkComponent } from './Views/Cities/underdark/underdark.component';
 import { ManageComponent } from './Views/Admin/manage/manage.component';
+import { ZimzamkatanComponent } from './Views/Stores/zimzamkatan/zimzamkatan.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { ManageComponent } from './Views/Admin/manage/manage.component';
     NavBarComponent,
     BitsAndPiecesComponent,
     UnderdarkComponent,
-    ManageComponent
+    ManageComponent,
+    ZimzamkatanComponent
     
   ],
   imports: [

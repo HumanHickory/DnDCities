@@ -7,6 +7,7 @@ import { Instrument } from "src/app/Models/Instrument";
 import { Mount } from "src/app/Models/Mount";
 import { Shop } from "src/app/Models/Shop";
 import { ShopSpecial } from "src/app/Models/ShopSpecial";
+import { Spell } from "src/app/Models/Spell";
 import { SpellScroll } from "src/app/Models/SpellScroll";
 import { DamageType, ExclusiveWeapon, Weapon, WeaponsProperty, WeaponType } from "src/app/Models/Weapon";
 import { environment } from "src/environments/environment";
@@ -69,5 +70,9 @@ export class ShopService {
 
     GetCityDietiesByCityId(cityId: number){
         return this.http.get<Diety[]>(environment.apiUrl() + 'api/City/GetCityDietiesByCityId?CityId=' + cityId);
+    }
+
+    AddSpellToCity(shopSpells: SpellScroll[]){
+        return this.http.post(environment.apiUrl() + 'api/City/AddSpellToCity', shopSpells)
     }
 }
