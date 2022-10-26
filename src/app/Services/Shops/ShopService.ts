@@ -4,6 +4,7 @@ import { CityMount } from "src/app/Models/CityMount";
 import { Diety } from "src/app/Models/Diety";
 import { GnomeDepotStock } from "src/app/Models/GnomeDepotStock";
 import { Instrument } from "src/app/Models/Instrument";
+import { Item } from "src/app/Models/Item";
 import { Mount } from "src/app/Models/Mount";
 import { Shop } from "src/app/Models/Shop";
 import { ShopSpecial } from "src/app/Models/ShopSpecial";
@@ -42,6 +43,10 @@ export class ShopService {
 
     StockGnomeDepot(){
         return this.http.get<GnomeDepotStock>(environment.apiUrl() + 'api/City/StockGnomeDepot');
+    }
+
+    StockDivineRiteAid(){
+        return this.http.get<Item[]>(environment.apiUrl() + 'api/City/StockDivineRiteAid');
     }
 
     GetInstruments(){

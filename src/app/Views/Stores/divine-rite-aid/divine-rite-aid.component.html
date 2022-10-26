@@ -1,0 +1,108 @@
+
+
+<div style="box-shadow: 2px 2px 8px gray" class="py-2">
+    <div class="container-fluid">
+        <div>
+            <img src="../../../../assets/Icons/divineRiteAid.png" style="height: 14vh">
+            <span class="px-5">
+                <fa-icon [icon]="faLocationDot" [styles]="{'color': '#003da6'}"></fa-icon> Your store:
+                <b><u>{{CityName}}</u></b>
+            </span>
+
+            <fa-icon [icon]="faTruckMoving" [styles]="{'color': '#003da6'}"></fa-icon> Delivering to:
+            <b><u>{{CityName}}</u></b>
+        </div>
+
+    </div>
+</div>
+
+<app-nav-bar backgroundColor="#6ea101" [navBarLightText]="false" [cityId]="CityId" [cityName]="CityName"></app-nav-bar>
+
+<div class="container" *ngIf="IsLoaded">
+    <div class="row">
+
+        <div class="col-12 text-center mt-3">
+            <h2>Gods of {{CityName}}</h2>
+        </div>
+
+        <p-carousel [value]="Dieties" [circular]="false" [responsiveOptions]="responsiveOptions">
+            <ng-template let-diety pTemplate="item">
+                <div class="row" style="border: 2px solid gray">
+                    <div class="col-6 offset-3">
+                        <img src="../../../../assets/Divine Rite Aid/Gods/{{diety.name | lowercase}}.jpg"
+                            [alt]="diety.name" class="product-image" />
+                    </div>
+                    <div>
+                        <h4 class="mb-1">{{diety.name}}</h4>
+                        <p [innerHTML]="diety.descriptionHtml"></p>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+
+
+
+        <div class="col-12 text-center">
+            <h2>Advertised Products</h2>
+        </div>
+
+        <p-carousel [value]="Inventory" [numVisible]="3" [numScroll]="3" [circular]="false"
+            [responsiveOptions]="responsiveOptions">
+            <ng-template let-product pTemplate="item">
+                <div class="product-item">
+                    <div class="product-item-content">
+                        <div class="mb-3">
+                            <img src="../../../../assets/Divine Rite Aid/{{product.name | lowercase}}.jpg"
+                                [alt]="product.name" class="product-image" />
+                        </div>
+                        <div>
+                            <h4 class="mb-1">{{product.name}}</h4>
+                            <h6 class="mt-0 mb-3"><b>{{product.price}} {{product.currencyType.name}}</b></h6>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+
+        <div class="row col-md-8 offset-md-2">
+            <div class="col-md-6 me-1 row py-3" style="background-color: #003da6">
+                <div class="col-12">
+                    <img src="../../../../assets/Divine Rite Aid/candles.png" style="width: 100%" />
+                </div>
+                <div class="col-12 mt-5">
+                    <h3 style="color:white"><b>Buy 5 Divine Rite Aid candles of any color and get the 6th one free</b>
+                    </h3>
+                </div>
+
+            </div>
+            <div class="col-md-6 row ms-1">
+                <div class="col-12 row mb-1 py-3" style="background-color: #6ea101">
+                    <h3 style="color:white"><b>Save 10% on items dedicated to {{Dieties[0].name}}.</b></h3>
+                    <div class="col-4 offset-8">
+                        <img src="../../../../assets/Divine Rite Aid/holy symbol.png" style="width: 100%" />
+                    </div>
+                </div>
+
+                <div class="col-12 row mt-1 py-3" style="background-color: #6ea101">
+                    <h3 style="color:white"><b>Mention Code BL33SED{{Dieties[0].name | uppercase}} to get a free prayer book with purchase of
+                            3 gp or more!</b></h3>
+                    <div class="col-4 offset-8">
+                        <img src="../../../../assets/Divine Rite Aid/book of prayers.png" style="width: 100%" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div style="background-color: #003da6; color: white;" class="mt-2 py-3 mb-0">
+    <div class="container">
+        <p><u><b>About Us</b></u></p>
+        <p>We are simple clerics who made our mission to support other clerics or others who wish to have a better
+            relationship with the gods.
+            Although we only sell products for the gods in town, we believe all clerics have the right to purchase basic
+            holy products wherever
+            they go. </p>
+    </div>
+</div>

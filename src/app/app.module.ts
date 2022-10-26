@@ -51,6 +51,7 @@ import { BitsAndPiecesComponent } from './Views/Stores/bits-and-pieces/bits-and-
 import { UnderdarkComponent } from './Views/Cities/underdark/underdark.component';
 import { ManageComponent } from './Views/Admin/manage/manage.component';
 import { ZimzamkatanComponent } from './Views/Stores/zimzamkatan/zimzamkatan.component';
+import { DivineRiteAidComponent } from './Views/Stores/divine-rite-aid/divine-rite-aid.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { ZimzamkatanComponent } from './Views/Stores/zimzamkatan/zimzamkatan.com
     BitsAndPiecesComponent,
     UnderdarkComponent,
     ManageComponent,
-    ZimzamkatanComponent
+    ZimzamkatanComponent,
+    DivineRiteAidComponent
     
   ],
   imports: [

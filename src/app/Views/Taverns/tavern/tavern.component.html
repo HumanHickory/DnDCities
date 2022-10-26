@@ -3,8 +3,6 @@
 
 <app-nav-bar backgroundColor="black" [navBarLightText]="true" [cityId]="CityId" [cityName]="CityName"></app-nav-bar>
 
-
-
 <h1 class="heroText">{{Tavern?.name}}</h1>
 
 <div *ngIf="isLoaded" class="hero"
@@ -20,12 +18,10 @@
         optionLabel="name"></p-dropdown>
 </div>
 
-
 <div class="container mt-5" *ngIf="isLoaded">
     <div class="text-center py-3 my-5" style="background-color: rgba(54, 65, 111, 1); color: white">
         <b>Sauce on the side not permitted.</b>
     </div>
-
 
     <div class="text-center menuHeader">
         <h1>{{SelectedTab.name | uppercase}}</h1>

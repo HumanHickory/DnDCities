@@ -8,6 +8,7 @@ import { VillageComponent } from './Views/Cities/village/village.component';
 import { CityDirectoryComponent } from './Views/Directories/city-directory/city-directory.component';
 import { ShopDirectoryComponent } from './Views/Directories/shop-directory/shop-directory.component';
 import { BitsAndPiecesComponent } from './Views/Stores/bits-and-pieces/bits-and-pieces.component';
+import { DivineRiteAidComponent } from './Views/Stores/divine-rite-aid/divine-rite-aid.component';
 import { EpicFlailComponent } from './Views/Stores/epic-flail/epic-flail.component';
 import { EyeOfTheBeholderComponent } from './Views/Stores/eye-of-the-beholder/eye-of-the-beholder.component';
 import { FiveFingersComponent } from './Views/Stores/five-fingers/five-fingers.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
   {path: 'Stores/OutsideTheBach/:cityId/:cityName', component: OutsideTheBachComponent},
   {path: 'Stores/BitsandPieces/:cityId/:cityName', component: BitsAndPiecesComponent},
   {path: 'Stores/Zimzamkatan/:cityId/:cityName', component: ZimzamkatanComponent},
+  {path: 'Stores/DivineRiteAid/:cityId/:cityName', component: DivineRiteAidComponent},
 
   {path: 'Tavern/:cityId/:cityName', component: TavernComponent}
 ];
