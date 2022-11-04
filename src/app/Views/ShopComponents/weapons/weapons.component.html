@@ -1,0 +1,26 @@
+<div class="row shadow my-5" style="border: 2px solid black;">
+
+    <div class="titleBox col-md-3 col-6 product">
+        <div class="m-auto text-center">
+            <h1> {{header}} </h1>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-6 product creamBG pointer" *ngFor="let weapon of weapons; let i = index"
+        [ngClass]="{'creamBG': CreateCheckerboard(i)}">
+        <div class="imgWrapper m-auto">
+            <img src="../../../../assets/EpicFlail/{{weapon.name | lowercase}}.png" />
+            <h5>{{weapon.name}}</h5>
+        </div>
+        <div class="overlay" id="text1">
+            <div class="text">
+                <h5>{{weapon.name}}</h5>
+                <b>Damage:</b> {{weapon.numberOfDamageDice}}d{{weapon.damageDice}} {{weapon.damageType.name}}
+                <br>
+                <b>Features:</b> <span *ngFor="let prop of weapon.properties"> {{prop.name}} </span> <br>
+                <b>Weight:</b> {{weapon.weight}} lbs <br>
+                <b><span class="gold"> {{weapon.price}} {{weapon.currencyType.abbreviation}}</span></b>
+            </div>
+        </div>
+    </div>
+</div>

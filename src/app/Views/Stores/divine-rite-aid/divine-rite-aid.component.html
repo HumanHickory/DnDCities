@@ -27,13 +27,13 @@
 
         <p-carousel [value]="Dieties" [circular]="false" [responsiveOptions]="responsiveOptions">
             <ng-template let-diety pTemplate="item">
-                <div class="row" style="border: 2px solid gray">
+                <div class="row">
                     <div class="col-6 offset-3">
                         <img src="../../../../assets/Divine Rite Aid/Gods/{{diety.name | lowercase}}.jpg"
                             [alt]="diety.name" class="product-image" />
                     </div>
                     <div>
-                        <h4 class="mb-1">{{diety.name}}</h4>
+                        <h4 class="mb-1">{{diety.name}} <small>({{diety.alignment}})</small></h4>
                         <p [innerHTML]="diety.descriptionHtml"></p>
                     </div>
                 </div>

@@ -13,6 +13,7 @@ export interface Item{
 
     currencyType: CurrencyType;
     rarity: Rarity;
+    fullPrice: string;
 }
 
 export interface Rarity{

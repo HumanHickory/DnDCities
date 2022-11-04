@@ -37,7 +37,7 @@ export class VillageComponent implements OnInit {
       this.Village = details;  
       this.heroImg = 'url("../../../../assets/CityImg/' + this.Village.name +'.jpg") no-repeat center'; 
       this.isLoaded = true;
-      this.History = (this.Village.history.split("</p>", 1))[0];
+      this.History = (this.Village.history.description.split("</p>", 1))[0];
     });
 
   }
@@ -49,10 +49,10 @@ export class VillageComponent implements OnInit {
   ToggleHistory(){
     if(this.HistoryLabel == "Read More"){
       this.HistoryLabel = "Read Less";
-      this.History = this.Village.history;
+      this.History = this.Village.history.description;
     } else {
       this.HistoryLabel = "Read More";
-      this.History = (this.Village.history.split("</p>", 1))[0];
+      this.History = (this.Village.history.description.split("</p>", 1))[0];
     }
   }
 

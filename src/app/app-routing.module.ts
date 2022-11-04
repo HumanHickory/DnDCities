@@ -14,7 +14,7 @@ import { EyeOfTheBeholderComponent } from './Views/Stores/eye-of-the-beholder/ey
 import { FiveFingersComponent } from './Views/Stores/five-fingers/five-fingers.component';
 import { GnomeDepotComponent } from './Views/Stores/gnome-depot/gnome-depot.component';
 import { OutsideTheBachComponent } from './Views/Stores/outside-the-bach/outside-the-bach.component';
-import { RicochetArmamentsComponent } from './Views/Stores/ricochet-armaments/ricochet-armaments.component';
+import { ArmorcrombieAndFitchComponent } from './Views/Stores/armorcrombie-and-fitch/armorcrombie-and-fitch.component';
 import { VictoriousSecretComponent } from './Views/Stores/victorious-secret/victorious-secret.component';
 import { ZimzamkatanComponent } from './Views/Stores/zimzamkatan/zimzamkatan.component';
 import { TavernComponent } from './Views/Taverns/tavern/tavern.component';
@@ -31,7 +31,7 @@ const routes: Routes = [
   
   {path: 'Stores/EpicFlail/:cityId/:cityName', component: EpicFlailComponent},
   {path: 'Stores/EyeOfTheBeholder/:cityId/:cityName', component: EyeOfTheBeholderComponent},
-  {path: 'Stores/RicochetArmaments/:cityId/:cityName', component: RicochetArmamentsComponent},
+  {path: 'Stores/ArmorcrombieandFitch/:cityId/:cityName', component: ArmorcrombieAndFitchComponent},
   {path: 'Stores/GnomeDepot/:cityId/:cityName', component: GnomeDepotComponent},
   {path: 'Stores/FiveFingers/:cityId/:cityName', component: FiveFingersComponent},
   {path: 'Stores/VictoriousSecret/:cityId/:cityName', component: VictoriousSecretComponent},

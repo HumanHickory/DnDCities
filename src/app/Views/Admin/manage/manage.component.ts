@@ -23,6 +23,7 @@ import { Campaign, CampaignLocation } from 'src/app/Models/Campaign';
 import { Spell } from 'src/app/Models/Spell';
 import { SpellScroll } from 'src/app/Models/SpellScroll';
 import { School } from 'src/app/Models/School';
+import { History } from 'src/app/Models/History';
 
 @Component({
   selector: 'app-manage',
@@ -93,12 +94,13 @@ export class ManageComponent implements OnInit {
     await this.ListShops();
     await this.GetCampaigns();
     await this.GetMenuItemTypes();
+    await this.GetDamageTypes();
     await this.GetLocations(cityId);
     this.SetModel();
 
   }
 
-  async GetCampaigns(){
+  async GetCampaigns() {
     this.cityService.ListCampaigns().subscribe(campaigns => {
       this.Campaigns = campaigns;
     });
@@ -145,22 +147,22 @@ export class ManageComponent implements OnInit {
           this.Mounts = mounts.sort((a, b) => a.name.localeCompare(b.name));
         });
         this.ShowBitsAndPieces = true;
-      } else if ((shop.name.toLowerCase() == "gnome depot" || shop.name.toLowerCase() == "five fingers" 
-      || shop.name.toLowerCase() == "eye of the beholder" || shop.name.toLowerCase() == "zimzamkatan")) {
+      } else if ((shop.name.toLowerCase() == "gnome depot" || shop.name.toLowerCase() == "five fingers"
+        || shop.name.toLowerCase() == "eye of the beholder" || shop.name.toLowerCase() == "zimzamkatan")) {
         if (this.ExclusiveItems.length == 0)
           this.SpecialtyItemStores.push(shop);
         this.ShowExclusiveItems = true;
 
-        if(shop.name.toLowerCase() == "eye of the beholder"){
-          if(this.SchoolsOfMagic.length == 0){
-            this.typeService.ListSchoolsOfMagic().subscribe(schools =>{
+        if (shop.name.toLowerCase() == "eye of the beholder") {
+          if (this.SchoolsOfMagic.length == 0) {
+            this.typeService.ListSchoolsOfMagic().subscribe(schools => {
               this.SchoolsOfMagic = schools;
             });
           }
-          if(this.ShopSpells.length == 0){
+          if (this.ShopSpells.length == 0) {
             this.AddNewSpell();
           }
-          this.ShowAddSpells = true;          
+          this.ShowAddSpells = true;
         }
       }
     });
@@ -175,9 +177,15 @@ export class ManageComponent implements OnInit {
     }
   }
 
+  async GetDamageTypes(){
+    if (this.DamageTypes.length == 0) {
+      this.typeService.ListDamageTypes().subscribe(types => {
+        this.DamageTypes = types
+      });
+    }
+  }
+
   AddNewRecipe() {
-
-
     var recipe: TavernRecipe = {
       id: 0,
       name: "",
@@ -215,7 +223,8 @@ export class ManageComponent implements OnInit {
       requiresAttunement: false,
       rarityId: 0,
       currencyType: null,
-      rarity: null
+      rarity: null,
+      fullPrice: ""
     }
 
     var ShopExclusive: ShopSpecial = {
@@ -240,12 +249,6 @@ export class ManageComponent implements OnInit {
     if (this.WeaponsProperties.length == 0) {
       this.typeService.ListWeaponsProperties().subscribe(types => {
         this.WeaponsProperties = types
-      });
-    }
-
-    if (this.DamageTypes.length == 0) {
-      this.typeService.ListDamageTypes().subscribe(types => {
-        this.DamageTypes = types
       });
     }
 
@@ -339,6 +342,11 @@ export class ManageComponent implements OnInit {
             });
         }
 
+        if(this.ShopSpells.length > 0){
+          this.ShopSpells.forEach(x => x.cityId = this.CityDetails.cityId);
+          this.shopService.AddSpellsToCity(this.ShopSpells).subscribe(result => {});
+        }
+
         this.tavernService.GetTavern(this.CityDetails.cityId).subscribe(tavern => {
 
           if (this.Recipes.length > 0) {
@@ -365,7 +373,7 @@ export class ManageComponent implements OnInit {
 
         this.Campaigns.forEach(x => {
           var show = false;
-          if(this.SelectedCampaigns.includes(x))
+          if (this.SelectedCampaigns.includes(x))
             show = true;
           var newCampLoc: CampaignLocation = {
             id: 0,
@@ -376,7 +384,7 @@ export class ManageComponent implements OnInit {
           campLocations.push(newCampLoc);
         });
 
-        this.cityService.SetCampaignLocation(campLocations).subscribe(result =>{});
+        this.cityService.SetCampaignLocation(campLocations).subscribe(result => { });
 
         this.messageService.add({ severity: 'success', summary: 'Saved City', detail: 'City and Details were successfully saved' });
         this.router.navigate(['/Admin/Manage/' + this.CityDetails.cityId]);
@@ -471,13 +479,19 @@ export class ManageComponent implements OnInit {
       headerTextColor: "#000"
     }
 
+    var history = {
+      id: 0,
+      cityId: 0,
+      campaignId: 2,
+      description: ""
+    }
 
     this.CityDetails = {
       motto: "",
       name: this.City.name,
       id: 0,
       cityId: this.City.id,
-      history: "",
+      history: history,
       magicIdeology: "",
       news: [],
       help: [],
@@ -557,12 +571,12 @@ export class ManageComponent implements OnInit {
     });
   }
 
-  GetCampaignLocations(){
+  GetCampaignLocations() {
     this.cityService.GetCampaignLocation(this.City.id).subscribe(campLocs => {
       var camps: Campaign[] = [];
       this.SelectedCampaigns = [];
       campLocs.forEach(x => {
-        if(x.show){
+        if (x.show) {
           camps.push(this.Campaigns.find(c => c.id === x.campaignId)); //no, it won't work if you put selectedCampaigns here. Bullshit.
         }
       });
@@ -608,33 +622,33 @@ export class ManageComponent implements OnInit {
     });
   }
 
-  AddNewSpell(){
-    var newSpell:Spell = {
-        id: 0,
-        name: "",
-        spellLevel: 0,
-        schoolId: 0,
-        schoolName: "",
-        isVerbal: false,
-        isMaterial: false,
-        isSomatic: false,
-        materialComponent: "",
-        levelName: "",
-        castingTime: "",
-        duration: "",
-        range: "",
-        attackSave:"",
-        damgeType: "",
-        damageTypeId: 0,
-        description: "",
-        isRitual: false,
-        isConcentration: false,
-        target: "",
-        dnDBeyondLink: ""
+  AddNewSpell() {
+    var newSpell: Spell = {
+      id: 0,
+      name: "",
+      spellLevel: 0,
+      schoolId: 0,
+      schoolName: "",
+      isVerbal: false,
+      isMaterial: false,
+      isSomatic: false,
+      materialComponent: "",
+      levelName: "",
+      castingTime: "",
+      duration: "",
+      range: "",
+      attackSave: "",
+      damgeType: "",
+      damageTypeId: 0,
+      description: "",
+      isRitual: false,
+      isConcentration: false,
+      target: "",
+      dnDBeyondLink: ""
     }
 
     var newSpellScroll: SpellScroll = {
-      id:0,
+      id: 0,
       cityId: 0,
       spellId: 0,
       price: 0,

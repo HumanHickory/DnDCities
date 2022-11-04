@@ -27,52 +27,74 @@ export class GnomeDepotComponent implements OnInit {
 
   constructor(private shopService: ShopService, private activatedRoute: ActivatedRoute) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<any> {
     this.CityId = parseInt(this.activatedRoute.snapshot.paramMap.get("cityId"));
     this.CityName = this.activatedRoute.snapshot.paramMap.get("cityName");
 
     this.generalCols = [
       { field: 'name', header: 'Name' },
-      { field: 'price', header: 'Price' },
+      { field: 'fullPrice', header: 'Price' },
       { field: 'weight', header: 'Weight' },
       { field: 'description', header: 'Notes' }
-  ];
+    ];
 
-  this.miniCols = [
-    { field: 'name', header: 'Name' },
-    { field: 'price', header: 'Price' },
-    { field: 'weight', header: 'Weight' },
-];
+    this.miniCols = [
+      { field: 'name', header: 'Name' },
+      { field: 'fullPrice', header: 'Price' },
+      { field: 'weight', header: 'Weight' },
+    ];
 
     this.carouselImages = ["carousel2.jpg", "carousel3.jpg"];
-    this.shopService.StockGnomeDepot().subscribe(stock => {
-      this.Stock = stock;
-      this.Stock.packs.forEach(pack => {
-        pack.rating = this.GeneratePackRating();
-        pack.ratingCount = this.GeneratePackRatingCount();
-      });
 
-      this.shopService.GetShopSpecials(this.CityId, 3).subscribe(specials => {
-        this.SpecialOfTheDay = specials[0];
-        this.IsLoaded = true;
+    await this.StockGnomeDepot();
+    await this.GetShopSpecial();
 
-      });
-
-    });
-
-
-
+    this.IsLoaded = true;
   }
 
-  GeneratePackRating(){
+  async StockGnomeDepot() {
+    this.shopService.StockGnomeDepot().subscribe(stock => {
+      this.Stock = stock;
+
+      this.Stock.packs.forEach(pack => {
+        pack.rating = this.GeneratePackRating();
+      });
+
+      this.Stock.tools.forEach(items => {
+        items.fullPrice = items.price + " " + items.currencyType.abbreviation;
+      });
+
+      this.Stock.storageSolutions.forEach(items => {
+        items.fullPrice = items.price + " " + items.currencyType.abbreviation;
+      });
+
+      this.Stock.wildernessSurvival.forEach(items => {
+        items.fullPrice = items.price + " " + items.currencyType.abbreviation;
+      });
+
+      this.Stock.generalSupplies.forEach(items => {
+        items.fullPrice = items.price + " " + items.currencyType.abbreviation;
+      });
+    });
+  }
+
+  async GetShopSpecial() {
+    this.shopService.GetShopSpecials(this.CityId, 3).subscribe(specials => {
+      this.SpecialOfTheDay = specials[0];
+      this.IsLoaded = true;
+
+    });
+  }
+
+  GeneratePackRating() {
     var min = 0;
     var max = 5;
     return Math.random() * (max - min) + min;
   }
 
-  GeneratePackRatingCount(){
-    var min= 1;
-    var max= 1000;
+  GeneratePackRatingCount() {
+    var min = 1;
+    var max = 1000;
     return Math.floor(Math.random() * (max - min) + min);
 
   }

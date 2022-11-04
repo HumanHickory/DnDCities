@@ -3,13 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { ShopService } from 'src/app/Services/Shops/ShopService';
 
 @Component({
-  selector: 'app-ricochet-armaments',
-  templateUrl: './ricochet-armaments.component.html',
-  styleUrls: ['./ricochet-armaments.component.css'],
+  selector: 'app-armorcrombie-and-fitch',
+  templateUrl: './armorcrombie-and-fitch.component.html',
+  styleUrls: ['./armorcrombie-and-fitch.component.css'],
   providers: [ShopService]
 
 })
-export class RicochetArmamentsComponent implements OnInit {
+export class ArmorcrombieAndFitchComponent implements OnInit {
   CityName: string;
   IsLoaded: boolean = false;
   CityId: number;

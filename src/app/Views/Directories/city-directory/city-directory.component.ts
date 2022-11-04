@@ -19,6 +19,7 @@ export class CityDirectoryComponent implements OnInit {
   Campaigns: Campaign[] = [];
   SelectedCampaign: Campaign;
   Dev = false; //set to true to toggle campaigns
+  LoadingFailed = false;
   constructor(private cityServices: CityService, private appComp: AppComponent) { }
 
   ngOnInit(): void {
@@ -45,11 +46,12 @@ export class CityDirectoryComponent implements OnInit {
   }
 
   getLocations(){
-    var campaignId = this.SelectedCampaign.id;
     this.cityServices.GetLocations(this.SelectedCampaign.id).subscribe(cities => {
       this.Cities = cities;
       this.isLoaded = true;
       this.isProd = environment.production;
+    }, error => {
+      this.LoadingFailed = true;
     });
   }
 }

@@ -1,0 +1,155 @@
+:root {
+    --EFprimary: #24243e;
+    --EFsecondary: #ff4500;
+    --EFtertiary: #f7f7f7;
+}
+
+
+h1 {
+    font-size: 2rem;
+}
+
+.headerText > h1 {
+    font-size: 5.5rem;
+}
+
+.imgWrapper {
+    width: 10vw;
+    text-align: center;
+}
+
+    .imgWrapper > img {
+        width: 100%;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+
+
+.btn {
+    background: black; /* fallback for old browsers */
+    background: linear-gradient(rgba(255,69,0,1) 0%, rgba(204,55,0,1) 100%);
+    border: var(--secondary);
+    color: white;
+    font-weight: 700;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #302b63;
+}
+
+.product:hover .overlay {
+    opacity: 1;
+}
+
+.shadow {
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, .4);
+    border-radius: 5px;
+}
+
+.text {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+
+
+.creamBG {
+    background-color: #e4e3e3;
+}
+
+
+
+.gold {
+    color: gold;
+}
+
+.hero-header-container {
+    background-image: url("../../../../assets/Hero/Shops/EpicFlail.jpg");
+    background-size: cover;
+    height: 40vh;
+    position: relative;
+}
+
+.headerText {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.titleBox {
+    background-color: #24243e;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.navbar{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+
+
+@media only screen and (max-width: 500px) {
+    .text {
+        font-size: .5rem;
+    }
+
+    h5 {
+        font-size: 1rem;
+    }
+
+    .imgWrapper {
+        height: 165px;
+        width: 18vw;
+    }
+
+    .creamBG-md {
+        background-color: white;
+    }
+
+    .creamBG-sm {
+        background-color: var(--EFtertiary);
+    }
+
+    body {
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .headerText > h1 {
+        font-size: 2.9rem !important;
+    }
+
+    .shadow {
+        border-radius: 0;
+    }
+
+}

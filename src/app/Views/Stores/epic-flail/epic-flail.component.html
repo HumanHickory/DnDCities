@@ -2,8 +2,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 
 
-<app-nav-bar backgroundColor="#ff4500" [navBarLightText]="true" 
-[cityId]="CityId" [cityName]="CityName"></app-nav-bar>
+<app-nav-bar backgroundColor="#ff4500" [navBarLightText]="true" [cityId]="CityId" [cityName]="CityName"></app-nav-bar>
 
 <div class="hero-header-container">
     <div class="headerText">
@@ -35,32 +34,7 @@
                         <br>
                         <b>Features:</b> <span *ngFor="let prop of weapon.properties"> {{prop.name}} </span> <br>
                         <b>Special:</b> {{weapon.special}} <br>
-                        <b><span class="gold"> {{weapon.price}} {{weapon.currencyType.abbreviation}}</span></b>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--SIMPLE MELEE-->
-        <div class="row shadow my-5" style="border: 2px solid black;">
-            <div class="titleBox col-md-3 col-6 product">
-                <div class="m-auto text-center">
-                    <h1> Simple Melee </h1>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-6 product creamBG pointer" *ngFor="let weapon of SimpleMelee; let i = index"
-                [ngClass]="{'creamBG': CreateCheckerboard(i)}">
-                <div class="imgWrapper m-auto">
-                    <img src="../../../../assets/EpicFlail/{{weapon.name | lowercase}}.png" />
-                    <h5>{{weapon.name}}</h5>
-                </div>
-                <div class="overlay" id="text1">
-                    <div class="text">
-                        <h5>{{weapon.name}}</h5>
-                        <b>Damage:</b> {{weapon.numberOfDamageDice}}d{{weapon.damageDice}} {{weapon.damageType.name}}
-                        <br>
-                        <b>Features:</b> <span *ngFor="let prop of weapon.properties"> {{prop.name}} </span> <br>
+                        <b>Weight:</b> {{weapon.weight}} lbs <br>
                         <b><span class="gold"> {{weapon.price}} {{weapon.currencyType.abbreviation}}</span></b>
                     </div>
                 </div>
@@ -68,89 +42,11 @@
         </div>
 
 
-        <!--SIMPLE RANGE-->
-        <div class="row shadow my-5" style="border: 2px solid black;">
+        <app-weapons [weapons]="SimpleMelee" header="Simple Melee"></app-weapons>
+        <app-weapons [weapons]="SimpleRanged" header="Simple Ranged"></app-weapons>
+        <app-weapons [weapons]="MartialMelee" header="Marial Melee"></app-weapons>
+        <app-weapons [weapons]="MartialRanged" header="Marial Ranged"></app-weapons>
 
-            <div class="titleBox col-md-3 col-6 product">
-                <div class="m-auto text-center">
-                    <h1> Simple Range </h1>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-6 product creamBG pointer" *ngFor="let weapon of SimpleRanged; let i = index"
-                [ngClass]="{'creamBG': CreateCheckerboard(i)}">
-                <div class="imgWrapper m-auto">
-                    <img src="../../../../assets/EpicFlail/{{weapon.name | lowercase}}.png" />
-                    <h5>{{weapon.name}}</h5>
-                </div>
-                <div class="overlay" id="text1">
-                    <div class="text">
-                        <h5>{{weapon.name}}</h5>
-                        <b>Damage:</b> {{weapon.numberOfDamageDice}}d{{weapon.damageDice}} {{weapon.damageType.name}}
-                        <br>
-                        <b>Features:</b> <span *ngFor="let prop of weapon.properties"> {{prop.name}} </span> <br>
-                        <b><span class="gold"> {{weapon.price}} {{weapon.currencyType.abbreviation}}</span></b>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!--MARTIAL MELEE-->
-        <div class="row shadow my-5" style="border: 2px solid black;">
-
-            <div class="titleBox col-md-3 col-6 product">
-                <div class="m-auto text-center">
-                    <h1> Martial Melee </h1>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-6 product creamBG pointer" *ngFor="let weapon of MartialMelee; let i = index"
-                [ngClass]="{'creamBG': CreateCheckerboard(i)}">
-                <div class="imgWrapper m-auto">
-                    <img src="../../../../assets/EpicFlail/{{weapon.name | lowercase}}.png" />
-                    <h5>{{weapon.name}}</h5>
-                </div>
-                <div class="overlay" id="text1">
-                    <div class="text">
-                        <h5>{{weapon.name}}</h5>
-                        <b>Damage:</b> {{weapon.numberOfDamageDice}}d{{weapon.damageDice}} {{weapon.damageType.name}}
-                        <br>
-                        <b>Features:</b> <span *ngFor="let prop of weapon.properties"> {{prop.name}} </span> <br>
-                        <b><span class="gold"> {{weapon.price}} {{weapon.currencyType.abbreviation}}</span></b>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!--MARTIAL RANGE-->
-
-        <div class="row shadow my-5" style="border: 2px solid black;">
-
-            <div class="titleBox col-md-3 col-6 product">
-                <div class="m-auto text-center">
-                    <h1> Martial Range </h1>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-6 product creamBG pointer" *ngFor="let weapon of MartialRanged; let i = index"
-                [ngClass]="{'creamBG': CreateCheckerboard(i)}">
-                <div class="imgWrapper m-auto">
-                    <img src="../../../../assets/EpicFlail/{{weapon.name | lowercase}}.png" />
-                    <h5>{{weapon.name}}</h5>
-                </div>
-                <div class="overlay" id="text1">
-                    <div class="text">
-                        <h5>{{weapon.name}}</h5>
-                        <b>Damage:</b> {{weapon.numberOfDamageDice}}d{{weapon.damageDice}} {{weapon.damageType.name}}
-                        <br>
-                        <b>Features:</b> <span *ngFor="let prop of weapon.properties"> {{prop.name}} </span> <br>
-                        <b><span class="gold"> {{weapon.price}} {{weapon.currencyType.abbreviation}}</span></b>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!--AMMUNITION-->
 

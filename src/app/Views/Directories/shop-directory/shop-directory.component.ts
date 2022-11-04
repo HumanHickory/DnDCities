@@ -25,7 +25,7 @@ export class ShopDirectoryComponent implements OnInit {
 
     this.shopService.GetShopsByCityId(this.CityId).subscribe(shops => {
       shops.forEach(shop => {
-        shop.imgLocation = this.ShopImage(shop.id);
+        shop.imgLocation = this.ShopImage(shop);
         shop.nameTrimmed = shop.name.replace(/\s/g, "");
       });
       this.Shops = shops;
@@ -36,19 +36,10 @@ export class ShopDirectoryComponent implements OnInit {
     });
   }
 
-  ShopImage(shopId: number) {
-    switch (shopId) {
+  ShopImage(shop: Shop) {
+    switch (shop.id) {
       case 1:
         return "EpicFlail/flail.png";
-        break;
-      case 2:
-        return "Armor/halfPlate.png";
-        break;
-      case 3:
-        return "Icons/gnome depot.png";
-        break;
-      case 4:
-        return "Icons/victorious secret.png";
         break;
       case 5:
         return "Icons/Nott.png";
@@ -65,11 +56,8 @@ export class ShopDirectoryComponent implements OnInit {
       case 9:
         return "Icons/bitsAndPieces.png";
         break;
-      case 10:
-        return "Icons/divineRiteAid.png";
-        break;
       default:
-        return "";
+        return "Icons/" + shop.name.toLowerCase() + ".png";
         break;
     }
   }

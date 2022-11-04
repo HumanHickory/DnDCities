@@ -35,8 +35,11 @@
 
 
 <p-dialog header="Loading..." [(visible)]="!isLoaded" [modal]="true" [draggable]="false" [resizable]="false">
-    <div class="px-5">
+    <div class="px-5" *ngIf="!LoadingFailed">
         <p-progressSpinner [style]="{width: '150px', height: '150px'}" styleClass="custom-spinner" strokeWidth="4" fill="#ededed" animationDuration="1.5s"></p-progressSpinner>
+    </div>
+    <div class="px-5" *ngIf="LoadingFailed">
+        <b>Unable to Load Avyngäard Cities.</b>
     </div>
 </p-dialog>
 

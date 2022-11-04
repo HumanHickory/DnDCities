@@ -101,7 +101,7 @@
             <h5>History</h5>
 
             <div class="col-12 my-2">
-                <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="CityDetails.history"></angular-editor>
+                <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="CityDetails.history.description"></angular-editor>
             </div>
         </div>
 
@@ -527,7 +527,7 @@
             <button pButton type="button" label="Add" (click)="AddNews()"></button>
         </p-dialog>
 
-        <p-dialog header="Add News" [(visible)]="ShowHelpDialog" [style]="{width: '50vw'}">
+        <p-dialog header="Add Help Wanted" [(visible)]="ShowHelpDialog" [style]="{width: '50vw'}">
             <b>Title</b>
             <input type="text" pInputText [(ngModel)]="NewHelp.title" placeholder="Terror In Town" />
 
@@ -545,9 +545,7 @@
             <b>Description</b>
             <input type="text" pInputText [(ngModel)]="NewDrink.description" placeholder="Tell me more..." />
             <b>Drink Type</b>
-            <input type="text" pInputText [(ngModel)]="NewDrink.drinkType" placeholder="Ale, White Wine, Mixed, Spirit..." />
-
-        
+            <input type="text" pInputText [(ngModel)]="NewDrink.drinkType" placeholder="Ale, White Wine, Mixed, Spirit..." />  
             <button pButton type="button" label="Add" (click)="AddDrink()"></button>
         </p-dialog>
 

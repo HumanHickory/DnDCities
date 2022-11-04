@@ -37,7 +37,7 @@ import { ShopDirectoryComponent } from './Views/Directories/shop-directory/shop-
 import { TavernComponent } from './Views/Taverns/tavern/tavern.component';
 import { EpicFlailComponent } from './Views/Stores/epic-flail/epic-flail.component';
 import { EyeOfTheBeholderComponent } from './Views/Stores/eye-of-the-beholder/eye-of-the-beholder.component';
-import { RicochetArmamentsComponent } from './Views/Stores/ricochet-armaments/ricochet-armaments.component';
+import { ArmorcrombieAndFitchComponent } from './Views/Stores/armorcrombie-and-fitch/armorcrombie-and-fitch.component';
 import { GnomeDepotComponent } from './Views/Stores/gnome-depot/gnome-depot.component';
 import { NewsComponent } from './Views/CityComponents/news/news.component';
 import { HIstoryComponent } from './Views/CityComponents/history/history.component';
@@ -52,6 +52,7 @@ import { UnderdarkComponent } from './Views/Cities/underdark/underdark.component
 import { ManageComponent } from './Views/Admin/manage/manage.component';
 import { ZimzamkatanComponent } from './Views/Stores/zimzamkatan/zimzamkatan.component';
 import { DivineRiteAidComponent } from './Views/Stores/divine-rite-aid/divine-rite-aid.component';
+import { WeaponsComponent } from './Views/ShopComponents/weapons/weapons.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,7 @@ import { DivineRiteAidComponent } from './Views/Stores/divine-rite-aid/divine-ri
     TavernComponent,
     EpicFlailComponent,
     EyeOfTheBeholderComponent,
-    RicochetArmamentsComponent,
+    ArmorcrombieAndFitchComponent,
     GnomeDepotComponent,
     NewsComponent,
     HIstoryComponent,
@@ -78,7 +79,8 @@ import { DivineRiteAidComponent } from './Views/Stores/divine-rite-aid/divine-ri
     UnderdarkComponent,
     ManageComponent,
     ZimzamkatanComponent,
-    DivineRiteAidComponent
+    DivineRiteAidComponent,
+    WeaponsComponent
     
   ],
   imports: [

@@ -77,7 +77,7 @@ export class ShopService {
         return this.http.get<Diety[]>(environment.apiUrl() + 'api/City/GetCityDietiesByCityId?CityId=' + cityId);
     }
 
-    AddSpellToCity(shopSpells: SpellScroll[]){
-        return this.http.post(environment.apiUrl() + 'api/City/AddSpellToCity', shopSpells)
+    AddSpellsToCity(shopSpells: SpellScroll[]){
+        return this.http.post(environment.apiUrl() + 'api/City/AddSpellsToCity', shopSpells)
     }
 }
